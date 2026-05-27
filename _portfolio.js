@@ -89,6 +89,8 @@
     #_gallery img {
       width:100%; height:auto; display:block;
       transition:opacity .3s;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
 
     /* LIGHTBOX */
@@ -193,7 +195,7 @@
     /* meta tags */
     const meta = document.createElement('div');
     meta.id = '_meta';
-    meta.innerHTML = tools.map(t => `<span>${t}</span>`).join('') + `<span>${srcs.length} SCREENSHOTS</span>`;
+    meta.innerHTML = tools.map(t => `<span>${t}</span>`).join('');
 
     /* gallery */
     const gallery = document.createElement('div');

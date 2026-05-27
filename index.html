@@ -197,24 +197,67 @@
   .project-card:hover .project-arrow { color: var(--accent); }
 
   /* CERTS */
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
   .cert-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 8px;
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
   }
-  .cert-card:hover { border-color: var(--accent); }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-card .cert-img-wrap {
+    position: relative; overflow: hidden;
+  }
   .cert-card img {
     width: 100%;
-    height: 140px;
-    object-fit: cover;
-    object-position: top;
+    height: auto;
     display: block;
     border-bottom: 1px solid var(--border);
+    transition: transform 0.3s;
   }
+  .cert-card:hover img { transform: scale(1.02); }
+  .cert-expand-hint {
+    position: absolute; bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.7); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 8px;
+    font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .cert-card:hover .cert-expand-hint { opacity: 1; }
   .cert-label { padding: 12px 14px; font-size: 12px; font-family: 'Space Mono', monospace; color: var(--muted); }
+
+  /* CERT LIGHTBOX */
+  #cert-lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.93); z-index: 9999;
+    align-items: center; justify-content: center; padding: 24px;
+    flex-direction: column; gap: 16px;
+  }
+  #cert-lightbox.open { display: flex; }
+  #cert-lightbox img {
+    max-width: 90vw; max-height: 80vh;
+    border-radius: 8px; border: 1px solid var(--border);
+    object-fit: contain;
+  }
+  #cert-lightbox-label {
+    font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted);
+  }
+  #cert-lightbox-close {
+    position: fixed; top: 20px; right: 24px;
+    font-family: 'Space Mono', monospace; font-size: 22px;
+    color: var(--muted); cursor: pointer; z-index: 10000; transition: color 0.2s;
+  }
+  #cert-lightbox-close:hover { color: var(--accent); }
+  #cert-lb-nav { display: flex; gap: 12px; }
+  #cert-lb-nav button {
+    font-family: 'Space Mono', monospace; font-size: 13px;
+    background: var(--bg3); border: 1px solid var(--border);
+    color: var(--text); padding: 8px 20px; border-radius: 4px;
+    cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  }
+  #cert-lb-nav button:hover { border-color: var(--accent); color: var(--accent); }
 
   /* CONTACT */
   .contact-row { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -256,7 +299,7 @@
     <p class="hero-desc">Data Analyst with expertise in Excel, Power BI, SQL & Python. Certified PL-300 Power BI Data Analyst & Oracle SQL Associate. Turning complex data into clear, actionable insights.</p>
     <div class="hero-links">
       <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn btn-primary" target="_blank">↗ LinkedIn</a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Resume 2764a910344880abb4d2c9649c7fbf14.html" class="btn">📄 Resume</a>
+      <a href="Grozea_Viorel_CV.pdf" class="btn" target="_blank">📄 Resume / CV</a>
       <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn">✉ Email Me</a>
     </div>
   </div>
@@ -441,33 +484,63 @@
 
   <section id="certs">
     <div class="section-label">Certifications</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;font-family:'Space Mono',monospace;">Click any certificate to expand</p>
     <div class="certs-grid">
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/pl300.png" alt="PL-300 Power BI Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(0)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/pl300.png" alt="PL-300 Power BI Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">PL-300 Power BI Data Analyst</div>
       </div>
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(1)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">Microsoft Power BI Data Analyst</div>
       </div>
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(2)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">IBM Data Analyst — Coursera</div>
       </div>
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(3)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">Advanced SQL Server Masterclass</div>
       </div>
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(4)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">Business Analyst Bootcamp</div>
       </div>
-      <div class="cert-card">
-        <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
+      <div class="cert-card" onclick="openCertLb(5)">
+        <div class="cert-img-wrap">
+          <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
         <div class="cert-label">Data Analysis — SQL, Tableau, Power BI & Excel</div>
       </div>
     </div>
   </section>
+
+  <!-- CERT LIGHTBOX -->
+  <div id="cert-lightbox">
+    <span id="cert-lightbox-close" onclick="closeCertLb()">✕</span>
+    <img id="cert-lb-img" src="" alt="">
+    <div id="cert-lightbox-label"></div>
+    <div id="cert-lb-nav">
+      <button onclick="moveCert(-1)">← prev</button>
+      <button onclick="moveCert(1)">next →</button>
+    </div>
+  </div>
 
   <section id="contact">
     <div class="section-label">Contact</div>
@@ -485,5 +558,40 @@
   </footer>
 
 </div>
+
+<script>
+  const certData = [
+    { src: "Viorel Grozea - Data Analyst Portfolio/pl300.png", label: "PL-300 Power BI Data Analyst" },
+    { src: "Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg", label: "Microsoft Power BI Data Analyst" },
+    { src: "Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg", label: "IBM Data Analyst — Coursera" },
+    { src: "Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg", label: "Advanced SQL Server Masterclass" },
+    { src: "Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg", label: "Business Analyst Bootcamp" },
+    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" }
+  ];
+  let certIdx = 0;
+  const lb = document.getElementById('cert-lightbox');
+  const lbImg = document.getElementById('cert-lb-img');
+  const lbLabel = document.getElementById('cert-lightbox-label');
+
+  function openCertLb(idx) {
+    certIdx = idx;
+    lbImg.src = certData[certIdx].src;
+    lbLabel.textContent = certData[certIdx].label;
+    lb.classList.add('open');
+  }
+  function closeCertLb() { lb.classList.remove('open'); }
+  function moveCert(dir) {
+    certIdx = (certIdx + dir + certData.length) % certData.length;
+    lbImg.src = certData[certIdx].src;
+    lbLabel.textContent = certData[certIdx].label;
+  }
+  lb.addEventListener('click', e => { if (e.target === lb) closeCertLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeCertLb();
+    if (e.key === 'ArrowLeft') moveCert(-1);
+    if (e.key === 'ArrowRight') moveCert(1);
+  });
+</script>
 </body>
 </html>
