@@ -1,772 +1,489 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Viorel Grozea - Data Analyst Portfolio</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-/* Override strong tags inside headings to maintain consistent weight */
-h1 strong,
-h2 strong,
-h3 strong {
-	font-weight: 600;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 10px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-
-	table.collection-content {
-		width: 100%;
-		table-layout: fixed;
-	}
-
-	table.collection-content th,
-	table.collection-content td {
-		overflow-wrap: anywhere;
-	}
-
-	table.collection-content td > .user,
-	table.collection-content td > time {
-		white-space: pre-wrap;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content-wrapper {
-	overflow-x: auto;
-}
-
-@media only print {
-	.collection-content-wrapper {
-		overflow-x: visible;
-	}
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.collection-content td {
-	white-space: pre-wrap;
-	word-break: break-word;
-}
-
-.column-list {
-	display: flex;
-	gap: 46px;
-}
-
-.column {
-	min-width: 0;
-	overflow: hidden;
-}
-
-.column > *:first-child {
-	margin-top: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-table {
-	border-collapse: collapse;
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol.numbered-list.numbered-list-digits-2 {
-	padding-inline-start: 2em;
-}
-
-ol.numbered-list.numbered-list-digits-3plus {
-	padding-inline-start: 2.4em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.callout img.notion-static-icon {
-	width: 1em;
-	height: 1em;
-}
-
-.callout p {
-	margin: 0;
-}
-
-.callout h1,
-.callout h2,
-.callout h3 {
-	margin: 0 0 0.6rem;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-blockquote.quote-large {
-	font-size: 1.25em;
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.highlight-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.highlight-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.highlight-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.highlight-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.highlight-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.highlight-default_background {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray_background {
-	background: rgba(42, 28, 0, 0.07);
-}
-.highlight-brown_background {
-	background: rgba(139, 46, 0, 0.086);
-}
-.highlight-orange_background {
-	background: rgba(224, 101, 1, 0.129);
-}
-.highlight-yellow_background {
-	background: rgba(211, 168, 0, 0.137);
-}
-.highlight-teal_background {
-	background: rgba(0, 100, 45, 0.09);
-}
-.highlight-blue_background {
-	background: rgba(0, 124, 215, 0.094);
-}
-.highlight-purple_background {
-	background: rgba(102, 0, 178, 0.078);
-}
-.highlight-pink_background {
-	background: rgba(197, 0, 93, 0.086);
-}
-.highlight-red_background {
-	background: rgba(223, 22, 0, 0.094);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.block-color-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.block-color-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.block-color-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.block-color-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.block-color-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(240, 239, 237, 1);
-}
-.block-color-brown_background {
-	background: rgba(245, 237, 233, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 235, 222, 1);
-}
-.block-color-yellow_background {
-	background: rgba(249, 243, 220, 1);
-}
-.block-color-teal_background {
-	background: rgba(232, 241, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(229, 242, 252, 1);
-}
-.block-color-purple_background {
-	background: rgba(243, 235, 249, 1);
-}
-.block-color-pink_background {
-	background: rgba(250, 233, 241, 1);
-}
-.block-color-red_background {
-	background: rgba(252, 233, 231, 1);
-}
-.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
-.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
-.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
-.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
-.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
-.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
-.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
-.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
-.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
-.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="20a4a910-3448-80b5-ae0a-e653dbe4c52b" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon notion-static-icon" src="https://www.notion.so/icons/chart-donut_orange.svg"/></div><h1 class="page-title" dir="auto">Viorel Grozea - Data Analyst Portfolio</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="26d4a910-3448-80d0-a36e-d69ebd0789a9" class="">                                                <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Resume%202764a910344880abb4d2c9649c7fbf14.html">📜 Resume</a> |<a href="https://www.linkedin.com/in/viorelgrozea/"> 💼 LinkedIn</a> | 📫 Contact Me </p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-8058-b869-d2c8d9a803bf" class="">
-</p></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-800c-b395-c5809d7bdeee" class=""><mark class="highlight-red"><strong>Professional Value</strong></mark></p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-8016-a665-f31f4aa16258" class="">I approach every business problem with a solution-driven mindset, consistently going beyond initial requirements to uncover deeper insights that create real business value. I don’t just analyse data — I question assumptions, identify hidden opportunities, and clearly justify why each insight matters to the business.</p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-80bf-93d9-c9b6bc54bc15" class=""> I am highly motivated to grow my career in data analytics at a fast pace, applying a unique, proactive approach that blends structured analysis with tailored data storytelling, adapting insights to each stakeholder or audience to drive understanding and action.</p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-80cd-9f4c-db1e4aa8da1b" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-8075-9113-e5d571e79e34" class=""><mark class="highlight-red"><strong>My primary objective</strong></mark> at the beginning of my career is to build a strong foundation in data analytics tools and industry best practices. As I develop this core expertise, I aim to progressively narrow my focus toward business intelligence tools, high-impact analytics solutions, and machine-learning techniques applied to descriptive analysis. This approach will allow me to uncover more impactful insights and communicate them more effectively</p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-80e5-aee7-f613794874fc" class="">
-</p></div><div style="display:contents" dir="auto"><div id="26d4a910-3448-8068-851b-dcbc8bb4376b" class="column-list"><div style="display:contents" dir="auto"><div id="26d4a910-3448-80b1-aa81-fa059e0b0331" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="2c64a910-3448-803f-bfc1-da477a0927a5" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/image.png"><img style="width:504.984375px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/image.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-8078-aae0-c9e11faa4049" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-80cf-a433-e7c8a198fcc4" class="">
-</p></div></div></div><div style="display:contents" dir="auto"><div id="26d4a910-3448-80e9-a89f-d560c6759702" style="width:50%" class="column"><div style="display:contents" dir="auto"><h3 id="2694a910-3448-800c-a4d7-fe497dd97e59" class="">🔑<strong><span style="border-bottom:0.05em solid"> Core Skills &amp; Tools</span></strong></h3></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-803d-aa58-ff3ac2da0436" class="">🟩<mark class="highlight-red"> Excel: </mark>Formulas, Conditional Formatting,Dashboards, PivotTables.</p></div><div style="display:contents" dir="auto"><p id="2944a910-3448-808e-a937-e84a6ae0fc82" class="">
-</p></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-80f9-95a2-d9a83b95cf59" class="">📊<mark class="highlight-purple"> </mark><mark class="highlight-red">Power BI: </mark>DAX fundamentals, KPIs, Semantic model modelling,                row level security, interactive dashboards.</p></div><div style="display:contents" dir="auto"><p id="2944a910-3448-806c-856e-c087d9115a60" class="">
-</p></div><div style="display:contents" dir="auto"><p id="26d4a910-3448-806c-acde-f5db5f887ce6" class="">🟦 <mark class="highlight-red">SQL: </mark>Basics, Joins, Logical / Comparison Operators / order , Sub-Queries, #Temp, Window F, CTEs, Views, Wildcards, Indexes, Constraints, Sql*Plus, Substitution vars, Exists, Sequences, multi-insert.    </p></div><div style="display:contents" dir="auto"><p id="3644a910-3448-80ff-9090-c970297ec5c0" class=""> <mark class="highlight-blue">(MS SQL Server, IBM DB2,DataGrip)</mark></p></div><div style="display:contents" dir="auto"><p id="2944a910-3448-8027-bc0c-cadf5ac5ab0b" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2694a910-3448-80c8-ba19-cb266f401cec" class="">🐍<mark class="highlight-red"> Python: </mark>Pandas, Matplotlib.                                                                                <mark class="highlight-blue">(Jupyter)</mark></p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-80af-9f71-fc568c6a638f" class="">
-</p></div><div style="display:contents" dir="auto"><p id="26d4a910-3448-80d5-a47a-d9558f643f67" class="">🛠️<mark class="highlight-red">Stats: </mark> Mean,Median,Mode,Min,Max, Count, CounA,CountIFs,Small,Large,Normal Distribution</p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-80cb-9860-ef5d92d21b9f" class="">
-</p></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="20c4a910-3448-8080-b289-ec569eab7042"/></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-8042-9f7d-ed50f8d026f9" class="">
-</p></div><div style="display:contents" dir="auto"><p id="20a4a910-3448-80cf-b8ed-e9ee6e329d31" class="">
-</p></div><div style="display:contents" dir="auto"><div id="20d4a910-3448-8056-b6c5-e7b268f101a8" class="column-list"><div style="display:contents" dir="auto"><div id="20d4a910-3448-8054-af8d-d0b7641cbc8b" style="width:56.25%" class="column"><div style="display:contents" dir="auto"><p id="20a4a910-3448-8028-8ab5-fde59e15ebe9" class="">➡️ Excel Projects</p></div><div style="display:contents" dir="auto"><hr id="20d4a910-3448-80af-869c-cd76a2f191ee"/></div><div style="display:contents" dir="ltr"><figure id="2984a910-3448-80c0-89d7-f1dea6dd1ba6" class="block-color-teal_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Car%20Insurance%20policy%20optimisation%202984a910344880c089d7f1dea6dd1ba6.html"><span class="icon">📊</span>Car Insurance policy optimisation </a></figure></div><div style="display:contents" dir="ltr"><figure id="20a4a910-3448-80eb-be8e-e15e524ef8d3" class="block-color-teal_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Excel%20project%20Cleaning%20data%20for%20visualization%2020a4a910344880ebbe8ee15e524ef8d3.html"><span class="icon">📊</span>Excel project: Cleaning data for visualization</a></figure></div><div style="display:contents" dir="auto"><p id="2244a910-3448-806d-8998-dd6e8799ad6c" class="">
-</p></div></div></div><div style="display:contents" dir="auto"><div id="20d4a910-3448-805d-926c-fc66da223cd8" style="width:43.75000000000001%" class="column"><div style="display:contents" dir="auto"><p id="20a4a910-3448-8038-8580-c48047039be3" class="">➡️ SQL Projects</p></div><div style="display:contents" dir="auto"><hr id="20d4a910-3448-80a0-9a5b-eab154de7fc4"/></div><div style="display:contents" dir="ltr"><figure id="30d4a910-3448-8098-9781-f47362710ad7" class="block-color-purple_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Regional%20Online%20Store%20Sales%20Analysis%2030d4a910344880989781f47362710ad7.html"><span class="icon">🗄️</span>Regional Online Store Sales Analysis</a></figure></div><div style="display:contents" dir="ltr"><figure id="2c64a910-3448-803d-9424-fea943fb338c" class="block-color-purple_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Sales%20Performance%20&amp;%20Customer%20Insights%20Report%202c64a9103448803d9424fea943fb338c.html"><span class="icon">🗄️</span>Sales Performance &amp; Customer Insights Report</a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><div id="20d4a910-3448-804d-95a9-dd91277a6b6d" class="column-list"><div style="display:contents" dir="auto"><div id="20d4a910-3448-80b7-989f-e2f08dc5ceda" style="width:56.25%" class="column"><div style="display:contents" dir="auto"><p id="20a4a910-3448-80c0-b110-d99732b7d019" class="">➡️ Power BI Dashboards</p></div><div style="display:contents" dir="auto"><hr id="20d4a910-3448-80ea-9661-e6abad6a2254"/></div><div style="display:contents" dir="ltr"><figure id="2244a910-3448-8074-8aab-e3bb1fe16eb2" class="block-color-yellow_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi%20Dashboard%202244a910344880748aabe3bb1fe16eb2.html"><span class="icon">📏</span>PowerBi Dashboard</a></figure></div><div style="display:contents" dir="auto"><p id="21e4a910-3448-809e-b130-fbc94fdb8cbb" class="">
-</p></div><div style="display:contents" dir="auto"><p id="21e4a910-3448-800d-9e4d-c283350127f1" class="">
-</p></div><div style="display:contents" dir="auto"><p id="20d4a910-3448-8003-b176-d0edbef47870" class="">
-</p></div><div style="display:contents" dir="auto"><p id="20a4a910-3448-8058-9699-cceeff5cee2b" class="">➡️Others</p></div><div style="display:contents" dir="ltr"><figure id="2b84a910-3448-803e-8be2-f5b07d376796" class="block-color-gray_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Tableau%20-%20Football%20Players%20Valuation%20&amp;%20Performance%202b84a9103448803e8be2f5b07d376796.html"><span class="icon">🖼️</span>Tableau - Football Players Valuation &amp; Performance Insights Dashboard</a></figure></div><div style="display:contents" dir="ltr"><figure id="20d4a910-3448-806e-a187-c3ebb1a26067" class="block-color-brown_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/IBM-Cognos%20analytics%20Project%2020d4a9103448806ea187c3ebb1a26067.html"><span class="icon">📊</span>IBM-Cognos analytics Project</a></figure></div><div style="display:contents" dir="ltr"><figure id="21e4a910-3448-8045-b0f4-e53d4ef1116d" class="block-color-brown_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/IBM-Cognos%20-%20Survey%20analysis%20Project%2021e4a91034488045b0f4e53d4ef1116d.html"><span class="icon">📊</span>IBM-Cognos - Survey analysis Project</a></figure></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-804b-a9b2-dd446d9d5af7" class="">
-</p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-8061-a81d-c8012afa398c" class="">
-</p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-80d9-a3c3-c1e2dfbf341a" class="">
-</p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-8033-b227-dd618d90f65d" class="">
-</p></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-80db-a33b-d8f9f422af24" class="">
-</p></div><div style="display:contents" dir="auto"><p id="26d4a910-3448-80fa-a65a-c0970f3c1a8a" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2654a910-3448-809d-9eb5-d8f4edb3232a" class="block-color-gray_background"><mark class="highlight-default_background">Exams and Certifications</mark></p></div></div></div><div style="display:contents" dir="auto"><div id="20d4a910-3448-808c-af83-d5cc48f6ac13" style="width:43.75%" class="column"><div style="display:contents" dir="auto"><p id="20a4a910-3448-8035-90f4-f0233e6df9ab" class="">➡️ Python Projects</p></div><div style="display:contents" dir="auto"><hr id="20d4a910-3448-8045-9334-d8d662c2ff95"/></div><div style="display:contents" dir="auto"><p id="2774a910-3448-8085-b798-ddf44901854f" class="block-color-blue_background">⚙️Chips Analysis</p></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80a5-b64b-d60706ef6445" class="block-color-default_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445.html"><span class="icon">⚙️</span>Chips Analysis - Task 1</a></figure></div><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-80c8-8c71-c3350461e861" class="link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Chips%20Analysis%20-%20Task%202%2027d4a910344880c88c71c3350461e861.html"><span class="icon">⚙️</span>Chips Analysis - Task 2</a></figure></div><div style="display:contents" dir="ltr"><figure id="2194a910-3448-8059-a99c-fabc18de3d0f" class="block-color-blue_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f.html"><span class="icon">⚙️</span>Automobile Sales during Recession</a></figure></div><div style="display:contents" dir="ltr"><figure id="2114a910-3448-80ec-a0c7-ec671938d22f" class="block-color-blue_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f.html"><span class="icon">⚙️</span>Python project - Web Scraping</a></figure></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-808c-b0ec-d9644176f15c" class="block-color-blue_background link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c.html"><span class="icon">⚙️</span>Wildfire activities in Australia</a></figure></div><div style="display:contents" dir="auto"><p id="29c4a910-3448-8066-82a6-cf32948b4409" class="">
-</p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2654a910-3448-8079-8989-ffec0eff7b27" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/pl300.png"><img style="width:1104px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/pl300.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2654a910-3448-800c-a41f-c1183827c2e0" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2654a910-3448-8012-8fee-e6ff85f4f1f2" class="">
-</p></div><div style="display:contents" dir="auto"><p id="2654a910-3448-80ea-b8a9-eb848dc41459" class="">
-</p></div><div style="display:contents" dir="ltr"><figure id="23f4a910-3448-8004-8ca6-c6c235d8ffdc" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi_Certificate.jpeg"><img style="width:1104px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi_Certificate.jpeg"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2224a910-3448-809f-bd11-f0d6a61ab35b" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg"><img style="width:1104px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg"/></a></figure></div><div style="display:contents" dir="auto"><div id="20c4a910-3448-80b3-bde2-f7138a2c0480" class="column-list"><div style="display:contents" dir="auto"><div id="20c4a910-3448-8068-83aa-e2d41b742ff7" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="20c4a910-3448-8003-a67a-e44751787404" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/SQL_-_Certificate.jpg"><img style="width:576px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/SQL_-_Certificate.jpg"/></a></figure></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-8098-ab9c-d7037f5d08e9" class="">
-</p></div><div style="display:contents" dir="ltr"><figure id="20c4a910-3448-80d4-b502-d383b8d54409" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/ExcelstatsSQL_Tableau.jpg"><img style="width:710px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/ExcelstatsSQL_Tableau.jpg"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="20c4a910-3448-8094-83a6-f08c531aeba7" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="20c4a910-3448-805e-be07-fc296fa342be" class="image"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg"><img style="width:240px" src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="20c4a910-3448-8003-bdb2-c56103de4401"/></div><div style="display:contents" dir="auto"><p id="20c4a910-3448-804d-98d3-d26ec1c202a2" class="">
-</p></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-80ab-b4d2-c9649c7fbf14" class="block-color-gray link-to-page"><a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Resume%202764a910344880abb4d2c9649c7fbf14.html">Resume</a></figure></div><div style="display:contents" dir="auto"><p id="2c64a910-3448-80fe-998f-dd5c02830e14" class="">
-</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viorel Grozea — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --accent: #00e5a0;
+    --accent2: #00b37d;
+    --text: #f0f0f0;
+    --muted: #888;
+    --border: #222;
+    --card: #131313;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: #fff; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border: 1px solid var(--accent2);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-desc {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 32px;
+    line-height: 1.8;
+  }
+  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+    background: var(--bg3);
+    transition: all 0.2s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg); }
+  .btn-primary { border-color: var(--accent); color: var(--accent); }
+  .btn-primary:hover { background: var(--accent); color: #000; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 14px 0;
+  }
+  .nav-inner { display: flex; gap: 28px; align-items: center; max-width: 860px; margin: 0 auto; padding: 0 24px; }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); margin-right: auto; }
+  .nav-inner a { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; }
+  .nav-inner a:hover { color: var(--accent); }
+
+  /* SECTIONS */
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .about-card h3 { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 12px; font-family: 'Space Mono', monospace; }
+  .about-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .skill-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-family: 'Space Mono', monospace;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .skill-pill:hover { border-color: var(--accent); }
+  .skill-pill .skill-icon { font-size: 18px; margin-bottom: 6px; display: block; }
+  .skill-pill .skill-sub { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; gap: 16px; }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateX(4px); color: inherit; }
+  .project-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .project-body { flex: 1; }
+  .project-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .project-arrow { color: var(--muted); font-size: 20px; align-self: center; transition: color 0.2s; }
+  .project-card:hover .project-arrow { color: var(--accent); }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--accent); }
+  .cert-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+    border-bottom: 1px solid var(--border);
+  }
+  .cert-label { padding: 12px 14px; font-size: 12px; font-family: 'Space Mono', monospace; color: var(--muted); }
+
+  /* CONTACT */
+  .contact-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer { padding: 40px 0; text-align: center; }
+  footer p { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero { animation: fadeUp 0.6s ease both; }
+
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-links { flex-direction: column; }
+    .project-card { flex-direction: column; }
+    .nav-inner a:not(.nav-logo) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">VG_</span>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#certs">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="hero">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Viorel<br><span>Grozea</span></h1>
+    <p class="hero-desc">Data Analyst with expertise in Excel, Power BI, SQL & Python. Certified PL-300 Power BI Data Analyst & Oracle SQL Associate. Turning complex data into clear, actionable insights.</p>
+    <div class="hero-links">
+      <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn btn-primary" target="_blank">↗ LinkedIn</a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Resume 2764a910344880abb4d2c9649c7fbf14.html" class="btn">📄 Resume</a>
+      <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn">✉ Email Me</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Value I bring</h3>
+        <p>I approach every business problem with a solution-driven mindset, going beyond requirements to uncover deeper insights. I don't just analyse data — I question assumptions and identify hidden opportunities.</p>
+      </div>
+      <div class="about-card">
+        <h3>My objective</h3>
+        <p>Building a strong foundation in data analytics, progressing toward business intelligence, high-impact analytics solutions, and machine-learning techniques applied to descriptive analysis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Core Skills & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-pill">
+        <span class="skill-icon">🟩</span>
+        Excel
+        <div class="skill-sub">PivotTables, Dashboards, Conditional Formatting</div>
+      </div>
+      <div class="skill-pill">
+        <span class="skill-icon">📊</span>
+        Power BI
+        <div class="skill-sub">DAX, KPIs, Semantic Models, RLS</div>
+      </div>
+      <div class="skill-pill">
+        <span class="skill-icon">🟦</span>
+        SQL
+        <div class="skill-sub">Joins, CTEs, Window Functions, Subqueries</div>
+      </div>
+      <div class="skill-pill">
+        <span class="skill-icon">🐍</span>
+        Python
+        <div class="skill-sub">Pandas, Matplotlib, Jupyter</div>
+      </div>
+      <div class="skill-pill">
+        <span class="skill-icon">📈</span>
+        Tableau
+        <div class="skill-sub">Interactive dashboards & storytelling</div>
+      </div>
+      <div class="skill-pill">
+        <span class="skill-icon">🛠️</span>
+        Statistics
+        <div class="skill-sub">Mean, Median, Normal Distribution</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+
+    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:0.05em;">EXCEL</p>
+    <div class="projects-grid" style="margin-bottom:32px;">
+      <a href="Viorel Grozea - Data Analyst Portfolio/Car Insurance policy optimisation 2984a910344880c089d7f1dea6dd1ba6.html" class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-body">
+          <div class="project-title">Car Insurance Policy Optimisation</div>
+          <div class="project-tags"><span class="tag">EXCEL</span><span class="tag">ANALYSIS</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Excel project Cleaning data for visualization 20a4a910344880ebbe8ee15e524ef8d3.html" class="project-card">
+        <div class="project-icon">🧹</div>
+        <div class="project-body">
+          <div class="project-title">Cleaning Data for Visualisation</div>
+          <div class="project-tags"><span class="tag">EXCEL</span><span class="tag">DATA CLEANING</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+    </div>
+
+    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:0.05em;">SQL</p>
+    <div class="projects-grid" style="margin-bottom:32px;">
+      <a href="Viorel Grozea - Data Analyst Portfolio/Regional Online Store Sales Analysis 30d4a910344880989781f47362710ad7.html" class="project-card">
+        <div class="project-icon">🗄️</div>
+        <div class="project-body">
+          <div class="project-title">Regional Online Store Sales Analysis</div>
+          <div class="project-tags"><span class="tag">SQL</span><span class="tag">SALES</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Sales Performance & Customer Insights Report 2c64a9103448803d9424fea943fb338c.html" class="project-card">
+        <div class="project-icon">📋</div>
+        <div class="project-body">
+          <div class="project-title">Sales Performance & Customer Insights Report</div>
+          <div class="project-tags"><span class="tag">SQL</span><span class="tag">CRM</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+    </div>
+
+    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:0.05em;">POWER BI</p>
+    <div class="projects-grid" style="margin-bottom:32px;">
+      <a href="Viorel Grozea - Data Analyst Portfolio/PowerBi Dashboard 2244a910344880748aabe3bb1fe16eb2.html" class="project-card">
+        <div class="project-icon">📏</div>
+        <div class="project-body">
+          <div class="project-title">Power BI Dashboard</div>
+          <div class="project-tags"><span class="tag">POWER BI</span><span class="tag">DAX</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+    </div>
+
+    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:0.05em;">PYTHON</p>
+    <div class="projects-grid" style="margin-bottom:32px;">
+      <a href="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445.html" class="project-card">
+        <div class="project-icon">⚙️</div>
+        <div class="project-body">
+          <div class="project-title">Chips Analysis — Task 1</div>
+          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">PANDAS</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861.html" class="project-card">
+        <div class="project-icon">⚙️</div>
+        <div class="project-body">
+          <div class="project-title">Chips Analysis — Task 2</div>
+          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">MATPLOTLIB</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f.html" class="project-card">
+        <div class="project-icon">🚗</div>
+        <div class="project-body">
+          <div class="project-title">Automobile Sales during Recession</div>
+          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">EDA</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Python project - Web Scraping 2114a910344880eca0c7ec671938d22f.html" class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-body">
+          <div class="project-title">Python — Web Scraping</div>
+          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">WEB SCRAPING</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c.html" class="project-card">
+        <div class="project-icon">🔥</div>
+        <div class="project-body">
+          <div class="project-title">Wildfire Activities in Australia</div>
+          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">VISUALISATION</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+    </div>
+
+    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:0.05em;">OTHER</p>
+    <div class="projects-grid">
+      <a href="Viorel Grozea - Data Analyst Portfolio/Tableau - Football Players Valuation & Performance 2b84a9103448803e8be2f5b07d376796.html" class="project-card">
+        <div class="project-icon">🖼️</div>
+        <div class="project-body">
+          <div class="project-title">Tableau — Football Players Valuation & Performance</div>
+          <div class="project-tags"><span class="tag">TABLEAU</span><span class="tag">SPORTS</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/IBM-Cognos analytics Project 20d4a9103448806ea187c3ebb1a26067.html" class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-body">
+          <div class="project-title">IBM Cognos Analytics Project</div>
+          <div class="project-tags"><span class="tag">IBM COGNOS</span><span class="tag">BI</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+      <a href="Viorel Grozea - Data Analyst Portfolio/IBM-Cognos - Survey analysis Project 21e4a91034488045b0f4e53d4ef1116d.html" class="project-card">
+        <div class="project-icon">📋</div>
+        <div class="project-body">
+          <div class="project-title">IBM Cognos — Survey Analysis</div>
+          <div class="project-tags"><span class="tag">IBM COGNOS</span><span class="tag">SURVEY</span></div>
+        </div>
+        <div class="project-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="section-label">Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/pl300.png" alt="PL-300 Power BI Certificate" loading="lazy">
+        <div class="cert-label">PL-300 Power BI Data Analyst</div>
+      </div>
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
+        <div class="cert-label">Microsoft Power BI Data Analyst</div>
+      </div>
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
+        <div class="cert-label">IBM Data Analyst — Coursera</div>
+      </div>
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
+        <div class="cert-label">Advanced SQL Server Masterclass</div>
+      </div>
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
+        <div class="cert-label">Business Analyst Bootcamp</div>
+      </div>
+      <div class="cert-card">
+        <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
+        <div class="cert-label">Data Analysis — SQL, Tableau, Power BI & Excel</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Let's connect</h2>
+    <p style="color:var(--muted);margin-bottom:32px;max-width:480px;">Open to entry-level data analyst roles and internship opportunities in the UK.</p>
+    <div class="contact-row">
+      <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn btn-primary">✉ grozea_viorel_ionut@yahoo.com</a>
+      <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn" target="_blank">↗ LinkedIn</a>
+      <a href="tel:07501318269" class="btn">📞 075 0131 8269</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Viorel Grozea · viorel-portfolio.uk</p>
+  </footer>
+
+</div>
+</body>
+</html>
