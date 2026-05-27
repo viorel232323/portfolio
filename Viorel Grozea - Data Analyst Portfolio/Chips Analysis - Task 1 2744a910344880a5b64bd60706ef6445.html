@@ -1,0 +1,973 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Chips Analysis - Task 1</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2744a910-3448-80a5-b64b-d60706ef6445" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⚙️</span></div><h1 class="page-title" dir="auto">Chips Analysis - Task 1</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="2744a910-3448-8075-9ff7-d14fcc51787c" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import pandas as pd 
+
+df1 = pd.read_excel(r&quot;C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx&quot;)
+df2 = pd.read_excel(r&quot;C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx&quot;,sheet_name=&#x27;QVI_purchase_behaviour&#x27;)
+
+df1[&#x27;DATE&#x27;] = pd.to_datetime(df1[&#x27;DATE&#x27;], unit=&#x27;D&#x27;,origin= &#x27;1899-12-30&#x27;)
+</code></pre></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-809d-9a3d-cb909a4de640" class="image"><a href="Chips%20Analysis%20-%20Task%201/image.png"><img style="width:709.953125px" src="Chips%20Analysis%20-%20Task%201/image.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2744a910-3448-8052-8d0e-c8514f49a95b" class="column-list"><div style="display:contents" dir="auto"><div id="2744a910-3448-8066-8a03-c9e8b6ed95d4" style="width:62.5%" class="column"><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80ac-a08b-e3f277a3ef8b" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%201.png"><img style="width:384px" src="Chips%20Analysis%20-%20Task%201/image%201.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-806e-8f42-ff92a223ab32" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="2744a910-3448-8035-984f-e1e96f0dbd1c" style="width:37.50000000000001%" class="column"><div style="display:contents" dir="ltr"><figure id="2744a910-3448-804c-bdc8-e1f867be4d33" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%202.png"><img style="width:306.734375px" src="Chips%20Analysis%20-%20Task%201/image%202.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2744a910-3448-8082-bbe2-ff91156b11ae" class="column-list"><div style="display:contents" dir="auto"><div id="2744a910-3448-8040-96bd-f8b6bd6c9bf9" style="width:68.75%" class="column"><div style="display:contents" dir="auto"><pre id="2744a910-3448-80a6-9e76-da31da69d9ce" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Numbers and last &#x27;g&#x27; removed
+df1[&#x27;PROD_NAME&#x27;] = df1[&#x27;PROD_NAME&#x27;].str.replace(r&#x27;\d+g$&#x27;, &#x27;&#x27;, regex=True)
+#Special character removed
+df1[&#x27;PROD_NAME&#x27;] = df1[&#x27;PROD_NAME&#x27;].str.replace(r&#x27;[^A-Za-z0-9 ]+&#x27;, &#x27;&#x27;, regex=True)
+#removing the rows with the word &#x27;SALSA&#x27;
+df1 = df1[~df1[&#x27;PROD_NAME&#x27;].str.lower().str.contains(&#x27;salsa&#x27;)]</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="2744a910-3448-80f6-a03e-ce5565ea9660" style="width:31.25%" class="column"><div style="display:contents" dir="auto"><p id="2744a910-3448-80c9-9809-c249bdcde857" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80ac-9ed9-c375bd774cff" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%203.png"><img style="width:331.984375px" src="Chips%20Analysis%20-%20Task%201/image%203.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80bd-9958-cbba952e454c" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%204.png"><img style="width:590.984375px" src="Chips%20Analysis%20-%20Task%201/image%204.png"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80b1-a30e-ea29cc74a632" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%205.png"><img style="width:709.96875px" src="Chips%20Analysis%20-%20Task%201/image%205.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-800a-aeee-ec655f2934c2" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-8026-8881-f7ca15cbb11a" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%206.png"><img style="width:709.96875px" src="Chips%20Analysis%20-%20Task%201/image%206.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-80b9-8654-d80a13e0f0e1" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2744a910-3448-80ec-bb93-da6c797ba20f" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#delete rows where Loyality card nr. = 226000(keep others)
+df1 = df1[df1[&#x27;LYLTY_CARD_NBR&#x27;] != 226000]</code></pre></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80ea-8869-ca36378e730f" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%207.png"><img style="width:709.96875px" src="Chips%20Analysis%20-%20Task%201/image%207.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-809e-b9e7-c01bd93bf849" class="">#364 dates , that means there is a missing date</p></div><div style="display:contents" dir="auto"><div id="2744a910-3448-80ef-ad84-d26515fe9f54" class="column-list"><div style="display:contents" dir="auto"><div id="2744a910-3448-8031-a54a-f8cc924115b2" style="width:75%" class="column"><div style="display:contents" dir="auto"><pre id="2744a910-3448-80e5-a407-cbe053d01d7a" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Data range converted to Dataframe
+date_range = pd.date_range(start=&#x27;2018-07-01&#x27;, end=&#x27;2019-06-30&#x27;, freq=&#x27;D&#x27;)
+data_df = pd.DataFrame({&#x27;DATE&#x27;: date_range})
+
+
+# join the tables
+merged_df = pd.merge(data_df, df1, on=&#x27;DATE&#x27;, how=&#x27;left&#x27;)</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="2744a910-3448-80f5-beed-f41ee2f58063" style="width:24.999999999999993%" class="column"><div style="display:contents" dir="ltr"><figure id="2744a910-3448-8072-9dd3-e7ad7c17f100" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%208.png"><img style="width:192px" src="Chips%20Analysis%20-%20Task%201/image%208.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-8055-9cc1-e178fee54797" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-8035-9e5f-e5bb96f40264" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%209.png"><img style="width:331.96875px" src="Chips%20Analysis%20-%20Task%201/image%209.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-80d9-83aa-dd288f2bfa9f" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2744a910-3448-802b-b8b8-df2178b37b35" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">import plotly.express as px
+
+fig = px.line(transaction_summary, x=&#x27;DATE&#x27;, y=&#x27;Transaction_Count&#x27;)
+            
+
+fig.update_layout(
+    xaxis=dict(tickformat=&quot;%b\n%Y&quot;),  # Month and year on X-axis
+    xaxis_title=&#x27;Day&#x27;,
+    yaxis_title=&#x27;Number of transactions&#x27;,
+    title={&#x27;text&#x27;: &#x27;Transactions over Time&#x27;,&#x27;x&#x27;: 0.5}
+    
+)
+
+fig.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-80ea-a62c-e6ba53e1ae4c" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2010.png"><img style="width:709.96875px" src="Chips%20Analysis%20-%20Task%201/image%2010.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2744a910-3448-800f-a38b-c5387ec04681" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2744a910-3448-803f-9190-cae6ae938c16" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Filter only December (month = 12)
+december_df = transaction_summary[transaction_summary[&#x27;DATE&#x27;].dt.month == 12]
+december_df</code></pre></div><div style="display:contents" dir="auto"><pre id="2744a910-3448-8044-8096-d4d481cef8b9" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">fig = px.line(december_df, x=&#x27;DATE&#x27;, y=&#x27;Transaction_Count&#x27;)
+            
+
+fig.update_layout(
+    xaxis=dict(tickformat=&quot;%b\n%Y&quot;),  # Month and year on X-axis
+    xaxis_title=&#x27;Day&#x27;,
+    yaxis_title=&#x27;Number of transactions&#x27;,
+    title={&#x27;text&#x27;: &#x27;Transactions over Time in December&#x27;,&#x27;x&#x27;: 0.5}
+)
+
+fig.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2744a910-3448-802b-a78f-f2d9146a0fbe" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2011.png"><img style="width:960px" src="Chips%20Analysis%20-%20Task%201/image%2011.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="2754a910-3448-80e9-bbc2-f89bf558564d" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Bringing back Prod. size
+new_df = pd.read_excel(r&quot;C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx&quot;)
+#Creeate a new column with pack Size
+new_df[&#x27;PACK_SIZE&#x27;] = new_df[&#x27;PROD_NAME&#x27;].str.extract(&#x27;(\d+)&#x27;)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2754a910-3448-808e-b766-e5dfe8dcd5a8" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2012.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2012.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2754a910-3448-8067-82a7-c47ad326d6b2" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2754a910-3448-80cf-8775-d0fde3e08a45" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">new_df[&#x27;PACK_SIZE&#x27;] = new_df[&#x27;PACK_SIZE&#x27;].astype(int)
+new_df.dtypes
+
+#check min/max of pack size
+new_df[&#x27;PACK_SIZE&#x27;].max()
+new_df[&#x27;PACK_SIZE&#x27;].min()</code></pre></div><div style="display:contents" dir="auto"><p id="2754a910-3448-80aa-959c-f839f4b64e6c" class="">
+</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="2754a910-3448-80ed-bbe2-d7e824fe9090" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">plt.figure(figsize=(10, 6))
+plt.hist(new_df[&#x27;PACK_SIZE&#x27;], bins=20, edgecolor=&#x27;black&#x27;)
+plt.title(&#x27;Number of Transactions by Pack Size&#x27;)
+plt.xlabel(&#x27;Pack Size (g)&#x27;)
+plt.ylabel(&#x27;Number of Transactions&#x27;)
+plt.grid(True)
+plt.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2754a910-3448-8042-8f01-e9bbc4597e32" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2013.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2013.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-807a-8b51-e771d027b67f" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-80c5-81a9-d4f7880f94de" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#extracting brand name from product name
+new_df[&#x27;BRAND&#x27;] = new_df[&#x27;PROD_NAME&#x27;].str.extract(r&#x27;^([A-Za-z]+)&#x27;)
+#change Brand name from RED to RRD
+new_df.loc[new_df[&#x27;BRAND&#x27;] == &#x27;RED&#x27;,&#x27;BRAND&#x27;] = &#x27;RRD&#x27;</code></pre></div><div style="display:contents" dir="auto"><p id="2764a910-3448-80e8-b175-df48a5ae764f" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-803a-a227-f01c0095608f" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Merge transaction data to customer data
+df2 = pd.merge(df2,new_df,how=&#x27;left&#x27;,on=&#x27;LYLTY_CARD_NBR&#x27;)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-8085-965e-f4912cc66010" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2014.png"><img style="width:1056px" src="Chips%20Analysis%20-%20Task%201/image%2014.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-808f-87eb-ddf04d95f4dd" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-8076-9916-c1f1b14d5a62" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">##Group by Lifestage and Premium Customer
+summary_sales = df2.groupby([&#x27;LIFESTAGE&#x27;, &#x27;PREMIUM_CUSTOMER&#x27;])[&#x27;TOT_SALES&#x27;].sum().reset_index()
+#
+#plot summary
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(12,6))
+sns.barplot(
+    data=summary_sales,
+    x=&#x27;LIFESTAGE&#x27;,
+    y=&#x27;TOT_SALES&#x27;,
+    hue=&#x27;PREMIUM_CUSTOMER&#x27;
+)
+plt.xticks(rotation=45)
+plt.title(&#x27;Total Sales by Lifestage and Premium Customer Segment&#x27;)
+plt.ylabel(&#x27;Total Sales ($)&#x27;)
+plt.xlabel(&#x27;Customer Lifestage&#x27;)
+plt.tight_layout()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-8017-8262-c22802ac3b68" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2015.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2015.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-8044-a596-cc9fb8e5f020" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-80ce-9497-fea37992fde7" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Count customers by Lifestage and Premuium Customer
+customer_count = df2.groupby([&#x27;LIFESTAGE&#x27;,&#x27;PREMIUM_CUSTOMER&#x27;])[&#x27;LYLTY_CARD_NBR&#x27;].nunique().reset_index() 
+##Rename new Column
+customer_count.rename(columns={&#x27;LYLTY_CARD_NBR&#x27;: &#x27;NUM_CUSTOMERS&#x27;},inplace=True)</code></pre></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-800a-8e32-c710f284d6fe" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Plot Number of Customers
+plt.figure(figsize=(12, 6))
+sns.barplot(data=customer_count, 
+            x=&#x27;LIFESTAGE&#x27;, 
+            y=&#x27;NUM_CUSTOMERS&#x27;, 
+            hue=&#x27;PREMIUM_CUSTOMER&#x27;)
+plt.title(&#x27;Number of Customers by Lifestage and Premium Status&#x27;)
+plt.xticks(rotation=45)
+plt.ylabel(&#x27;Number of Customers&#x27;)
+plt.tight_layout()
+plt.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-80e0-9a24-ecc992db5583" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2016.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2016.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-803d-9a2a-ffa32fa9cc11" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-8010-841f-c401dcb7969c" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Group by LIFESTAGE and PREMIUM_CUSTOMER
+avg_units = df2.groupby([&#x27;LIFESTAGE&#x27;, &#x27;PREMIUM_CUSTOMER&#x27;])[[&#x27;PROD_QTY&#x27;, &#x27;LYLTY_CARD_NBR&#x27;]].agg({
+    &#x27;PROD_QTY&#x27;: &#x27;sum&#x27;,
+    &#x27;LYLTY_CARD_NBR&#x27;: pd.Series.nunique
+}).reset_index()
+
+# Average units per customer
+avg_units[&#x27;AVG_UNITS_PER_CUSTOMER&#x27;] = avg_units[&#x27;PROD_QTY&#x27;] / avg_units[&#x27;LYLTY_CARD_NBR&#x27;]
+
+
+print(avg_units[[&#x27;LIFESTAGE&#x27;, &#x27;PREMIUM_CUSTOMER&#x27;, &#x27;AVG_UNITS_PER_CUSTOMER&#x27;]])</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-8057-8907-c6e1c1af62c1" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2017.png"><img style="width:528px" src="Chips%20Analysis%20-%20Task%201/image%2017.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-8078-8d47-ff9843802887" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-8001-96e7-c7fe2d2f98e9" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Plot Average Units sold per Customer by Lifestage and Premium Customer
+plt.figure(figsize=(12, 6))
+sns.barplot(
+    data=avg_units,
+    x=&#x27;LIFESTAGE&#x27;,
+    y=&#x27;AVG_UNITS_PER_CUSTOMER&#x27;,
+    hue=&#x27;PREMIUM_CUSTOMER&#x27;
+)
+
+plt.title(&#x27;Average Units Sold per Customer by Lifestage and Premium Status&#x27;)
+plt.ylabel(&#x27;Average Units Sold per Customer&#x27;)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-8052-aa59-d52074e1749c" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2018.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2018.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2764a910-3448-8036-b163-df9373ad2c99" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-801d-a928-dd30e97ef1be" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Group by LIFESTAGE and PREMIUM_CUSTOMER
+avg_price = df2.groupby([&#x27;LIFESTAGE&#x27;, &#x27;PREMIUM_CUSTOMER&#x27;])[[&#x27;TOT_SALES&#x27;, &#x27;PROD_QTY&#x27;]].sum().reset_index()
+#Average price per unit sold
+avg_price[&#x27;AVG_PRICE_PER_UNIT&#x27;] = avg_price[&#x27;TOT_SALES&#x27;] / avg_price[&#x27;PROD_QTY&#x27;]</code></pre></div><div style="display:contents" dir="auto"><pre id="2764a910-3448-8022-8e59-e07506d64391" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Plot Average Price per unit by Lifestage and Premium Customer
+plt.figure(figsize=(12, 6))
+sns.barplot(
+    data=avg_price,
+    x=&#x27;LIFESTAGE&#x27;,
+    y=&#x27;AVG_PRICE_PER_UNIT&#x27;,
+    hue=&#x27;PREMIUM_CUSTOMER&#x27;
+)
+
+plt.title(&#x27;Average Price per Unit by Lifestage and Premium Customer&#x27;)
+plt.ylabel(&#x27;Average Price per Unit (AUD)&#x27;)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()</code></pre></div><div style="display:contents" dir="ltr"><figure id="2764a910-3448-8092-8968-f9d318dd6fb4" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2019.png"><img style="width:709.984375px" src="Chips%20Analysis%20-%20Task%201/image%2019.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2774a910-3448-805f-a418-ee076114b4c2" class="">
+</p></div><div style="display:contents" dir="auto"><pre id="2774a910-3448-80ad-84ba-debb2fb39b56" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"> #T-Test between mainstream vs premium and budget midage
+ !pip install scipy
+ 
+ from scipy.stats import ttest_ind
+
+#Mainstream = total sales from Mainstream
+#Premium_budget = Total sales from Premium and Budget
+mainstream = Young[Young[&#x27;PREMIUM_CUSTOMER&#x27;] == &#x27;Mainstream&#x27;][&#x27;TOT_SALES&#x27;]
+premium_budget = Young[Young[&#x27;PREMIUM_CUSTOMER&#x27;].isin([&#x27;Premium&#x27;, &#x27;Budget&#x27;])][&#x27;TOT_SALES&#x27;]
+
+#T-Test
+t_stat, p_value = ttest_ind(mainstream, premium_budget, equal_var=False)   
+
+print(&quot;T-statistic:&quot;, t_stat)
+print(&quot;P-value:&quot;, p_value)
+
+#T-statistic: 33.81791350094285
+#P-value: 2.293095632338085e-246
+
+#significant difference between the mainstream group and the premium and budget group. 
+#The chances that this difference happened randomly are almost zero.</code></pre></div><div style="display:contents" dir="auto"><p id="2774a910-3448-8023-94ed-d80181ecbe1d" class="">
+</p></div><div style="display:contents" dir="auto"><div id="2774a910-3448-806d-ae5f-e8c44e4d19be" class="column-list"><div style="display:contents" dir="auto"><div id="2774a910-3448-808f-95be-f97cc6d1dc3f" style="width:68.75%" class="column"><div style="display:contents" dir="auto"><pre id="2774a910-3448-8087-8f90-c220c79e41e3" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Young Single/Couples
+#They tend to buy a particular brand of chips?
+mainstream_young = df2[
+    (df2[&#x27;LIFESTAGE&#x27;] == &#x27;YOUNG SINGLES/COUPLES&#x27;) &amp;
+    (df2[&#x27;PREMIUM_CUSTOMER&#x27;] == &#x27;Mainstream&#x27;)
+]
+
+#proportions (percentages) instead of count.
+brand_counts = mainstream_young[&#x27;BRAND&#x27;].value_counts(normalize=True)</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="2774a910-3448-806c-bf9e-e93c0691d955" style="width:31.25000000000004%" class="column"><div style="display:contents" dir="ltr"><figure id="2774a910-3448-80b4-8959-d342ebaaceef" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2020.png"><img style="width:192px" src="Chips%20Analysis%20-%20Task%201/image%2020.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2774a910-3448-80fb-b920-e30d4535a29d" class="column-list"><div style="display:contents" dir="auto"><div id="2774a910-3448-80fe-9acc-d2269ed34d0c" style="width:68.75%" class="column"><div style="display:contents" dir="auto"><pre id="2774a910-3448-8087-9061-f044e1ba9a11" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Rest of the population (everything except Mainstream Young Singles/couples(~) )
+rest_of_population = df2[
+    ~((df2[&#x27;LIFESTAGE&#x27;] == &#x27;YOUNG SINGLES/COUPLES&#x27;) &amp;
+      (df2[&#x27;PREMIUM_CUSTOMER&#x27;] == &#x27;Mainstream&#x27;))
+]
+
+rest_brand_counts = rest_of_population[&#x27;BRAND&#x27;].value_counts(normalize=True)
+
+#Comparasion Dataframe
+
+brand_pref = pd.DataFrame({
+    &#x27;Mainstream_Young&#x27;: brand_counts,
+    &#x27;Others&#x27;: rest_brand_counts
+}).fillna(0)
+
+#Affinity Analysis &amp; Lift
+#How much more a customer group prefers a brand compared to the rest of the customers.
+brand_pref[&#x27;Lift&#x27;] = brand_pref[&#x27;Mainstream_Young&#x27;] / brand_pref[&#x27;Others&#x27;]
+brand_pref = brand_pref.sort_values(by=&#x27;Lift&#x27;, ascending=False)
+
+#Mainstream Young - What brand they prefer.
+#The entire Population - What brand they prefer.
+#Lift - Mainsteam Young are more likely to buy those brands vs average.
+
+#Ex: Mainstream Young customers are 24% more likely to buy Tyrrells Brand</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="2774a910-3448-8079-95a5-e0cd9428f4c7" style="width:31.25%" class="column"><div style="display:contents" dir="ltr"><figure id="2774a910-3448-808d-9a80-f798aca3424c" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2021.png"><img style="width:480px" src="Chips%20Analysis%20-%20Task%201/image%2021.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2774a910-3448-8025-b76a-c388c0ad0e7a" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><p id="2774a910-3448-802b-a0b7-e9713eae60ae" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2774a910-3448-809a-8038-f6442319e9a1" class="">
+</p></div><div style="display:contents" dir="auto"><div id="2774a910-3448-8032-b67c-f9baf564c5cc" class="column-list"><div style="display:contents" dir="auto"><div id="2774a910-3448-80f8-a45d-f7b603f7a6f4" style="width:62.5%" class="column"><div style="display:contents" dir="auto"><pre id="2774a910-3448-8006-8c07-fc6ea2ecef47" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Proportions of pack size purchases for Mainstream Young
+mainstream_young = df2[(df2[&#x27;LIFESTAGE&#x27;] == &#x27;YOUNG SINGLES/COUPLES&#x27;) &amp; (df2[&#x27;PREMIUM_CUSTOMER&#x27;] == &#x27;Mainstream&#x27;)]
+mainstream_young_dist = (mainstream_young[&#x27;PACK_SIZE&#x27;].value_counts(normalize=True)
+                         .rename(&#x27;Mainstream_Young&#x27;))
+
+# Calculate proportions for the rest of the population
+others = df2[~((df2[&#x27;LIFESTAGE&#x27;] == &#x27;YOUNG SINGLES/COUPLES&#x27;) &amp; (df2[&#x27;PREMIUM_CUSTOMER&#x27;] == &#x27;Mainstream&#x27;))]
+others_dist = (others[&#x27;PACK_SIZE&#x27;].value_counts(normalize=True)
+               .rename(&#x27;Others&#x27;))
+
+#Comparasion Dataframe
+
+pack_pref = pd.DataFrame({
+    &#x27;Mainstream_Young&#x27;: mainstream_young_dist,
+    &#x27;Others&#x27;: others_dist
+}).fillna(0)
+
+#Affinity Analysis &amp; Lift
+
+pack_pref[&#x27;Lift&#x27;] = pack_pref[&#x27;Mainstream_Young&#x27;] / pack_pref[&#x27;Others&#x27;]
+pack_pref = pack_pref.sort_values(by=&#x27;Lift&#x27;, ascending=False)
+
+#Mainstream Young Customers tends to buy specific pack size.
+
+ #Ex: Mainstream Young customers are 28% more likely to buy pack Size of 270g
+</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="2774a910-3448-8090-93c5-cbd718a27cea" style="width:37.5%" class="column"><div style="display:contents" dir="ltr"><figure id="2774a910-3448-807e-81c0-d5e1ceb4bf7b" class="image"><a href="Chips%20Analysis%20-%20Task%201/image%2022.png"><img style="width:552.984375px" src="Chips%20Analysis%20-%20Task%201/image%2022.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2774a910-3448-803b-b679-c22f78d5d998" class="">
+</p></div></div></div></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
