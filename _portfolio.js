@@ -25,7 +25,7 @@
       margin:0 !important; padding:0 !important;
       max-width:100% !important;
     }
-    body > *:not(#_nav):not(#_wrap) { display:none !important; }
+    body > *:not(#_nav):not(#_wrap):not(#_lightbox) { display:none !important; }
 
     /* NAV */
     #_nav {

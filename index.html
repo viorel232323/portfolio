@@ -138,20 +138,26 @@
   .about-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
 
   /* SKILLS */
-  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-  .skill-pill {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-    font-size: 13px;
-    font-family: 'Space Mono', monospace;
-    color: var(--text);
-    transition: border-color 0.2s;
-  }
-  .skill-pill:hover { border-color: var(--accent); }
-  .skill-pill .skill-icon { font-size: 18px; margin-bottom: 6px; display: block; }
-  .skill-pill .skill-sub { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+  .skills-layout { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; }
+  /* confidence chart */
+  .skills-chart { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+  .skills-chart h3 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 20px; text-align: center; letter-spacing: 0.03em; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); width: 58px; text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 14px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 3px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .bar-pct { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); width: 32px; flex-shrink: 0; }
+  /* skill detail list */
+  .skills-detail { display: flex; flex-direction: column; gap: 0; }
+  .skill-item { padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-item-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .skill-item-icon { font-size: 18px; }
+  .skill-item-name { font-size: 14px; font-weight: 700; color: var(--accent); }
+  .skill-item-desc { font-size: 13px; color: var(--muted); line-height: 1.7; padding-left: 28px; }
+  .skill-item-sub { font-size: 12px; color: #555; padding-left: 28px; margin-top: 4px; font-family: 'Space Mono', monospace; }
+  @media (max-width: 700px) { .skills-layout { grid-template-columns: 1fr; } }
 
   /* PROJECTS */
   .projects-grid { display: grid; gap: 16px; }
@@ -320,39 +326,76 @@
 
   <section id="skills">
     <div class="section-label">Core Skills & Tools</div>
-    <div class="skills-grid">
-      <div class="skill-pill">
-        <span class="skill-icon">🟩</span>
-        Excel
-        <div class="skill-sub">PivotTables, Dashboards, Conditional Formatting</div>
+    <div class="skills-layout">
+
+      <!-- LEFT: Confidence chart -->
+      <div class="skills-chart">
+        <h3>Skill confidence level</h3>
+        <div class="bar-row">
+          <span class="bar-name">Excel</span>
+          <div class="bar-track"><div class="bar-fill" data-w="70"></div></div>
+          <span class="bar-pct">70%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Power BI</span>
+          <div class="bar-track"><div class="bar-fill" data-w="40"></div></div>
+          <span class="bar-pct">40%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">SQL</span>
+          <div class="bar-track"><div class="bar-fill" data-w="40"></div></div>
+          <span class="bar-pct">40%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-name">Python</span>
+          <div class="bar-track"><div class="bar-fill" data-w="10"></div></div>
+          <span class="bar-pct">10%</span>
+        </div>
       </div>
-      <div class="skill-pill">
-        <span class="skill-icon">📊</span>
-        Power BI
-        <div class="skill-sub">DAX, KPIs, Semantic Models, RLS</div>
+
+      <!-- RIGHT: Skill details -->
+      <div class="skills-detail">
+        <div class="skill-item">
+          <div class="skill-item-head"><span class="skill-item-icon">🟩</span><span class="skill-item-name">Excel:</span></div>
+          <div class="skill-item-desc">Formulas, Conditional Formatting, Dashboards, PivotTables.</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-head"><span class="skill-item-icon">📊</span><span class="skill-item-name">Power BI:</span></div>
+          <div class="skill-item-desc">DAX fundamentals, KPIs, Semantic model modelling, row level security, interactive dashboards.</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-head"><span class="skill-item-icon">🟦</span><span class="skill-item-name">SQL:</span></div>
+          <div class="skill-item-desc">Basics, Joins, Logical / Comparison Operators, Sub-Queries, #Temp, Window Functions, CTEs, Views, Wildcards, Indexes, Constraints, Substitution vars, Exists, Sequences, multi-insert.</div>
+          <div class="skill-item-sub">(MS SQL Server, IBM DB2, DataGrip)</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-head"><span class="skill-item-icon">🐍</span><span class="skill-item-name">Python:</span></div>
+          <div class="skill-item-desc">Pandas, Matplotlib.</div>
+          <div class="skill-item-sub">(Jupyter)</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-head"><span class="skill-item-icon">🛠️</span><span class="skill-item-name">Stats:</span></div>
+          <div class="skill-item-desc">Mean, Median, Mode, Min, Max, Count, CountA, CountIFs, Small, Large, Normal Distribution.</div>
+        </div>
       </div>
-      <div class="skill-pill">
-        <span class="skill-icon">🟦</span>
-        SQL
-        <div class="skill-sub">Joins, CTEs, Window Functions, Subqueries</div>
-      </div>
-      <div class="skill-pill">
-        <span class="skill-icon">🐍</span>
-        Python
-        <div class="skill-sub">Pandas, Matplotlib, Jupyter</div>
-      </div>
-      <div class="skill-pill">
-        <span class="skill-icon">📈</span>
-        Tableau
-        <div class="skill-sub">Interactive dashboards & storytelling</div>
-      </div>
-      <div class="skill-pill">
-        <span class="skill-icon">🛠️</span>
-        Statistics
-        <div class="skill-sub">Mean, Median, Normal Distribution</div>
-      </div>
+
     </div>
   </section>
+
+  <script>
+    // Animate confidence bars when section scrolls into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.w + '%';
+          });
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelector('#skills .skills-layout') && observer.observe(document.querySelector('#skills .skills-layout'));
+  </script>
 
   <section id="projects">
     <div class="section-label">Projects</div>
