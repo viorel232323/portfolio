@@ -106,7 +106,9 @@
     padding: 14px 0;
   }
   .nav-inner { display: flex; gap: 28px; align-items: center; max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .nav-logo { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); margin-right: auto; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; }
+  .nav-logo-mark { width: 30px; height: 30px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: #000; letter-spacing: -0.03em; flex-shrink: 0; }
+  .nav-logo-text { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); }
   .nav-inner a { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; }
   .nav-inner a:hover { color: var(--accent); }
 
@@ -211,19 +213,25 @@
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .cert-card .cert-img-wrap {
-    position: relative; overflow: hidden;
+    position: relative; overflow: hidden; width: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg3); padding: 12px;
   }
   .cert-card img {
-    width: 100%;
-    height: auto;
+    width: 100%; max-width: 100%;
+    height: auto; max-height: 180px;
+    object-fit: contain;
     display: block;
-    border-bottom: 1px solid var(--border);
+    border-radius: 4px;
     transition: transform 0.3s;
   }
-  .cert-card:hover img { transform: scale(1.02); }
+  .cert-card:hover img { transform: scale(1.03); }
   .cert-expand-hint {
     position: absolute; bottom: 8px; right: 8px;
     background: rgba(0,0,0,0.7); border: 1px solid var(--border);
@@ -232,7 +240,12 @@
     opacity: 0; transition: opacity 0.2s;
   }
   .cert-card:hover .cert-expand-hint { opacity: 1; }
-  .cert-label { padding: 12px 14px; font-size: 12px; font-family: 'Space Mono', monospace; color: var(--muted); }
+  .cert-label {
+    padding: 12px 14px; font-size: 12px;
+    font-family: 'Space Mono', monospace; color: var(--muted);
+    text-align: center; width: 100%;
+    border-top: 1px solid var(--border);
+  }
 
   /* CERT LIGHTBOX */
   #cert-lightbox {
@@ -288,7 +301,10 @@
 
 <nav>
   <div class="nav-inner">
-    <span class="nav-logo">VG_</span>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">VG</div>
+      <span class="nav-logo-text">Portfolio</span>
+    </a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -571,6 +587,13 @@
         </div>
         <div class="cert-label">Data Analysis — SQL, Tableau, Power BI & Excel</div>
       </div>
+      <div class="cert-card" onclick="openCertLb(6)">
+        <div class="cert-img-wrap">
+          <img src="OracleCertification.png" alt="Oracle Certified Associate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
+        <div class="cert-label">Oracle Database SQL Certified Associate</div>
+      </div>
     </div>
   </section>
 
@@ -609,7 +632,8 @@
     { src: "Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg", label: "IBM Data Analyst — Coursera" },
     { src: "Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg", label: "Advanced SQL Server Masterclass" },
     { src: "Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg", label: "Business Analyst Bootcamp" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" }
+    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" },
+    { src: "OracleCertification.png", label: "Oracle Database SQL Certified Associate" }
   ];
   let certIdx = 0;
   const lb = document.getElementById('cert-lightbox');
