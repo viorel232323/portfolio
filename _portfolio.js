@@ -21,12 +21,10 @@
       background:var(--bg) !important;
       color:var(--text) !important;
       font-family:'Syne',sans-serif !important;
-      font-size:16px;line-height:1.7;
+      font-size:16px; line-height:1.7;
       margin:0 !important; padding:0 !important;
       max-width:100% !important;
     }
-
-    /* kill all Notion default styles */
     body > *:not(#_nav):not(#_wrap) { display:none !important; }
 
     /* NAV */
@@ -53,7 +51,7 @@
     #_nav .back:hover { border-color:var(--accent); color:var(--accent) !important; }
 
     /* WRAP */
-    #_wrap { max-width:860px; margin:0 auto; padding:48px 24px 80px; }
+    #_wrap { max-width:900px; margin:0 auto; padding:48px 24px 80px; }
 
     /* TITLE */
     #_title {
@@ -65,7 +63,7 @@
     #_meta {
       font-family:'Space Mono',monospace; font-size:11px;
       color:var(--muted); letter-spacing:0.1em;
-      margin-bottom:40px; display:flex; gap:16px; flex-wrap:wrap;
+      margin-bottom:40px; display:flex; gap:12px; flex-wrap:wrap;
     }
     #_meta span {
       border:1px solid var(--border); border-radius:3px;
@@ -76,55 +74,111 @@
     #_gallery {
       display:grid;
       grid-template-columns:1fr;
-      gap:16px;
+      gap:20px;
     }
+
+    /* figure wrapper */
     #_gallery figure {
-      margin:0; border-radius:10px; overflow:hidden;
+      margin:0; position:relative;
+      border-radius:10px; overflow:hidden;
       border:1px solid var(--border);
       background:var(--card);
+      cursor:zoom-in;
       transition:border-color .25s, transform .25s;
-      cursor:pointer;
     }
     #_gallery figure:hover { border-color:var(--accent); transform:translateY(-2px); }
+
+    /* image itself — full quality, no crop */
     #_gallery img {
-      width:100%; height:auto; display:block;
-      transition:opacity .3s;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+      width:100%;
+      height:auto;
+      display:block;
+      /* preserve sharpness for screenshots & code */
+      image-rendering:-webkit-optimize-contrast;
+      image-rendering:crisp-edges;
+      transition:filter .3s;
+    }
+    #_gallery figure:hover img { filter:brightness(1.05); }
+
+    /* expand overlay — always subtly visible, bright on hover */
+    #_gallery .expand-btn {
+      position:absolute;
+      top:10px; right:10px;
+      background:rgba(0,0,0,0.65);
+      border:1px solid var(--border);
+      border-radius:5px;
+      padding:5px 10px;
+      font-family:'Space Mono',monospace;
+      font-size:11px;
+      color:var(--muted);
+      opacity:0.5;
+      transition:opacity .2s, color .2s, border-color .2s;
+      pointer-events:none;
+      letter-spacing:0.05em;
+    }
+    #_gallery figure:hover .expand-btn {
+      opacity:1;
+      color:var(--accent);
+      border-color:var(--accent);
+    }
+
+    /* image counter badge */
+    #_gallery .img-num {
+      position:absolute;
+      bottom:10px; left:12px;
+      font-family:'Space Mono',monospace;
+      font-size:10px;
+      color:var(--muted);
+      background:rgba(0,0,0,0.6);
+      border-radius:3px;
+      padding:2px 7px;
     }
 
     /* LIGHTBOX */
     #_lightbox {
       display:none; position:fixed; inset:0;
-      background:rgba(0,0,0,0.92); z-index:9999;
-      align-items:center; justify-content:center; padding:24px;
+      background:rgba(0,0,0,0.95); z-index:9999;
+      align-items:center; justify-content:center;
+      flex-direction:column; gap:14px;
+      padding:20px;
     }
     #_lightbox.open { display:flex; }
-    #_lightbox img {
-      max-width:100%; max-height:90vh;
-      border-radius:8px; border:1px solid var(--border);
-      box-shadow:0 0 60px rgba(0,229,160,0.08);
+    #_lb_img_wrap {
+      max-width:95vw; max-height:82vh;
+      overflow:auto; /* allow scroll for very wide code screenshots */
+      border-radius:8px;
+      border:1px solid var(--border);
+    }
+    #_lb_img_wrap img {
+      display:block;
+      max-width:100%;
+      height:auto;
+      /* for wide code screenshots let them render at natural size */
+      min-width:0;
+    }
+    #_lb_counter {
+      font-family:'Space Mono',monospace;
+      font-size:12px; color:var(--muted);
     }
     #_lb_close {
-      position:fixed; top:20px; right:24px;
-      font-family:'Space Mono',monospace; font-size:20px;
+      position:fixed; top:16px; right:20px;
+      font-family:'Space Mono',monospace; font-size:22px;
       color:var(--muted); cursor:pointer; z-index:10000;
-      transition:color .2s;
+      transition:color .2s; line-height:1;
     }
     #_lb_close:hover { color:var(--accent); }
     #_lb_nav {
-      position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-      display:flex; gap:12px; z-index:10000;
+      display:flex; gap:12px;
     }
     #_lb_nav button {
       font-family:'Space Mono',monospace; font-size:13px;
       background:var(--bg3); border:1px solid var(--border);
-      color:var(--text); padding:8px 20px; border-radius:4px;
+      color:var(--text); padding:8px 22px; border-radius:4px;
       cursor:pointer; transition:border-color .2s, color .2s;
     }
     #_lb_nav button:hover { border-color:var(--accent); color:var(--accent); }
 
-    /* FADE IN ANIMATION */
+    /* FADE IN */
     @keyframes fadeUp {
       from{opacity:0;transform:translateY(16px)}
       to{opacity:1;transform:translateY(0)}
@@ -138,41 +192,37 @@
   `;
   document.head.appendChild(style);
 
-  /* 3. Wait for DOM then build UI */
+  /* 3. Build UI after DOM ready */
   function build() {
-    /* collect raw title and images from Notion body */
     const rawTitle = document.title || 'Project';
-    const allImgs = Array.from(document.querySelectorAll('img')).filter(i => {
-      const src = i.getAttribute('src') || '';
-      return src && !src.includes('notion-logo') && !src.includes('icons/');
-    });
+
+    /* collect image sources — prefer high-res linked versions */
     const allLinks = Array.from(document.querySelectorAll('a[href]')).filter(a => {
       const h = a.getAttribute('href') || '';
-      return (h.endsWith('.png') || h.endsWith('.jpg') || h.endsWith('.jpeg') || h.endsWith('.gif') || h.endsWith('.webp'));
+      return /\.(png|jpe?g|gif|webp|svg)(\?|$)/i.test(h);
+    });
+    const allImgs = Array.from(document.querySelectorAll('img')).filter(i => {
+      const s = i.getAttribute('src') || '';
+      return s && !/notion-logo|^data:|icons\//i.test(s);
     });
 
-    /* prefer linked images (higher res) over img src */
-    let srcs = [];
-    if (allLinks.length > 0) {
-      srcs = allLinks.map(a => a.getAttribute('href'));
-    } else {
-      srcs = allImgs.map(i => i.getAttribute('src'));
-    }
-    srcs = [...new Set(srcs)]; /* dedupe */
+    let srcs = allLinks.length > 0
+      ? allLinks.map(a => a.getAttribute('href'))
+      : allImgs.map(i => i.getAttribute('src'));
+    srcs = [...new Set(srcs)];
 
-    /* detect tool tags */
+    /* auto-detect tools */
     const text = document.body.innerText || '';
     const tools = [];
     if (/excel/i.test(text) || /xlsx/i.test(text)) tools.push('EXCEL');
-    if (/sql/i.test(text) || /query/i.test(text)) tools.push('SQL');
     if (/power.?bi/i.test(text) || /dax/i.test(text)) tools.push('POWER BI');
-    if (/python/i.test(text) || /pandas/i.test(text)) tools.push('PYTHON');
-    if (/tableau/i.test(text)) tools.push('TABLEAU');
+    if (/\bsql\b/i.test(text) || /query/i.test(text)) tools.push('SQL');
+    if (/python/i.test(text) || /pandas/i.test(text) || /matplotlib/i.test(text)) tools.push('PYTHON');
     if (/cognos/i.test(text)) tools.push('IBM COGNOS');
     if (/scraping/i.test(text)) tools.push('WEB SCRAPING');
     if (tools.length === 0) tools.push('DATA ANALYSIS');
 
-    /* build nav */
+    /* NAV */
     const nav = document.createElement('div');
     nav.id = '_nav';
     nav.innerHTML = `
@@ -181,33 +231,46 @@
       <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank">LinkedIn</a>
     `;
 
-    /* build wrap */
+    /* WRAP */
     const wrap = document.createElement('div');
     wrap.id = '_wrap';
 
-    /* title */
+    /* Title */
     const titleEl = document.createElement('div');
     titleEl.id = '_title';
     const words = rawTitle.split(' ');
     const half = Math.ceil(words.length / 2);
-    titleEl.innerHTML = words.slice(0, half).join(' ') + ' <span>' + words.slice(half).join(' ') + '</span>';
+    titleEl.innerHTML = words.slice(0,half).join(' ') + ' <span>' + words.slice(half).join(' ') + '</span>';
 
-    /* meta tags */
+    /* Meta tags */
     const meta = document.createElement('div');
     meta.id = '_meta';
     meta.innerHTML = tools.map(t => `<span>${t}</span>`).join('');
 
-    /* gallery */
+    /* Gallery */
     const gallery = document.createElement('div');
     gallery.id = '_gallery';
+
     srcs.forEach((src, i) => {
       const fig = document.createElement('figure');
+
       const img = document.createElement('img');
       img.src = src;
-      img.alt = rawTitle + ' screenshot ' + (i + 1);
+      img.alt = `${rawTitle} — screenshot ${i+1}`;
       img.loading = 'lazy';
+
+      const expandBtn = document.createElement('span');
+      expandBtn.className = 'expand-btn';
+      expandBtn.textContent = '⤢ expand';
+
+      const numBadge = document.createElement('span');
+      numBadge.className = 'img-num';
+      numBadge.textContent = `${i+1} / ${srcs.length}`;
+
       fig.appendChild(img);
-      fig.addEventListener('click', () => openLightbox(i));
+      fig.appendChild(expandBtn);
+      fig.appendChild(numBadge);
+      fig.addEventListener('click', () => openLb(i));
       gallery.appendChild(fig);
     });
 
@@ -215,43 +278,48 @@
     wrap.appendChild(meta);
     wrap.appendChild(gallery);
 
-    /* lightbox */
+    /* LIGHTBOX */
     let currentIdx = 0;
     const lb = document.createElement('div');
     lb.id = '_lightbox';
     lb.innerHTML = `
       <span id="_lb_close">✕</span>
-      <img id="_lb_img" src="" alt="">
+      <div id="_lb_img_wrap"><img id="_lb_img" src="" alt=""></div>
+      <div id="_lb_counter"></div>
       <div id="_lb_nav">
         <button id="_lb_prev">← prev</button>
         <button id="_lb_next">next →</button>
       </div>
     `;
 
-    function openLightbox(idx) {
+    function openLb(idx) {
       currentIdx = idx;
-      document.getElementById('_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_counter').textContent = `${currentIdx+1} / ${srcs.length}`;
       lb.classList.add('open');
     }
-    function closeLightbox() { lb.classList.remove('open'); }
-    lb.querySelector('#_lb_close').addEventListener('click', closeLightbox);
-    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    function closeLb() { lb.classList.remove('open'); }
+
+    lb.querySelector('#_lb_close').addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if(e.target === lb || e.target.id === '_lb_img_wrap') closeLb(); });
     lb.querySelector('#_lb_prev').addEventListener('click', () => {
       currentIdx = (currentIdx - 1 + srcs.length) % srcs.length;
-      document.getElementById('_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_counter').textContent = `${currentIdx+1} / ${srcs.length}`;
     });
     lb.querySelector('#_lb_next').addEventListener('click', () => {
       currentIdx = (currentIdx + 1) % srcs.length;
-      document.getElementById('_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_img').src = srcs[currentIdx];
+      lb.querySelector('#_lb_counter').textContent = `${currentIdx+1} / ${srcs.length}`;
     });
     document.addEventListener('keydown', e => {
       if (!lb.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Escape') closeLb();
       if (e.key === 'ArrowLeft') lb.querySelector('#_lb_prev').click();
       if (e.key === 'ArrowRight') lb.querySelector('#_lb_next').click();
     });
 
-    /* inject everything */
+    /* INJECT */
     document.body.innerHTML = '';
     document.body.appendChild(nav);
     document.body.appendChild(wrap);
