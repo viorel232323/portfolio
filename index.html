@@ -106,11 +106,12 @@
     padding: 14px 0;
   }
   .nav-inner { display: flex; gap: 28px; align-items: center; max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .nav-logo { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; }
-  .nav-logo-mark { width: 30px; height: 30px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: #000; letter-spacing: -0.03em; flex-shrink: 0; }
-  .nav-logo-text { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent); }
-  .nav-inner a { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; }
+  .nav-inner a { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; text-decoration: none; }
   .nav-inner a:hover { color: var(--accent); }
+  .nav-logo { display: flex !important; align-items: center; gap: 10px; margin-right: auto; text-decoration: none !important; color: inherit !important; }
+  .nav-logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: #000 !important; letter-spacing: -0.03em; flex-shrink: 0; box-shadow: 0 0 12px rgba(0,229,160,0.3); }
+  .nav-logo-text { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent) !important; }
+  .nav-logo:hover .nav-logo-mark { box-shadow: 0 0 20px rgba(0,229,160,0.5); }
 
   /* SECTIONS */
   section { padding: 64px 0; border-bottom: 1px solid var(--border); }
@@ -205,11 +206,11 @@
   .project-card:hover .project-arrow { color: var(--accent); }
 
   /* CERTS */
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
   .cert-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
     cursor: pointer;
@@ -217,24 +218,24 @@
     flex-direction: column;
     align-items: center;
   }
-  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,229,160,0.08); }
   .cert-card .cert-img-wrap {
-    position: relative; overflow: hidden; width: 100%;
+    position: relative; width: 100%;
     display: flex; align-items: center; justify-content: center;
-    background: var(--bg3); padding: 12px;
+    background: #f5f5f5; padding: 16px; min-height: 160px;
   }
   .cert-card img {
-    width: 100%; max-width: 100%;
-    height: auto; max-height: 180px;
+    max-width: 100%; width: auto;
+    height: auto; max-height: 200px;
     object-fit: contain;
-    display: block;
-    border-radius: 4px;
+    display: block; margin: 0 auto;
+    border-radius: 3px;
     transition: transform 0.3s;
   }
   .cert-card:hover img { transform: scale(1.03); }
   .cert-expand-hint {
     position: absolute; bottom: 8px; right: 8px;
-    background: rgba(0,0,0,0.7); border: 1px solid var(--border);
+    background: rgba(0,0,0,0.65); border: 1px solid rgba(0,229,160,0.4);
     border-radius: 4px; padding: 3px 8px;
     font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent);
     opacity: 0; transition: opacity 0.2s;
@@ -245,6 +246,7 @@
     font-family: 'Space Mono', monospace; color: var(--muted);
     text-align: center; width: 100%;
     border-top: 1px solid var(--border);
+    line-height: 1.5;
   }
 
   /* CERT LIGHTBOX */
@@ -543,56 +545,56 @@
 
   <section id="certs">
     <div class="section-label">Certifications</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;font-family:'Space Mono',monospace;">Click any certificate to expand</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;font-family:'Space Mono',monospace;text-align:center;">Click any certificate to expand</p>
     <div class="certs-grid">
       <div class="cert-card" onclick="openCertLb(0)">
+        <div class="cert-img-wrap">
+          <img src="OracleCertification.png" alt="Oracle Certified Associate" loading="lazy">
+          <span class="cert-expand-hint">expand ↗</span>
+        </div>
+        <div class="cert-label">Oracle Database SQL Certified Associate</div>
+      </div>
+      <div class="cert-card" onclick="openCertLb(1)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/pl300.png" alt="PL-300 Power BI Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">PL-300 Power BI Data Analyst</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(1)">
+      <div class="cert-card" onclick="openCertLb(2)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Microsoft Power BI Data Analyst</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(2)">
+      <div class="cert-card" onclick="openCertLb(3)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">IBM Data Analyst — Coursera</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(3)">
+      <div class="cert-card" onclick="openCertLb(4)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Advanced SQL Server Masterclass</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(4)">
+      <div class="cert-card" onclick="openCertLb(5)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Business Analyst Bootcamp</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(5)">
+      <div class="cert-card" onclick="openCertLb(6)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Data Analysis — SQL, Tableau, Power BI & Excel</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(6)">
-        <div class="cert-img-wrap">
-          <img src="OracleCertification.png" alt="Oracle Certified Associate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">Oracle Database SQL Certified Associate</div>
       </div>
     </div>
   </section>
@@ -627,13 +629,13 @@
 
 <script>
   const certData = [
+    { src: "OracleCertification.png", label: "Oracle Database SQL Certified Associate" },
     { src: "Viorel Grozea - Data Analyst Portfolio/pl300.png", label: "PL-300 Power BI Data Analyst" },
     { src: "Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg", label: "Microsoft Power BI Data Analyst" },
     { src: "Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg", label: "IBM Data Analyst — Coursera" },
     { src: "Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg", label: "Advanced SQL Server Masterclass" },
     { src: "Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg", label: "Business Analyst Bootcamp" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" },
-    { src: "OracleCertification.png", label: "Oracle Database SQL Certified Associate" }
+    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" }
   ];
   let certIdx = 0;
   const lb = document.getElementById('cert-lightbox');
