@@ -1,824 +1,167 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Wildfire activities in Australia</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-/* Override strong tags inside headings to maintain consistent weight */
-h1 strong,
-h2 strong,
-h3 strong {
-	font-weight: 600;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 10px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-
-	table.collection-content {
-		width: 100%;
-		table-layout: fixed;
-	}
-
-	table.collection-content th,
-	table.collection-content td {
-		overflow-wrap: anywhere;
-	}
-
-	table.collection-content td > .user,
-	table.collection-content td > time {
-		white-space: pre-wrap;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content-wrapper {
-	overflow-x: auto;
-}
-
-@media only print {
-	.collection-content-wrapper {
-		overflow-x: visible;
-	}
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.collection-content td {
-	white-space: pre-wrap;
-	word-break: break-word;
-}
-
-.column-list {
-	display: flex;
-	gap: 46px;
-}
-
-.column {
-	min-width: 0;
-	overflow: hidden;
-}
-
-.column > *:first-child {
-	margin-top: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-table {
-	border-collapse: collapse;
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol.numbered-list.numbered-list-digits-2 {
-	padding-inline-start: 2em;
-}
-
-ol.numbered-list.numbered-list-digits-3plus {
-	padding-inline-start: 2.4em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.callout img.notion-static-icon {
-	width: 1em;
-	height: 1em;
-}
-
-.callout p {
-	margin: 0;
-}
-
-.callout h1,
-.callout h2,
-.callout h3 {
-	margin: 0 0 0.6rem;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-blockquote.quote-large {
-	font-size: 1.25em;
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.highlight-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.highlight-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.highlight-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.highlight-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.highlight-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.highlight-default_background {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray_background {
-	background: rgba(42, 28, 0, 0.07);
-}
-.highlight-brown_background {
-	background: rgba(139, 46, 0, 0.086);
-}
-.highlight-orange_background {
-	background: rgba(224, 101, 1, 0.129);
-}
-.highlight-yellow_background {
-	background: rgba(211, 168, 0, 0.137);
-}
-.highlight-teal_background {
-	background: rgba(0, 100, 45, 0.09);
-}
-.highlight-blue_background {
-	background: rgba(0, 124, 215, 0.094);
-}
-.highlight-purple_background {
-	background: rgba(102, 0, 178, 0.078);
-}
-.highlight-pink_background {
-	background: rgba(197, 0, 93, 0.086);
-}
-.highlight-red_background {
-	background: rgba(223, 22, 0, 0.094);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.block-color-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.block-color-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.block-color-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.block-color-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.block-color-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(240, 239, 237, 1);
-}
-.block-color-brown_background {
-	background: rgba(245, 237, 233, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 235, 222, 1);
-}
-.block-color-yellow_background {
-	background: rgba(249, 243, 220, 1);
-}
-.block-color-teal_background {
-	background: rgba(232, 241, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(229, 242, 252, 1);
-}
-.block-color-purple_background {
-	background: rgba(243, 235, 249, 1);
-}
-.block-color-pink_background {
-	background: rgba(250, 233, 241, 1);
-}
-.block-color-red_background {
-	background: rgba(252, 233, 231, 1);
-}
-.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
-.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
-.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
-.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
-.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
-.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
-.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
-.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
-.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
-.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style><script src="../_portfolio.js"></script>
-</head><body><article id="2184a910-3448-808c-b0ec-d9644176f15c" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⚙️</span></div><h1 class="page-title" dir="auto">W<strong>ildfire activities in Australia</strong></h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><h3 id="2184a910-3448-8082-8774-f0136a44507d" class=""><em><mark class="highlight-teal_background">                                                                                                                                20-jul-2025</mark></em></h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="2184a910-3448-806e-9e1a-fa592ed95df9" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#Import Libraries
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wildfire activities in Australia</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--accent:#00e5a0;--accent2:#00b37d;--text:#f0f0f0;--muted:#888;--border:#222;--card:#131313;--code-bg:#0d1117;--code-border:#30363d;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-size:16px;line-height:1.7;}
+a{color:var(--accent);text-decoration:none}
+/* NAV */
+nav{position:sticky;top:0;background:rgba(10,10,10,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;padding:14px 24px;display:flex;align-items:center;gap:20px;}
+.logo{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-right:auto;}
+.back{font-family:'Space Mono',monospace;font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:6px 14px;transition:border-color .2s,color .2s;}
+.back:hover{border-color:var(--accent);color:var(--accent);}
+nav a.li{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);transition:color .2s;}
+nav a.li:hover{color:var(--accent);}
+/* WRAP */
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px 80px;animation:fadeUp .5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* TITLE */
+.proj-title{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:8px;}
+.proj-title span{color:var(--accent);}
+.proj-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:40px;display:flex;gap:10px;flex-wrap:wrap;}
+.proj-meta span{border:1px solid var(--border);border-radius:3px;padding:3px 10px;}
+/* CODE */
+.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:8px;margin-bottom:24px;position:relative;overflow:hidden;}
+.code-lang{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);padding:10px 16px 0;letter-spacing:.1em;text-transform:uppercase;}
+.code-block pre{margin:0;padding:12px 16px 16px;font-family:'Space Mono',monospace;font-size:13px;line-height:1.65;color:#e6edf3;overflow-x:auto;white-space:pre;}
+.copy-btn{position:absolute;top:8px;right:10px;font-family:'Space Mono',monospace;font-size:10px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:3px 10px;cursor:pointer;transition:color .2s,border-color .2s;}
+.copy-btn:hover{color:var(--accent);border-color:var(--accent);}
+/* IMAGES */
+.img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--card);cursor:zoom-in;transition:border-color .25s,transform .2s;margin-bottom:20px;}
+.img-wrap:hover{border-color:var(--accent);transform:translateY(-2px);}
+.img-wrap img{width:100%;height:auto;display:block;image-rendering:-webkit-optimize-contrast;}
+.expand-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);opacity:0.5;transition:opacity .2s,color .2s,border-color .2s;pointer-events:none;}
+.img-wrap:hover .expand-btn{opacity:1;color:var(--accent);border-color:var(--accent);}
+.img-num{position:absolute;bottom:8px;left:10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);background:rgba(0,0,0,0.6);border-radius:3px;padding:2px 6px;}
+/* TEXT */
+.pg-text{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.pg-h2{font-size:20px;font-weight:700;color:var(--text);margin:32px 0 12px;}
+.pg-h3{font-size:17px;font-weight:700;color:var(--accent);margin:24px 0 10px;}
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:20px;}
+#lb.open{display:flex;}
+#lb-img-wrap{max-width:95vw;max-height:82vh;overflow:auto;border-radius:8px;border:1px solid var(--border);}
+#lb-img-wrap img{display:block;max-width:100%;height:auto;}
+#lb-counter{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+#lb-close{position:fixed;top:16px;right:20px;font-family:'Space Mono',monospace;font-size:22px;color:var(--muted);cursor:pointer;z-index:10000;transition:color .2s;}
+#lb-close:hover{color:var(--accent);}
+#lb-nav{display:flex;gap:12px;}
+#lb-nav button{font-family:'Space Mono',monospace;font-size:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 22px;border-radius:4px;cursor:pointer;transition:border-color .2s,color .2s;}
+#lb-nav button:hover{border-color:var(--accent);color:var(--accent);}
+@media(max-width:600px){.wrap{padding:32px 16px 60px;}}
+</style>
+</head>
+<body>
+<nav>
+  <span class="logo">VG_</span>
+  <a href="../index.html" class="back">← Back to portfolio</a>
+  <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="li">LinkedIn</a>
+</nav>
+<div class="wrap">
+<div class="proj-title">Wildfire activities <span>in Australia</span></div>
+<div class="proj-meta"><span>PYTHON</span></div>
+<div class="pg-h3">*20-jul-2025*</div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Import Libraries
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import folium
 %matplotlib inline
-import datetime as dt</code></pre></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-80ee-9257-f3ef0caf91a7" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#import csv into pandas dataframe
-url = &quot;https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/Historical_Wildfires.csv&quot;
+import datetime as dt</pre></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#import csv into pandas dataframe
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/Historical_Wildfires.csv"
 df = pd.read_csv(url)
 
 # show top 5 rows 
 df.head(5)
 
 #create 2 fields with year and month from date
-df[&#x27;Year&#x27;] = pd.to_datetime(df[&#x27;Date&#x27;]).dt.year
-df[&#x27;Month&#x27;] = pd.to_datetime(df[&#x27;Date&#x27;]).dt.month
+df['Year'] = pd.to_datetime(df['Date']).dt.year
+df['Month'] = pd.to_datetime(df['Date']).dt.month
 
-#create new field with an average of &#x27;estimated fire arena&#x27; by year
-mean_of_est_fire_arena = df.groupby(&#x27;Year&#x27;) [&#x27;Estimated_fire_area&#x27;].mean()
+#create new field with an average of 'estimated fire arena' by year
+mean_of_est_fire_arena = df.groupby('Year') ['Estimated_fire_area'].mean()
 #reset index
 mean_of_est_fire_arena.reset_index()
 
 #merge the average into original table by year
-df = df.merge(mean_of_est_fire_arena, on = &#x27;Year&#x27;, how = &#x27;left&#x27;)
-# replace the name of the column to &#x27;mean_of_est_fire_arena&#x27;
-df.rename(columns={&#x27;Estimated_fire_area_y&#x27;:&#x27;mean_of_est_fire_arena&#x27;},inplace= True)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-80cf-8f7f-db11fcbbed40" class="image"><a href="Wildfire%20activities%20in%20Australia/image.png"><img style="width:1104px" src="Wildfire%20activities%20in%20Australia/image.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-80c0-af79-e8554a650a16" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">plt.figure(figsize=(12,6))
-plt.plot(mean_of_est_fire_arena[&#x27;Year&#x27;],mean_of_est_fire_arena[&#x27;Estimated_fire_area&#x27;],color = &#x27;darkred&#x27;)
-plt.xlabel(&#x27;Years&#x27;)
-plt.ylabel(&#x27;Average estimated Fire Arena(km²)&#x27;)
-plt.title(&#x27;Estimated Fire arena over time&#x27;,fontsize = 14)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-80cb-aa0b-fa6da00c569f" class="image"><a href="Wildfire%20activities%20in%20Australia/image%201.png"><img style="width:709.96875px" src="Wildfire%20activities%20in%20Australia/image%201.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-808c-8cd0-f49bfbbd1fca" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#make the average of &#x27;estimated fire area&#x27; and  group it by Year and month
-df_new = df.groupby([&#x27;Year&#x27;,&#x27;Month&#x27;])[&#x27;Estimated_fire_area_x&#x27;].mean()
+df = df.merge(mean_of_est_fire_arena, on = 'Year', how = 'left')
+# replace the name of the column to 'mean_of_est_fire_arena'
+df.rename(columns={'Estimated_fire_area_y':'mean_of_est_fire_arena'},inplace= True)</pre></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.figure(figsize=(12,6))
+plt.plot(mean_of_est_fire_arena['Year'],mean_of_est_fire_arena['Estimated_fire_area'],color = 'darkred')
+plt.xlabel('Years')
+plt.ylabel('Average estimated Fire Arena(km²)')
+plt.title('Estimated Fire arena over time',fontsize = 14)</pre></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#make the average of 'estimated fire area' and  group it by Year and month
+df_new = df.groupby(['Year','Month'])['Estimated_fire_area_x'].mean()
 
 #plot the data
-df_new.plot(x=df_new.index,y= df_new.values,color= &#x27;darkblue&#x27;)
-plt.xlabel(&#x27;Year, Month&#x27;)
-plt.ylabel(&#x27;Average estimated fire Area (km²)&#x27;)
-plt.title(&#x27;Estimated Fire Arena over Time&#x27;)
-</code></pre></div><div style="display:contents" dir="auto"><div id="2184a910-3448-8050-926b-f4bce64e18fa" class="column-list"><div style="display:contents" dir="auto"><div id="2184a910-3448-80b8-ba78-def5f321143f" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8095-b038-cde9731de770" class="image"><a href="Wildfire%20activities%20in%20Australia/image%202.png"><img style="width:384px" src="Wildfire%20activities%20in%20Australia/image%202.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2184a910-3448-8054-915b-c076cba5c831" class="">
-</p></div></div></div><div style="display:contents" dir="auto"><div id="2184a910-3448-802a-8868-ddbf39626218" style="width:50.000000000000085%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8073-a437-d2a734b58818" class="image"><a href="Wildfire%20activities%20in%20Australia/image%203.png"><img style="width:336px" src="Wildfire%20activities%20in%20Australia/image%203.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-80d7-bd03-f74b4835c61f" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Plot the distribution of mean for Fire Brightness using Seaborn
+df_new.plot(x=df_new.index,y= df_new.values,color= 'darkblue')
+plt.xlabel('Year, Month')
+plt.ylabel('Average estimated fire Area (km²)')
+plt.title('Estimated Fire Arena over Time')</pre></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 13</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Plot the distribution of mean for Fire Brightness using Seaborn
 plt.figure(figsize=(10,6))
 
-sns.barplot(data= df, x = &#x27;Region&#x27;, y = &#x27;Mean_estimated_fire_brightness&#x27;,color=&#x27;darkgreen&#x27;)
-plt.title(&#x27;Distribution of Mean Estimated Fire Brightness across Regions&#x27;)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8070-8792-d9e710613f74" class="image"><a href="Wildfire%20activities%20in%20Australia/image%204.png"><img style="width:709.984375px" src="Wildfire%20activities%20in%20Australia/image%204.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-80a9-8270-ee9ca1d1073a" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Portion of count of pixels for presumed vegetation fires vary across regions
-df_count = df.groupby(&#x27;Region&#x27;) [&#x27;Count&#x27;].sum()
+sns.barplot(data= df, x = 'Region', y = 'Mean_estimated_fire_brightness',color='darkgreen')
+plt.title('Distribution of Mean Estimated Fire Brightness across Regions')</pre></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Portion of count of pixels for presumed vegetation fires vary across regions
+df_count = df.groupby('Region') ['Count'].sum()
 df_count
 
 #a function to hide pie labels &lt; 6%
 def atopct_hide(pct):
-    return f&#x27;{pct:.1f}%&#x27; if pct &gt;=6 else &#x27;&#x27;
+    return f'{pct:.1f}%' if pct &gt;=6 else ''
 
 #plot the pie chart
 plt.figure(figsize=(10,6))
-plt.pie(df_count[&#x27;Count&#x27;],labels=df_count[&#x27;Region&#x27;],autopct=atopct_hide,startangle=35)
-plt.title(&#x27;Percentage of Pixels for Presumed Vegetation Fires by Region&#x27;)
-plt.axis(&#x27;equal&#x27;)</code></pre></div><div style="display:contents" dir="auto"><div id="2184a910-3448-80cf-8641-f8903aaf634d" class="column-list"><div style="display:contents" dir="auto"><div id="2184a910-3448-8077-8bf7-d9d3ffe89221" style="width:31.25%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8020-99e5-d5b092c9ad36" class="image"><a href="Wildfire%20activities%20in%20Australia/image%205.png"><img style="width:240px" src="Wildfire%20activities%20in%20Australia/image%205.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2184a910-3448-8024-b404-c807aafd2a8f" class="">
-</p></div></div></div><div style="display:contents" dir="auto"><div id="2184a910-3448-80c3-a66d-effb4e8e7911" style="width:68.75%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8038-9b5f-f4811a96a0a0" class="image"><a href="Wildfire%20activities%20in%20Australia/image%206.png"><img style="width:331.984375px" src="Wildfire%20activities%20in%20Australia/image%206.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-805c-ba8d-fce9ec81ab38" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">plt.Figure(figsize=(10,6))
-#Distribution of &quot;mean estimated fire Brightness&quot;
-plt.hist(x = df[&#x27;Mean_estimated_fire_brightness&#x27;],bins=20,edgecolor = &#x27;darkblue&#x27;)
-plt.title(&quot;Histogram of Mean Estimated Fire Brightness&quot;)
-plt.xlabel(&#x27;Mean Estimated Fire Brightness (Kelvin)&#x27;)
-plt.ylabel(&#x27;Count&#x27;)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8065-b0d7-e25f9d4d5d7d" class="image"><a href="Wildfire%20activities%20in%20Australia/image%207.png"><img style="width:720px" src="Wildfire%20activities%20in%20Australia/image%207.png"/></a></figure></div><div style="display:contents" dir="auto"><hr id="2184a910-3448-80d2-8728-fa86614feb82"/></div><div style="display:contents" dir="auto"><p id="2184a910-3448-8066-9f5f-ede83f2d0b9e" class="">
-</p></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-80e7-b766-d6f06094c032" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># distribution of &quot;estimated fire brightness&quot; across Regions using Seaborn
-sns.histplot(data=df, x=&#x27;Mean_estimated_fire_brightness&#x27;, hue=&#x27;Region&#x27;,multiple=&#x27;stack&#x27;)
-plt.title (&#x27;Distribution of estimated fire brightness across regions&#x27;)
-plt.show()</code></pre></div><div style="display:contents" dir="auto"><p id="2184a910-3448-80db-aa4e-f39e27942bd9" class="">
-</p></div><div style="display:contents" dir="auto"><div id="2184a910-3448-803c-b6fb-e7a265af84c8" class="column-list"><div style="display:contents" dir="auto"><div id="2184a910-3448-80a4-b0ad-f00a492ac02b" style="width:43.75%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-80cb-9a38-c714ad9811ea" class="image"><a href="Wildfire%20activities%20in%20Australia/image%208.png"><img style="width:576px" src="Wildfire%20activities%20in%20Australia/image%208.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2184a910-3448-80d4-8c54-ea303415e4b1" class="">
-</p></div></div></div><div style="display:contents" dir="auto"><div id="2184a910-3448-8042-ac30-dd6588567e02" style="width:56.25%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8027-b2d7-c79aabb401ab" class="image"><a href="Wildfire%20activities%20in%20Australia/image%209.png"><img style="width:576px" src="Wildfire%20activities%20in%20Australia/image%209.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><hr id="2184a910-3448-80d5-a50a-d5b79f36f1af"/></div><div style="display:contents" dir="auto"><p id="2184a910-3448-8007-8bd0-e05693c45da9" class=""><strong> </strong></p></div><div style="display:contents" dir="auto"><p id="2184a910-3448-800c-9173-cff095974dac" class=""><strong>Mark seven regions on the Map of Australia using Folium</strong></p></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-8066-9a5e-caa4280fe996" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">plt.figure(figsize=(10,6))
-sns.scatterplot(data=df, x=&#x27;Mean_confidence&#x27;,y=&#x27;Mean_estimated_fire_radiative_power&#x27;)
+plt.pie(df_count['Count'],labels=df_count['Region'],autopct=atopct_hide,startangle=35)
+plt.title('Percentage of Pixels for Presumed Vegetation Fires by Region')
+plt.axis('equal')</pre></div>
+<div class="img-wrap" onclick="openLb(5)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 5.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 13</span></div>
+<div class="img-wrap" onclick="openLb(6)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 6.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.Figure(figsize=(10,6))
+#Distribution of "mean estimated fire Brightness"
+plt.hist(x = df['Mean_estimated_fire_brightness'],bins=20,edgecolor = 'darkblue')
+plt.title("Histogram of Mean Estimated Fire Brightness")
+plt.xlabel('Mean Estimated Fire Brightness (Kelvin)')
+plt.ylabel('Count')</pre></div>
+<div class="img-wrap" onclick="openLb(7)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 7.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 13</span></div>
+<p class="pg-text">---</p>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># distribution of "estimated fire brightness" across Regions using Seaborn
+sns.histplot(data=df, x='Mean_estimated_fire_brightness', hue='Region',multiple='stack')
+plt.title ('Distribution of estimated fire brightness across regions')
+plt.show()</pre></div>
+<div class="img-wrap" onclick="openLb(8)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 8.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 13</span></div>
+<div class="img-wrap" onclick="openLb(9)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 9.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 13</span></div>
+<p class="pg-text">---</p>
+<p class="pg-text">****</p>
+<p class="pg-text">**Mark seven regions on the Map of Australia using Folium**</p>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.figure(figsize=(10,6))
+sns.scatterplot(data=df, x='Mean_confidence',y='Mean_estimated_fire_radiative_power')
 
-plt.title(&#x27;Mean Estimated Fire Radiative Power vs. Mean Confidence&#x27;)
-plt.xlabel(&#x27;Mean Confidence&#x27;)
-plt.ylabel(&#x27;Mean Estimated Fire Radiative Power (MW)&#x27;)</code></pre></div><div style="display:contents" dir="ltr"><figure id="2184a910-3448-801f-aa36-d6e35236a503" class="image"><a href="Wildfire%20activities%20in%20Australia/image%2010.png"><img style="width:720px" src="Wildfire%20activities%20in%20Australia/image%2010.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="2184a910-3448-8035-a6b8-cfab631c7e01" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">##  Initializes an empty feature group aus_reg to hold all the map markers.
+plt.title('Mean Estimated Fire Radiative Power vs. Mean Confidence')
+plt.xlabel('Mean Confidence')
+plt.ylabel('Mean Estimated Fire Radiative Power (MW)')</pre></div>
+<div class="img-wrap" onclick="openLb(10)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 10.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 13</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>##  Initializes an empty feature group aus_reg to hold all the map markers.
 aus_reg = folium.map.FeatureGroup()
 
 ## Creates a folium.Map centered on Australia
 aus_map = folium.Map(location=[-25,135],zoom_start=5)
-
 
 for lat,lng, lab in zip(reg.Lat,reg.Lon,reg.region):  #loop and pull: lat,lng and lab(aferent val)
     aus_reg.add_child(          
@@ -826,9 +169,9 @@ for lat,lng, lab in zip(reg.Lat,reg.Lon,reg.region):  #loop and pull: lat,lng an
             [lat,lng],                   #  place circle at [lat] [lng] 
             popup=lab,                   #  popup=lab: shows the region name when clicked
             radius=5,
-            color = &#x27;red&#x27;,
+            color = 'red',
             fill= True,
-            fill_color = &#x27;blue&#x27;,
+            fill_color = 'blue',
             fill_opacity = 0.6
         )
     )
@@ -836,6 +179,29 @@ for lat,lng, lab in zip(reg.Lat,reg.Lon,reg.region):  #loop and pull: lat,lng an
 #add the feature group to the map
 aus_map.add_child(aus_reg)
 #show map
-aus_map
-</code></pre></div><div style="display:contents" dir="auto"><div id="2184a910-3448-801c-aa0f-f71adaf41deb" class="column-list"><div style="display:contents" dir="auto"><div id="2184a910-3448-8047-975e-c27b1ab7f34b" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-801d-8043-da2baf212483" class="image"><a href="Wildfire%20activities%20in%20Australia/image%2011.png"><img style="width:709.96875px" src="Wildfire%20activities%20in%20Australia/image%2011.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2184a910-3448-8090-81a2-fb1519f88097" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="2184a910-3448-8016-8f6a-ff223ccde963" class="image"><a href="Wildfire%20activities%20in%20Australia/image%2012.png"><img style="width:709.984375px" src="Wildfire%20activities%20in%20Australia/image%2012.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><p id="2184a910-3448-802e-8c94-dc92a9d16c62" class="">
-</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+aus_map</pre></div>
+<div class="img-wrap" onclick="openLb(11)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 11.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 13</span></div>
+<div class="img-wrap" onclick="openLb(12)"><img src="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 12.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 13</span></div>
+</div>
+<!-- LIGHTBOX -->
+<div id="lb">
+  <span id="lb-close">✕</span>
+  <div id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+  <div id="lb-counter"></div>
+  <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
+</div>
+<script>
+const images = ["Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 1.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 2.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 3.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 4.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 5.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 6.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 7.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 8.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 9.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 10.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 11.png","Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 12.png"];
+let idx = 0;
+const lb = document.getElementById('lb');
+function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}
+function closeLb(){lb.classList.remove('open');}
+document.getElementById('lb-close').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.getElementById('lb-prev').addEventListener('click',()=>{idx=(idx-1+images.length)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.getElementById('lb-next').addEventListener('click',()=>{idx=(idx+1)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
+document.querySelectorAll('.copy-btn').forEach(btn=>{btn.addEventListener('click',()=>{const code=btn.nextElementSibling.textContent;navigator.clipboard.writeText(code).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1500);});});});
+</script>
+</body>
+</html>

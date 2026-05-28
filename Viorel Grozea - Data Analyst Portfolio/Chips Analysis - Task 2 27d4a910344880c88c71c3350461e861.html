@@ -1,855 +1,207 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Chips Analysis - Task 2</title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
-html {
-	-webkit-print-color-adjust: exact;
-}
-* {
-	box-sizing: border-box;
-	-webkit-print-color-adjust: exact;
-}
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-@media only screen {
-	body {
-		margin: 2em auto;
-		max-width: 900px;
-		color: rgb(55, 53, 47);
-	}
-}
-
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
-	color: inherit;
-	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
-}
-
-h1,
-h2,
-h3 {
-	letter-spacing: -0.01em;
-	line-height: 1.2;
-	font-weight: 600;
-	margin-bottom: 0;
-}
-
-/* Override strong tags inside headings to maintain consistent weight */
-h1 strong,
-h2 strong,
-h3 strong {
-	font-weight: 600;
-}
-
-.page-title {
-	font-size: 2.5rem;
-	font-weight: 700;
-	margin-top: 0;
-	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
-}
-
-h2 {
-	font-size: 1.5rem;
-	margin-top: 1.5rem;
-}
-
-h3 {
-	font-size: 1.25rem;
-	margin-top: 1.25rem;
-}
-
-.source {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	padding: 1.5em;
-	word-break: break-all;
-}
-
-.callout {
-	border-radius: 10px;
-	padding: 1rem;
-}
-
-figure {
-	margin: 1.25em 0;
-	page-break-inside: avoid;
-}
-
-figcaption {
-	opacity: 0.5;
-	font-size: 85%;
-	margin-top: 0.5em;
-}
-
-mark {
-	background-color: transparent;
-}
-
-.indented {
-	padding-left: 1.5em;
-}
-
-hr {
-	background: transparent;
-	display: block;
-	width: 100%;
-	height: 1px;
-	visibility: visible;
-	border: none;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-img {
-	max-width: 100%;
-}
-
-@media only print {
-	img {
-		max-height: 100vh;
-		object-fit: contain;
-	}
-
-	table.collection-content {
-		width: 100%;
-		table-layout: fixed;
-	}
-
-	table.collection-content th,
-	table.collection-content td {
-		overflow-wrap: anywhere;
-	}
-
-	table.collection-content td > .user,
-	table.collection-content td > time {
-		white-space: pre-wrap;
-	}
-}
-
-@page {
-	margin: 1in;
-}
-
-.collection-content-wrapper {
-	overflow-x: auto;
-}
-
-@media only print {
-	.collection-content-wrapper {
-		overflow-x: visible;
-	}
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.collection-content td {
-	white-space: pre-wrap;
-	word-break: break-word;
-}
-
-.column-list {
-	display: flex;
-	gap: 46px;
-}
-
-.column {
-	min-width: 0;
-	overflow: hidden;
-}
-
-.column > *:first-child {
-	margin-top: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
-}
-
-table,
-th,
-td {
-	border: 1px solid rgba(55, 53, 47, 0.09);
-}
-
-table {
-	border-collapse: collapse;
-	border-left: none;
-	border-right: none;
-}
-
-th,
-td {
-	font-weight: normal;
-	padding: 0.25em 0.5em;
-	line-height: 1.5;
-	min-height: 1.5em;
-	text-align: left;
-}
-
-th {
-	color: rgba(55, 53, 47, 0.6);
-}
-
-ol,
-ul {
-	margin: 0;
-	margin-block-start: 0.6em;
-	margin-block-end: 0.6em;
-}
-
-li > ol:first-child,
-li > ul:first-child {
-	margin-block-start: 0.6em;
-}
-
-ul > li {
-	list-style: disc;
-}
-
-ul.to-do-list {
-	padding-inline-start: 0;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
-ul {
-	padding-inline-start: 1.7em;
-}
-
-ul > li {
-	padding-left: 0.1em;
-}
-
-ol {
-	padding-inline-start: 1.6em;
-}
-
-ol.numbered-list.numbered-list-digits-2 {
-	padding-inline-start: 2em;
-}
-
-ol.numbered-list.numbered-list-digits-3plus {
-	padding-inline-start: 2.4em;
-}
-
-ol > li {
-	padding-left: 0.2em;
-}
-
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.page-description {
-	margin-bottom: 2em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-	empty-cells: show;
-}
-.simple-table td {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table th {
-	height: 29px;
-	min-width: 120px;
-}
-
-.simple-table-header-color {
-	background: rgb(247, 246, 243);
-	color: black;
-}
-.simple-table-header {
-	font-weight: 500;
-}
-
-time {
-	opacity: 0.5;
-}
-
-.icon {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.callout img.notion-static-icon {
-	width: 1em;
-	height: 1em;
-}
-
-.callout p {
-	margin: 0;
-}
-
-.callout h1,
-.callout h2,
-.callout h3 {
-	margin: 0 0 0.6rem;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
-}
-
-input[type="checkbox"] {
-	transform: scale(1.5);
-	margin-right: 0.6em;
-	vertical-align: middle;
-}
-
-p {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-}
-
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
-code {
-	background: rgba(135, 131, 120, 0.15);
-	border-radius: 3px;
-	padding: 0.2em 0.4em;
-	border-radius: 3px;
-	font-size: 85%;
-	tab-size: 2;
-}
-
-code {
-	color: #eb5757;
-}
-
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
-blockquote {
-	font-size: 1em;
-	margin: 1em 0;
-	padding-left: 1em;
-	border-left: 3px solid rgb(55, 53, 47);
-}
-
-blockquote.quote-large {
-	font-size: 1.25em;
-}
-
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
-}
-
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
-}
-
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
-}
-
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.highlight-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.highlight-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.highlight-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.highlight-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.highlight-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.highlight-default_background {
-	color: rgba(44, 44, 43, 1);
-}
-.highlight-gray_background {
-	background: rgba(42, 28, 0, 0.07);
-}
-.highlight-brown_background {
-	background: rgba(139, 46, 0, 0.086);
-}
-.highlight-orange_background {
-	background: rgba(224, 101, 1, 0.129);
-}
-.highlight-yellow_background {
-	background: rgba(211, 168, 0, 0.137);
-}
-.highlight-teal_background {
-	background: rgba(0, 100, 45, 0.09);
-}
-.highlight-blue_background {
-	background: rgba(0, 124, 215, 0.094);
-}
-.highlight-purple_background {
-	background: rgba(102, 0, 178, 0.078);
-}
-.highlight-pink_background {
-	background: rgba(197, 0, 93, 0.086);
-}
-.highlight-red_background {
-	background: rgba(223, 22, 0, 0.094);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(125, 122, 117, 1);
-	fill: rgba(125, 122, 117, 1);
-}
-.block-color-brown {
-	color: rgba(159, 118, 90, 1);
-	fill: rgba(159, 118, 90, 1);
-}
-.block-color-orange {
-	color: rgba(210, 123, 45, 1);
-	fill: rgba(210, 123, 45, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 148, 52, 1);
-	fill: rgba(203, 148, 52, 1);
-}
-.block-color-teal {
-	color: rgba(80, 148, 110, 1);
-	fill: rgba(80, 148, 110, 1);
-}
-.block-color-blue {
-	color: rgba(56, 125, 201, 1);
-	fill: rgba(56, 125, 201, 1);
-}
-.block-color-purple {
-	color: rgba(154, 107, 180, 1);
-	fill: rgba(154, 107, 180, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(207, 81, 72, 1);
-	fill: rgba(207, 81, 72, 1);
-}
-.block-color-default_background {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray_background {
-	background: rgba(240, 239, 237, 1);
-}
-.block-color-brown_background {
-	background: rgba(245, 237, 233, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 235, 222, 1);
-}
-.block-color-yellow_background {
-	background: rgba(249, 243, 220, 1);
-}
-.block-color-teal_background {
-	background: rgba(232, 241, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(229, 242, 252, 1);
-}
-.block-color-purple_background {
-	background: rgba(243, 235, 249, 1);
-}
-.block-color-pink_background {
-	background: rgba(250, 233, 241, 1);
-}
-.block-color-red_background {
-	background: rgba(252, 233, 231, 1);
-}
-.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
-.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
-.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
-.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
-.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
-.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
-.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
-.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
-.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
-.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style><script src="../_portfolio.js"></script>
-</head><body><article id="27d4a910-3448-80c8-8c71-c3350461e861" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⚙️</span></div><h1 class="page-title" dir="auto">Chips Analysis - Task 2</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="27d4a910-3448-80af-b1ce-fe541e986d74" class="">
-</p></div><div style="display:contents" dir="auto"><p id="27d4a910-3448-807b-b06b-f5dcc69e75d4" class="">
-</p></div><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-805d-aeda-da01a0b66d05" class="image"><a href="Chips%20Analysis%20-%20Task%202/image.png"><img style="width:1488px" src="Chips%20Analysis%20-%20Task%202/image.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="27d4a910-3448-8047-b753-f0bc34b2b2b1" class="column-list"><div style="display:contents" dir="auto"><div id="27d4a910-3448-8050-b234-feee7ff31ca0" style="width:87.5%" class="column"><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js" integrity="sha512-AKaNmg8COK0zEbjTdMHJAPJ0z6VeNqvRvH4/d5M4sHJbQQUToMBtodq4HaV4fa+WV2UTfoperElm66c9/8cKmQ==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="27d4a910-3448-805c-83d3-c8f86a8874e4" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#modify datatype 
-df1[&#x27;DATE&#x27;] =pd.to_datetime(df1[&#x27;DATE&#x27;])
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chips Analysis - Task 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--accent:#00e5a0;--accent2:#00b37d;--text:#f0f0f0;--muted:#888;--border:#222;--card:#131313;--code-bg:#0d1117;--code-border:#30363d;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-size:16px;line-height:1.7;}
+a{color:var(--accent);text-decoration:none}
+/* NAV */
+nav{position:sticky;top:0;background:rgba(10,10,10,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;padding:14px 24px;display:flex;align-items:center;gap:20px;}
+.logo{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);margin-right:auto;}
+.back{font-family:'Space Mono',monospace;font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:6px 14px;transition:border-color .2s,color .2s;}
+.back:hover{border-color:var(--accent);color:var(--accent);}
+nav a.li{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);transition:color .2s;}
+nav a.li:hover{color:var(--accent);}
+/* WRAP */
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px 80px;animation:fadeUp .5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+/* TITLE */
+.proj-title{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:8px;}
+.proj-title span{color:var(--accent);}
+.proj-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:40px;display:flex;gap:10px;flex-wrap:wrap;}
+.proj-meta span{border:1px solid var(--border);border-radius:3px;padding:3px 10px;}
+/* CODE */
+.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:8px;margin-bottom:24px;position:relative;overflow:hidden;}
+.code-lang{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);padding:10px 16px 0;letter-spacing:.1em;text-transform:uppercase;}
+.code-block pre{margin:0;padding:12px 16px 16px;font-family:'Space Mono',monospace;font-size:13px;line-height:1.65;color:#e6edf3;overflow-x:auto;white-space:pre;}
+.copy-btn{position:absolute;top:8px;right:10px;font-family:'Space Mono',monospace;font-size:10px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:3px 10px;cursor:pointer;transition:color .2s,border-color .2s;}
+.copy-btn:hover{color:var(--accent);border-color:var(--accent);}
+/* IMAGES */
+.img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--card);cursor:zoom-in;transition:border-color .25s,transform .2s;margin-bottom:20px;}
+.img-wrap:hover{border-color:var(--accent);transform:translateY(-2px);}
+.img-wrap img{width:100%;height:auto;display:block;image-rendering:-webkit-optimize-contrast;}
+.expand-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);opacity:0.5;transition:opacity .2s,color .2s,border-color .2s;pointer-events:none;}
+.img-wrap:hover .expand-btn{opacity:1;color:var(--accent);border-color:var(--accent);}
+.img-num{position:absolute;bottom:8px;left:10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);background:rgba(0,0,0,0.6);border-radius:3px;padding:2px 6px;}
+/* TEXT */
+.pg-text{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.pg-h2{font-size:20px;font-weight:700;color:var(--text);margin:32px 0 12px;}
+.pg-h3{font-size:17px;font-weight:700;color:var(--accent);margin:24px 0 10px;}
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:20px;}
+#lb.open{display:flex;}
+#lb-img-wrap{max-width:95vw;max-height:82vh;overflow:auto;border-radius:8px;border:1px solid var(--border);}
+#lb-img-wrap img{display:block;max-width:100%;height:auto;}
+#lb-counter{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+#lb-close{position:fixed;top:16px;right:20px;font-family:'Space Mono',monospace;font-size:22px;color:var(--muted);cursor:pointer;z-index:10000;transition:color .2s;}
+#lb-close:hover{color:var(--accent);}
+#lb-nav{display:flex;gap:12px;}
+#lb-nav button{font-family:'Space Mono',monospace;font-size:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 22px;border-radius:4px;cursor:pointer;transition:border-color .2s,color .2s;}
+#lb-nav button:hover{border-color:var(--accent);color:var(--accent);}
+@media(max-width:600px){.wrap{padding:32px 16px 60px;}}
+</style>
+</head>
+<body>
+<nav>
+  <span class="logo">VG_</span>
+  <a href="../index.html" class="back">← Back to portfolio</a>
+  <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="li">LinkedIn</a>
+</nav>
+<div class="wrap">
+<div class="proj-title">Chips Analysis <span>- Task 2</span></div>
+<div class="proj-meta"><span>PYTHON</span></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 7</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#modify datatype 
+df1['DATE'] =pd.to_datetime(df1['DATE'])
 
 #extract Year and Month number as String - YYYYMM format
-df1[&#x27;month_id&#x27;] = df1[&#x27;DATE&#x27;].dt.strftime(&#x27;%Y%m&#x27;)</code></pre></div><div style="display:contents" dir="auto"><p id="27d4a910-3448-8072-95dd-ecf4a603d769" class="">
-</p></div><div style="display:contents" dir="auto"><pre id="27d4a910-3448-80a5-9ffd-e41f35b6a079" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#define metrics:  For each store and month 
+df1['month_id'] = df1['DATE'].dt.strftime('%Y%m')</pre></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#define metrics:  For each store and month 
 #  total sales, number of customers,Transactions,Total Quantity
-grouped = df1.groupby([&#x27;STORE_NBR&#x27;,&#x27;month_id&#x27;])
+grouped = df1.groupby(['STORE_NBR','month_id'])
 
 metrics = grouped.agg(
-    totSales = (&#x27;TOT_SALES&#x27;,&#x27;sum&#x27;),
-    nCustomers = (&#x27;LYLTY_CARD_NBR&#x27;, &#x27;nunique&#x27;),
-    nTranactions=(&#x27;TXN_ID&#x27;,&#x27;nunique&#x27;),
-    totalqty = (&#x27;PROD_QTY&#x27;,&#x27;sum&#x27;)
+    totSales = ('TOT_SALES','sum'),
+    nCustomers = ('LYLTY_CARD_NBR', 'nunique'),
+    nTranactions=('TXN_ID','nunique'),
+    totalqty = ('PROD_QTY','sum')
 
 ).reset_index()
 
 #transactions per customer
 #chips per customer
 #Average Price per unit
-metrics[&#x27;nTxnPerCust&#x27;] = metrics[&#x27;nTranactions&#x27;] / metrics[&#x27;nCustomers&#x27;]
-metrics[&#x27;nChipsPerTxn&#x27;] = metrics[&#x27;totalqty&#x27;] / metrics[&#x27;nTranactions&#x27;]
-metrics[&#x27;avgPricePerUnit&#x27;] = metrics[&#x27;totSales&#x27;] / metrics[&#x27;totalqty&#x27;]</code></pre></div></div></div><div style="display:contents" dir="auto"><div id="27d4a910-3448-803d-875b-e8f1eb31c6d0" style="width:12.500000000000004%" class="column"><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-80d4-a5ff-c2c47641955f" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%201.png"><img style="width:240px" src="Chips%20Analysis%20-%20Task%202/image%201.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-803b-a9b0-e506a74a0f55" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%202.png"><img style="width:864px" src="Chips%20Analysis%20-%20Task%202/image%202.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="27d4a910-3448-8014-ab80-d14b417ca15f" class="">
-</p></div><div style="display:contents" dir="auto"><pre id="27d4a910-3448-8076-be71-c37b4eb994fc" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#month_id to integer
-metrics[&#x27;month_id&#x27;] = metrics[&#x27;month_id&#x27;].astype(int)
+metrics['nTxnPerCust'] = metrics['nTranactions'] / metrics['nCustomers']
+metrics['nChipsPerTxn'] = metrics['totalqty'] / metrics['nTranactions']
+metrics['avgPricePerUnit'] = metrics['totSales'] / metrics['totalqty']</pre></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 7</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 7</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#month_id to integer
+metrics['month_id'] = metrics['month_id'].astype(int)
 
 #stores with 12 full months
-store_month_counts = metrics.groupby(&#x27;STORE_NBR&#x27;)[&#x27;month_id&#x27;].nunique()
+store_month_counts = metrics.groupby('STORE_NBR')['month_id'].nunique()
 stores_with_full_obs = store_month_counts[store_month_counts == 12].index.tolist()
 
 #Pre-trial period (&lt; 2019 02)
 pre_trial_measures = metrics[
-    (metrics[&#x27;month_id&#x27;] &lt; 201902) &amp;
-    (metrics[&#x27;STORE_NBR&#x27;].isin(stores_with_full_obs))</code></pre></div><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-8013-80dd-eb1f1d1d90f3" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%203.png"><img style="width:912px" src="Chips%20Analysis%20-%20Task%202/image%203.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="27d4a910-3448-8043-83ae-def9e9681a4d" class=""><div class="indented"><div style="display:contents" dir="auto"><pre id="27d4a910-3448-80bc-8d24-caa5c4acad13" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all"># Function to calculate correlation for a measure.
+    (metrics['month_id'] &lt; 201902) &amp;
+    (metrics['STORE_NBR'].isin(stores_with_full_obs))</pre></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 7</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Function to calculate correlation for a measure.
 # Looping through each control store.
  
 def calculate_correlation(input_df, metric_col, store_comparison):
     # Get all other stores (control candidates)
-    store_numbers = input_df[&#x27;STORE_NBR&#x27;].unique()
+    store_numbers = input_df['STORE_NBR'].unique()
     store_numbers = [store for store in store_numbers if store != store_comparison]
     
     corr_results = []
 
     for store in store_numbers:
         # Filter data for each store
-        trial_data = input_df[input_df[&#x27;STORE_NBR&#x27;] == store_comparison][[&#x27;month_id&#x27;, metric_col]]
-        control_data = input_df[input_df[&#x27;STORE_NBR&#x27;] == store][[&#x27;month_id&#x27;, metric_col]]
+        trial_data = input_df[input_df['STORE_NBR'] == store_comparison][['month_id', metric_col]]
+        control_data = input_df[input_df['STORE_NBR'] == store][['month_id', metric_col]]
 
         # Merge on month_id
-        merged = pd.merge(trial_data, control_data, on=&#x27;month_id&#x27;, suffixes=(&#x27;_trial&#x27;, &#x27;_control&#x27;))
+        merged = pd.merge(trial_data, control_data, on='month_id', suffixes=('_trial', '_control'))
 
         # Calculate correlation
-        corr = merged[f&#x27;{metric_col}_trial&#x27;].corr(merged[f&#x27;{metric_col}_control&#x27;])
+        corr = merged[f'{metric_col}_trial'].corr(merged[f'{metric_col}_control'])
 
         # Save result
         corr_results.append({
-            &#x27;Store1&#x27;: store_comparison,
-            &#x27;Store2&#x27;: store,
-            &#x27;corr_measure&#x27;: corr
+            'Store1': store_comparison,
+            'Store2': store,
+            'corr_measure': corr
         })
     
     return pd.DataFrame(corr_results)
     
     
     
- correlation_table = calculate_correlation(metrics, &#x27;totSales&#x27;, 77)
- print(correlation_table.head())
-</code></pre></div></div></p></div><div style="display:contents" dir="ltr"><figure id="27d4a910-3448-8097-a457-dcd9668da9c9" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%204.png"><img style="width:384px" src="Chips%20Analysis%20-%20Task%202/image%204.png"/></a></figure></div><div style="display:contents" dir="auto"><pre id="27d4a910-3448-8098-998f-f9f8a6e3ca58" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">#A standardised metric based on the
-#absolute difference between the trial store&#x27;s performance 
-#and each control store&#x27;s performance.
+ correlation_table = calculate_correlation(metrics, 'totSales', 77)
+ print(correlation_table.head())</pre></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 7</span></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#A standardised metric based on the
+#absolute difference between the trial store's performance 
+#and each control store's performance.
 def calculate_magnitude_distance(input_df, metric_col, store_comparison):
-    &quot;&quot;&quot;
-    input_df: DataFrame with columns [&#x27;STORE_NBR&#x27;, &#x27;month_id&#x27;, &lt;metric_col&gt;]
-    metric_col: str, name of the metric column to compare (e.g. &#x27;totSales&#x27;)
+    """
+    input_df: DataFrame with columns ['STORE_NBR', 'month_id', &lt;metric_col&gt;]
+    metric_col: str, name of the metric column to compare (e.g. 'totSales')
     store_comparison: int, the trial store number
-    &quot;&quot;&quot;
+    """
     
-    control_stores = input_df[&#x27;STORE_NBR&#x27;].unique()
+    control_stores = input_df['STORE_NBR'].unique()
     control_stores = [s for s in control_stores if s != store_comparison]
 
     result_rows = []
 
     for store in control_stores:
         # Filter data for each store
-        trial_data = input_df[input_df[&#x27;STORE_NBR&#x27;] == store_comparison][[&#x27;month_id&#x27;, metric_col]]
-        control_data = input_df[input_df[&#x27;STORE_NBR&#x27;] == store][[&#x27;month_id&#x27;, metric_col]]
+        trial_data = input_df[input_df['STORE_NBR'] == store_comparison][['month_id', metric_col]]
+        control_data = input_df[input_df['STORE_NBR'] == store][['month_id', metric_col]]
 
         # Merge on month_id
-        merged = pd.merge(trial_data, control_data, on=&#x27;month_id&#x27;, suffixes=(&#x27;_trial&#x27;, &#x27;_control&#x27;))
+        merged = pd.merge(trial_data, control_data, on='month_id', suffixes=('_trial', '_control'))
 
         # Calculate absolute difference
-        merged[&#x27;measure&#x27;] = abs(merged[f&#x27;{metric_col}_trial&#x27;] - merged[f&#x27;{metric_col}_control&#x27;])
+        merged['measure'] = abs(merged[f'{metric_col}_trial'] - merged[f'{metric_col}_control'])
 
         # Add store numbers to result
-        merged[&#x27;Store1&#x27;] = store_comparison
-        merged[&#x27;Store2&#x27;] = store
+        merged['Store1'] = store_comparison
+        merged['Store2'] = store
 
         # Only keep necessary columns
-        result_rows.append(merged[[&#x27;Store1&#x27;, &#x27;Store2&#x27;, &#x27;month_id&#x27;, &#x27;measure&#x27;]])
+        result_rows.append(merged[['Store1', 'Store2', 'month_id', 'measure']])
 
     # Combine all results
     calc_dist_df = pd.concat(result_rows, ignore_index=True)
 
-    return calc_dist_df
-</code></pre></div><div style="display:contents" dir="auto"><pre id="27e4a910-3448-8028-8145-f3b90b1cded2" class="code code-wrap"><code class="language-python" style="white-space:pre-wrap;word-break:break-all">trial_store = 77
+    return calc_dist_df</pre></div>
+<div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>trial_store = 77
 
-corr_nSales = calculate_correlation(metrics, &#x27;totSales&#x27;, trial_store)
-corr_nCustomers = calculate_correlation(metrics, &#x27;nCustomers&#x27;, trial_store)</code></pre></div><div style="display:contents" dir="auto"><div id="27e4a910-3448-8046-a0d3-d168d6b81464" class="column-list"><div style="display:contents" dir="auto"><div id="27e4a910-3448-80f5-a2d1-e377e19b3230" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="27e4a910-3448-80f2-8274-d9db457cefe9" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%205.png"><img style="width:288px" src="Chips%20Analysis%20-%20Task%202/image%205.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="27e4a910-3448-8082-8166-ff187f09dc02" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="27e4a910-3448-8007-9297-d2e2c0e49156" class="image"><a href="Chips%20Analysis%20-%20Task%202/image%206.png"><img style="width:321px" src="Chips%20Analysis%20-%20Task%202/image%206.png"/></a></figure></div></div></div></div></div><div style="display:contents" dir="auto"><p id="27e4a910-3448-80b3-8acf-ff0e5586cba3" class="">
-</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
+corr_nSales = calculate_correlation(metrics, 'totSales', trial_store)
+corr_nCustomers = calculate_correlation(metrics, 'nCustomers', trial_store)</pre></div>
+<div class="img-wrap" onclick="openLb(5)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 5.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 7</span></div>
+<div class="img-wrap" onclick="openLb(6)"><img src="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 6.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 7</span></div>
+</div>
+<!-- LIGHTBOX -->
+<div id="lb">
+  <span id="lb-close">✕</span>
+  <div id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+  <div id="lb-counter"></div>
+  <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
+</div>
+<script>
+const images = ["Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 1.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 2.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 3.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 4.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 5.png","Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861/image 6.png"];
+let idx = 0;
+const lb = document.getElementById('lb');
+function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}
+function closeLb(){lb.classList.remove('open');}
+document.getElementById('lb-close').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.getElementById('lb-prev').addEventListener('click',()=>{idx=(idx-1+images.length)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.getElementById('lb-next').addEventListener('click',()=>{idx=(idx+1)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
+document.querySelectorAll('.copy-btn').forEach(btn=>{btn.addEventListener('click',()=>{const code=btn.nextElementSibling.textContent;navigator.clipboard.writeText(code).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1500);});});});
+</script>
+</body>
+</html>
