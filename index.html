@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viorel Grozea — Data Analyst Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0a0a0a;
@@ -24,7 +24,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Syne', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.7;
     min-height: 100vh;
@@ -143,7 +143,7 @@
   .about-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
 
   /* SKILLS */
-  .skills-layout { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; }
+  .skills-layout { display: block; } .skills-detail.full-width { display: flex; flex-direction: column; gap: 0; }
   /* confidence chart */
   .skills-chart { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
   .skills-chart h3 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 20px; text-align: center; letter-spacing: 0.03em; }
@@ -321,7 +321,7 @@
 
   <div class="hero">
     <div class="hero-tag">Available for opportunities</div>
-    <h1>Viorel<br><span>Grozea</span></h1>
+    <h1><span>Viorel</span><br><span>Grozea</span></h1>
     <p class="hero-desc">Data Analyst with expertise in Excel, Power BI, SQL & Python. Certified PL-300 Power BI Data Analyst & Oracle SQL Associate. Turning complex data into clear, actionable insights.</p>
     <div class="hero-links">
       <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn btn-primary" target="_blank">↗ LinkedIn</a>
@@ -335,87 +335,22 @@
     <div class="about-grid">
       <div class="about-card">
         <h3>Value I bring</h3>
-        <p>I approach every business problem with a solution-driven mindset, going beyond requirements to uncover deeper insights. I don't just analyse data — I question assumptions and identify hidden opportunities.</p>
+        <p>I don't just analyse data — I question assumptions and identify hidden opportunities. I adapt quickly to tools and challenges, bringing a solution-driven mindset that goes beyond requirements to deliver deeper, more meaningful insights.</p>
       </div>
       <div class="about-card">
         <h3>My objective</h3>
-        <p>Building a strong foundation in data analytics, progressing toward business intelligence, high-impact analytics solutions, and machine-learning techniques applied to descriptive analysis.</p>
+        <p>Building a strong foundation in data analytics, with the goal of contributing to a data-driven team where I can turn raw data into clear, actionable insights that support better decision-making. Currently expanding my skills across business intelligence tools and advanced analytics, with a focus on delivering high-impact solutions through continuous learning, hands-on projects, and real-world application.</p>
       </div>
     </div>
   </section>
 
   <section id="skills">
     <div class="section-label">Core Skills & Tools</div>
-    <div class="skills-layout">
-
-      <!-- LEFT: Confidence chart -->
-      <div class="skills-chart">
-        <h3>Skill confidence level</h3>
-        <div class="bar-row">
-          <span class="bar-name">Excel</span>
-          <div class="bar-track"><div class="bar-fill" data-w="70"></div></div>
-          <span class="bar-pct">70%</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-name">Power BI</span>
-          <div class="bar-track"><div class="bar-fill" data-w="40"></div></div>
-          <span class="bar-pct">40%</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-name">SQL</span>
-          <div class="bar-track"><div class="bar-fill" data-w="40"></div></div>
-          <span class="bar-pct">40%</span>
-        </div>
-        <div class="bar-row">
-          <span class="bar-name">Python</span>
-          <div class="bar-track"><div class="bar-fill" data-w="10"></div></div>
-          <span class="bar-pct">10%</span>
-        </div>
-      </div>
-
-      <!-- RIGHT: Skill details -->
-      <div class="skills-detail">
+    <div class="skills-detail full-width">
         <div class="skill-item">
-          <div class="skill-item-head"><span class="skill-item-icon">🟩</span><span class="skill-item-name">Excel:</span></div>
+          <div class="skill-item-head"><img class="skill-item-icon" src="excel.png" alt="Excel"><span class="skill-item-name">Excel:</span></div>
           <div class="skill-item-desc">Formulas, Conditional Formatting, Dashboards, PivotTables.</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-head"><span class="skill-item-icon">📊</span><span class="skill-item-name">Power BI:</span></div>
-          <div class="skill-item-desc">DAX fundamentals, KPIs, Semantic model modelling, row level security, interactive dashboards.</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-head"><span class="skill-item-icon">🟦</span><span class="skill-item-name">SQL:</span></div>
-          <div class="skill-item-desc">Basics, Joins, Logical / Comparison Operators, Sub-Queries, #Temp, Window Functions, CTEs, Views, Wildcards, Indexes, Constraints, Substitution vars, Exists, Sequences, multi-insert.</div>
-          <div class="skill-item-sub">(MS SQL Server, IBM DB2, DataGrip)</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-head"><span class="skill-item-icon">🐍</span><span class="skill-item-name">Python:</span></div>
-          <div class="skill-item-desc">Pandas, Matplotlib.</div>
-          <div class="skill-item-sub">(Jupyter)</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-head"><span class="skill-item-icon">🛠️</span><span class="skill-item-name">Stats:</span></div>
-          <div class="skill-item-desc">Mean, Median, Mode, Min, Max, Count, CountA, CountIFs, Small, Large, Normal Distribution.</div>
-        </div>
-      </div>
-
-    </div>
   </section>
-
-  <script>
-    // Animate confidence bars when section scrolls into view
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.bar-fill').forEach(bar => {
-            bar.style.width = bar.dataset.w + '%';
-          });
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    document.querySelector('#skills .skills-layout') && observer.observe(document.querySelector('#skills .skills-layout'));
-  </script>
 
   <section id="projects">
     <div class="section-label">Projects</div>
