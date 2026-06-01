@@ -254,6 +254,7 @@
     display: flex; align-items: center; justify-content: center;
     background: #f5f5f5; padding: 16px; min-height: 160px;
   }
+  .cert-img-wide { background: var(--card) !important; }
   .cert-card img {
     max-width: 100%; width: auto;
     height: auto; max-height: 200px;
@@ -564,8 +565,8 @@
     <p style="font-size:13px;color:var(--muted);margin-bottom:24px;font-family:'Space Mono',monospace;text-align:center;">Click any certificate to expand</p>
     <div class="certs-grid">
       <div class="cert-card" onclick="openCertLb(0)">
-        <div class="cert-img-wrap">
-          <img src="Oracle_Badge.png" alt="Oracle Certified Associate Badge" loading="lazy">
+        <div class="cert-img-wrap cert-img-wide">
+          <img src="Oracle_Badge.png" alt="Oracle Certified Associate Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
           <span class="cert-expand-hint">Show Cert</span>
         </div>
         <div class="cert-label">Oracle Database SQL Certified Associate</div>
