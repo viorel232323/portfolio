@@ -279,13 +279,18 @@
         }
       }
 
-      /* PARAGRAPH text (skip if empty or just whitespace) */
+      /* PARAGRAPH text (skip if empty, whitespace, or in exclusion list) */
       if (tag === 'p') {
         const text = node.innerText.trim();
-        if (text.length > 3) {
+        const excludedText = [
+          'i used a different approach and reached the same conclusion'
+        ];
+        const isExcluded = excludedText.some(ex => text.toLowerCase().includes(ex));
+        if (text.length > 3 && !isExcluded) {
           contentBlocks.push({ type:'text', html: node.innerHTML });
           return;
         }
+        if (isExcluded) return; // drop it entirely
       }
 
       /* recurse into children */
@@ -294,26 +299,37 @@
 
     for (const child of body.children) walkNode(child);
 
-    /* ── detect pages that should force a strict 2-per-row image grid with dividers ── */
+    /* ── page layout modes ── */
     const twoPerRowPages = ['regional online store sales analysis'];
+    const firstFullThenTwoPerRow = ['sales performance & customer insights report', 'sales performance'];
+
     const forceTwoPerRow = twoPerRowPages.some(t => rawTitle.toLowerCase().includes(t));
+    const firstFull = firstFullThenTwoPerRow.some(t => rawTitle.toLowerCase().includes(t));
 
     const grouped = [];
     let i = 0;
 
     if (forceTwoPerRow) {
-      /* collect ALL images, pair them 2-per-row, divider after each pair */
+      /* ALL images 2-per-row with divider after each pair */
       const imgs = contentBlocks.filter(b => b.type === 'img');
       const nonImgs = contentBlocks.filter(b => b.type !== 'img');
-      /* keep any non-image blocks (code/text) at top, then the image grid */
       nonImgs.forEach(b => grouped.push(b));
       for (let k = 0; k < imgs.length; k += 2) {
-        if (imgs[k+1]) {
-          grouped.push({ type:'imgrow', items:[imgs[k], imgs[k+1]] });
-        } else {
-          grouped.push({ type:'imgrow', items:[imgs[k]] }); // last odd image alone
+        grouped.push({ type:'imgrow', items: imgs[k+1] ? [imgs[k], imgs[k+1]] : [imgs[k]] });
+        grouped.push({ type:'divider' });
+      }
+    } else if (firstFull) {
+      /* first image full width, the rest 2-per-row with dividers */
+      const imgs = contentBlocks.filter(b => b.type === 'img');
+      const nonImgs = contentBlocks.filter(b => b.type !== 'img');
+      nonImgs.forEach(b => grouped.push(b));
+      if (imgs.length > 0) {
+        grouped.push({ type:'img', src: imgs[0].src }); // photo 1 full width
+        grouped.push({ type:'divider' });
+        for (let k = 1; k < imgs.length; k += 2) {
+          grouped.push({ type:'imgrow', items: imgs[k+1] ? [imgs[k], imgs[k+1]] : [imgs[k]] });
+          grouped.push({ type:'divider' });
         }
-        grouped.push({ type:'divider' }); // line after each row
       }
     } else {
       /* default: only pair exactly-2 consecutive images */
