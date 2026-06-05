@@ -113,6 +113,14 @@
     .pg-img-row .pg-img-wrap { margin-bottom:0; }
     @media(max-width:600px){ .pg-img-row { grid-template-columns:1fr; } }
 
+    /* divider line between image rows */
+    .pg-divider {
+      height:1px;
+      background:linear-gradient(to right, transparent, var(--accent2), transparent);
+      opacity:0.4;
+      margin:20px 0 24px;
+    }
+
     /* code blocks */
     .pg-code {
       background:var(--code-bg);
@@ -286,19 +294,39 @@
 
     for (const child of body.children) walkNode(child);
 
-    /* ── group consecutive images into rows (max 2 side by side) ── */
+    /* ── detect pages that should force a strict 2-per-row image grid with dividers ── */
+    const twoPerRowPages = ['regional online store sales analysis'];
+    const forceTwoPerRow = twoPerRowPages.some(t => rawTitle.toLowerCase().includes(t));
+
     const grouped = [];
     let i = 0;
-    while (i < contentBlocks.length) {
-      const b = contentBlocks[i];
-      if (b.type === 'img' && contentBlocks[i+1] && contentBlocks[i+1].type === 'img'
-          && !(contentBlocks[i+2] && contentBlocks[i+2].type === 'img')) {
-        // exactly 2 consecutive images → side by side
-        grouped.push({ type:'imgrow', items:[b, contentBlocks[i+1]] });
-        i += 2;
-      } else {
-        grouped.push(b);
-        i++;
+
+    if (forceTwoPerRow) {
+      /* collect ALL images, pair them 2-per-row, divider after each pair */
+      const imgs = contentBlocks.filter(b => b.type === 'img');
+      const nonImgs = contentBlocks.filter(b => b.type !== 'img');
+      /* keep any non-image blocks (code/text) at top, then the image grid */
+      nonImgs.forEach(b => grouped.push(b));
+      for (let k = 0; k < imgs.length; k += 2) {
+        if (imgs[k+1]) {
+          grouped.push({ type:'imgrow', items:[imgs[k], imgs[k+1]] });
+        } else {
+          grouped.push({ type:'imgrow', items:[imgs[k]] }); // last odd image alone
+        }
+        grouped.push({ type:'divider' }); // line after each row
+      }
+    } else {
+      /* default: only pair exactly-2 consecutive images */
+      while (i < contentBlocks.length) {
+        const b = contentBlocks[i];
+        if (b.type === 'img' && contentBlocks[i+1] && contentBlocks[i+1].type === 'img'
+            && !(contentBlocks[i+2] && contentBlocks[i+2].type === 'img')) {
+          grouped.push({ type:'imgrow', items:[b, contentBlocks[i+1]] });
+          i += 2;
+        } else {
+          grouped.push(b);
+          i++;
+        }
       }
     }
 
@@ -367,6 +395,11 @@
         row.className = 'pg-img-row';
         block.items.forEach(b => row.appendChild(makeImgWrap(b.src)));
         wrap.appendChild(row);
+
+      } else if (block.type === 'divider') {
+        const hr = document.createElement('div');
+        hr.className = 'pg-divider';
+        wrap.appendChild(hr);
 
       } else if (block.type === 'code') {
         const codeWrap = document.createElement('div');
