@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBiMzdkIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBlNWEwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Vkc8L3RleHQ+PC9zdmc+">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Financial Fraud Detection</title>
+<title>Payments Fraud Detection</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0a0a;--bg3:#1a1a1a;--accent:#00e5a0;--accent2:#00b37d;--text:#f0f0f0;--muted:#888;--border:#222;--card:#131313;--code-bg:#0d1117;--code-border:#30363d;}
@@ -67,147 +67,147 @@ nav a.li:hover{color:var(--accent);}
   <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="li">LinkedIn</a>
 </nav>
 <div class="wrap">
-<div class="proj-title"><span>Financial Fraud</span><br>Detection</div>
+<div class="proj-title"><span>Payments Fraud</span><br>Detection</div>
 <div class="proj-meta"><span>SQL</span><span>ORACLE</span><span>FRAUD ANALYSIS</span><span>6.3M ROWS</span></div>
 <p class="pg-intro">This project analyses a dataset of over <strong>6.3 million mobile-money payment transactions</strong> to detect and understand fraudulent activity using Oracle SQL. Starting from a raw CSV loaded via an external table, the analysis works through data quality checks, then investigates where fraud happens, how much money is involved, when it occurs, and how effective the existing fraud-detection flag is.</p>
 <div class="findings-box"><div class="findings-title">Key Findings</div><ul><li>Fraud is extremely rare — only <strong>0.012%</strong> of all transactions were fraudulent.</li><li>Fraud is concentrated in just two transaction types: <strong>CASH_OUT</strong> and <strong>TRANSFER</strong>. PAYMENT, DEBIT and CASH_IN had zero fraud.</li><li>The average fraudulent transaction (<strong>£1,467,967</strong>) is roughly <strong>8× larger</strong> than the average legitimate one (£178,197).</li><li>Fraud almost always drains the account to zero — <strong>8,053 of 8,213</strong> fraud cases (98%) emptied the sender's balance.</li><li>The platform's existing fraud flag caught almost none of the real frauds — a major detection gap.</li></ul></div>
 <div class="theme-head">01 — Data Setup &amp; Quality</div>
 <p class="pg-text">The raw CSV is exposed through an Oracle external table, then materialised into a physical table for faster querying. Before any analysis, the data is checked for volume, the overall fraud rate, transaction mix, and duplicates.</p>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>CREATE TABLE payment_transactions_ext
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#cc7832">CREATE</span> <span style="color:#cc7832">TABLE</span> payment_transactions_ext
 (
-    step             NUMBER,
-    txn_type         VARCHAR2(20),
-    amount           NUMBER(15, 2),
-    name_orig        VARCHAR2(50),
-    oldbalance_org   NUMBER(15, 2),
-    newbalance_orig  NUMBER(15, 2),
-    name_dest        VARCHAR2(50),
-    oldbalance_dest  NUMBER(15, 2),
-    newbalance_dest  NUMBER(15, 2),
-    is_fraud         NUMBER(1),
-    is_flagged_fraud NUMBER(1)
-) ORGANIZATION EXTERNAL ( TYPE ORACLE_LOADER
-    DEFAULT DIRECTORY data_dir
-    ACCESS PARAMETERS ( RECORDS DELIMITED BY '\n'
-    SKIP 1 FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' )
-    LOCATION ('fraud_detection.csv') )
-    REJECT LIMIT UNLIMITED;
+    step             <span style="color:#cc7832">NUMBER</span>,
+    txn_type         <span style="color:#cc7832">VARCHAR2</span>(<span style="color:#6897bb">20</span>),
+    amount           <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">15</span>, <span style="color:#6897bb">2</span>),
+    name_orig        <span style="color:#cc7832">VARCHAR2</span>(<span style="color:#6897bb">50</span>),
+    oldbalance_org   <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">15</span>, <span style="color:#6897bb">2</span>),
+    newbalance_orig  <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">15</span>, <span style="color:#6897bb">2</span>),
+    name_dest        <span style="color:#cc7832">VARCHAR2</span>(<span style="color:#6897bb">50</span>),
+    oldbalance_dest  <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">15</span>, <span style="color:#6897bb">2</span>),
+    newbalance_dest  <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">15</span>, <span style="color:#6897bb">2</span>),
+    is_fraud         <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">1</span>),
+    is_flagged_fraud <span style="color:#cc7832">NUMBER</span>(<span style="color:#6897bb">1</span>)
+) <span style="color:#cc7832">ORGANIZATION</span> <span style="color:#cc7832">EXTERNAL</span> ( <span style="color:#cc7832">TYPE</span> ORACLE_LOADER
+    <span style="color:#cc7832">DEFAULT</span> <span style="color:#cc7832">DIRECTORY</span> data_dir
+    <span style="color:#cc7832">ACCESS</span> <span style="color:#cc7832">PARAMETERS</span> ( <span style="color:#cc7832">RECORDS</span> <span style="color:#cc7832">DELIMITED</span> <span style="color:#cc7832">BY</span> <span style="color:#6a8759">'\n'</span>
+    <span style="color:#cc7832">SKIP</span> <span style="color:#6897bb">1</span> <span style="color:#cc7832">FIELDS</span> <span style="color:#cc7832">TERMINATED</span> <span style="color:#cc7832">BY</span> <span style="color:#6a8759">','</span> <span style="color:#cc7832">OPTIONALLY</span> <span style="color:#cc7832">ENCLOSED</span> <span style="color:#cc7832">BY</span> <span style="color:#6a8759">'"'</span> )
+    <span style="color:#cc7832">LOCATION</span> (<span style="color:#6a8759">'fraud_detection.csv'</span>) )
+    <span style="color:#cc7832">REJECT</span> <span style="color:#cc7832">LIMIT</span> <span style="color:#cc7832">UNLIMITED</span>;
 
--- Materialise into a physical table for performance
-CREATE TABLE payments_transactions AS
-SELECT * FROM payment_transactions_ext;</pre></div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Total transactions
-SELECT count(*) AS Total_Transactions
-FROM payments_transactions;
+<span style="color:#808080">-- Materialise into a physical table for performance</span>
+<span style="color:#cc7832">CREATE</span> <span style="color:#cc7832">TABLE</span> payments_transactions <span style="color:#cc7832">AS</span>
+<span style="color:#cc7832">SELECT</span> * <span style="color:#cc7832">FROM</span> payment_transactions_ext;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Total transactions</span>
+<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">AS</span> Total_Transactions
+<span style="color:#cc7832">FROM</span> payments_transactions;
 
--- Percentage of fraudulent transactions  (0.012%)
-SELECT ROUND(
-  (SELECT count(*) FROM payments_transactions WHERE is_fraud &lt;&gt; 0) /
-  (SELECT count(*) FROM payments_transactions), 5) AS Fraud_Percentage
-FROM dual;</pre></div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- How many transactions per type
-SELECT txn_type, count(txn_type) AS Nr_of_transactions
-FROM payments_transactions
-GROUP BY txn_type
-ORDER BY 2 DESC;</pre></div>
+<span style="color:#808080">-- Percentage of fraudulent transactions  (0.012%)</span>
+<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">ROUND</span>(
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">FROM</span> payments_transactions <span style="color:#cc7832">WHERE</span> is_fraud &lt;&gt; <span style="color:#6897bb">0</span>) /
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">FROM</span> payments_transactions), <span style="color:#6897bb">5</span>) <span style="color:#cc7832">AS</span> Fraud_Percentage
+<span style="color:#cc7832">FROM</span> <span style="color:#cc7832">dual</span>;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- How many transactions per type</span>
+<span style="color:#cc7832">SELECT</span> txn_type, <span style="color:#4eade5;font-style:italic">count</span>(txn_type) <span style="color:#cc7832">AS</span> Nr_of_transactions
+<span style="color:#cc7832">FROM</span> payments_transactions
+<span style="color:#cc7832">GROUP</span> <span style="color:#cc7832">BY</span> txn_type
+<span style="color:#cc7832">ORDER</span> <span style="color:#cc7832">BY</span> <span style="color:#6897bb">2</span> <span style="color:#cc7832">DESC</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(0)"><img src="Financial Fraud Detection/theme1_per_type.png" alt="Result 1" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Duplicate check — returns no rows, confirming clean data
-SELECT step, txn_type, amount, name_orig, oldbalance_org, newbalance_orig,
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Duplicate check — returns no rows, confirming clean data</span>
+<span style="color:#cc7832">SELECT</span> step, txn_type, amount, name_orig, oldbalance_org, newbalance_orig,
        name_dest, oldbalance_dest, newbalance_dest, is_fraud, is_flagged_fraud
-FROM payments_transactions
-GROUP BY step, txn_type, amount, name_orig, oldbalance_org, newbalance_orig,
+<span style="color:#cc7832">FROM</span> payments_transactions
+<span style="color:#cc7832">GROUP</span> <span style="color:#cc7832">BY</span> step, txn_type, amount, name_orig, oldbalance_org, newbalance_orig,
          name_dest, oldbalance_dest, newbalance_dest, is_fraud, is_flagged_fraud
-HAVING count(*) &gt; 1;</pre></div>
+<span style="color:#cc7832">HAVING</span> <span style="color:#4eade5;font-style:italic">count</span>(*) &gt; <span style="color:#6897bb">1</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(1)"><img src="Financial Fraud Detection/theme1_duplicates.png" alt="Result 2" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">No rows returned — the dataset contains no duplicate records.</div>
 <div class="theme-head">02 — Where Does Fraud Happen?</div>
 <p class="pg-text">Breaking fraud down by transaction type reveals which channels are targeted. For each type the query computes the transaction count, the number and rate of frauds, and the single biggest fraudulent amount.</p>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>SELECT txn_type,
-       TO_CHAR(count(txn_type),'FM9,999,999') AS Nr_of_transactions,
-       (SELECT TO_CHAR(count(txn_type), 'FM9,999,999')
-        FROM payments_transactions f
-        WHERE f.is_fraud &gt; 0 AND f.txn_type = p.txn_type) AS Fraud_Transactions,
-       ROUND((SELECT count(txn_type)
-        FROM payments_transactions f
-        WHERE f.is_fraud &gt; 0 AND f.txn_type = p.txn_type) / count(txn_type), 4) AS Fraud_Rate,
-       (SELECT TO_CHAR(max(amount),'FM9,999,999,999')
-        FROM payments_transactions g
-        WHERE g.is_fraud &gt; 0 AND g.txn_type = p.txn_type) AS Biggest_Fraud
-FROM payments_transactions p
-GROUP BY txn_type
-ORDER BY 3 DESC;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#cc7832">SELECT</span> txn_type,
+       <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">count</span>(txn_type),<span style="color:#6a8759">'FM9,999,999'</span>) <span style="color:#cc7832">AS</span> Nr_of_transactions,
+       (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">count</span>(txn_type), <span style="color:#6a8759">'FM9,999,999'</span>)
+        <span style="color:#cc7832">FROM</span> payments_transactions f
+        <span style="color:#cc7832">WHERE</span> f.is_fraud &gt; <span style="color:#6897bb">0</span> <span style="color:#cc7832">AND</span> f.txn_type = p.txn_type) <span style="color:#cc7832">AS</span> Fraud_Transactions,
+       <span style="color:#4eade5;font-style:italic">ROUND</span>((<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(txn_type)
+        <span style="color:#cc7832">FROM</span> payments_transactions f
+        <span style="color:#cc7832">WHERE</span> f.is_fraud &gt; <span style="color:#6897bb">0</span> <span style="color:#cc7832">AND</span> f.txn_type = p.txn_type) / <span style="color:#4eade5;font-style:italic">count</span>(txn_type), <span style="color:#6897bb">4</span>) <span style="color:#cc7832">AS</span> Fraud_Rate,
+       (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">max</span>(amount),<span style="color:#6a8759">'FM9,999,999,999'</span>)
+        <span style="color:#cc7832">FROM</span> payments_transactions g
+        <span style="color:#cc7832">WHERE</span> g.is_fraud &gt; <span style="color:#6897bb">0</span> <span style="color:#cc7832">AND</span> g.txn_type = p.txn_type) <span style="color:#cc7832">AS</span> Biggest_Fraud
+<span style="color:#cc7832">FROM</span> payments_transactions p
+<span style="color:#cc7832">GROUP</span> <span style="color:#cc7832">BY</span> txn_type
+<span style="color:#cc7832">ORDER</span> <span style="color:#cc7832">BY</span> <span style="color:#6897bb">3</span> <span style="color:#cc7832">DESC</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(2)"><img src="Financial Fraud Detection/theme2_fraud_by_type.png" alt="Result 3" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">Fraud occurs only in TRANSFER and CASH_OUT. TRANSFER has the highest fraud rate (0.77%), and both types share the same £10M ceiling on the largest fraud.</div>
 <div class="theme-head">03 — How Much? Fraud Value &amp; Amount Patterns</div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Total money moved vs total lost to fraud
-SELECT
-  (SELECT TO_CHAR(SUM(amount), 'FM9,999,999,999,999') FROM payments_transactions) AS Total_Amount,
-  (SELECT TO_CHAR(SUM(amount), 'FM9,999,999,999,999') FROM payments_transactions
-   WHERE is_fraud &lt;&gt; 0) AS Fraud_Amount
-FROM dual;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Total money moved vs total lost to fraud</span>
+<span style="color:#cc7832">SELECT</span>
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">SUM</span>(amount), <span style="color:#6a8759">'FM9,999,999,999,999'</span>) <span style="color:#cc7832">FROM</span> payments_transactions) <span style="color:#cc7832">AS</span> Total_Amount,
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">SUM</span>(amount), <span style="color:#6a8759">'FM9,999,999,999,999'</span>) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_fraud &lt;&gt; <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> Fraud_Amount
+<span style="color:#cc7832">FROM</span> <span style="color:#cc7832">dual</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(3)"><img src="Financial Fraud Detection/theme3_total_lost.png" alt="Result 4" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Average amount: overall vs legitimate vs fraudulent
-SELECT
-  (SELECT TO_CHAR(avg(amount), 'FM9,999,999,999') FROM payments_transactions) AS Total_Avg,
-  (SELECT TO_CHAR(avg(amount), 'FM9,999,999,999') FROM payments_transactions
-   WHERE is_fraud = 0) AS Legitimate_Avg,
-  (SELECT TO_CHAR(avg(amount), 'FM9,999,999,999') FROM payments_transactions
-   WHERE is_fraud &lt;&gt; 0) AS Fraud_Avg
-FROM dual;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Average amount: overall vs legitimate vs fraudulent</span>
+<span style="color:#cc7832">SELECT</span>
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">avg</span>(amount), <span style="color:#6a8759">'FM9,999,999,999'</span>) <span style="color:#cc7832">FROM</span> payments_transactions) <span style="color:#cc7832">AS</span> Total_Avg,
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">avg</span>(amount), <span style="color:#6a8759">'FM9,999,999,999'</span>) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_fraud = <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> Legitimate_Avg,
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">avg</span>(amount), <span style="color:#6a8759">'FM9,999,999,999'</span>) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_fraud &lt;&gt; <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> Fraud_Avg
+<span style="color:#cc7832">FROM</span> <span style="color:#cc7832">dual</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(4)"><img src="Financial Fraud Detection/theme3_avg.png" alt="Result 5" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">Fraudulent transactions average £1.47M versus £178K for legitimate ones — fraud targets high-value transfers.</div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Do larger transactions have a higher fraud rate?
-SELECT amount_bucket, count(*) AS number_of_transactions,
-       SUM(is_fraud) AS fraudulent_transactions
-FROM (
-    SELECT is_fraud,
-           CASE WHEN amount &gt; 200000 THEN 'large tx'
-                WHEN amount &gt; 100000 THEN 'medium tx'
-                ELSE 'small tx'
-           END AS amount_bucket
-    FROM payments_transactions
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Do larger transactions have a higher fraud rate?</span>
+<span style="color:#cc7832">SELECT</span> amount_bucket, <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">AS</span> number_of_transactions,
+       <span style="color:#4eade5;font-style:italic">SUM</span>(is_fraud) <span style="color:#cc7832">AS</span> fraudulent_transactions
+<span style="color:#cc7832">FROM</span> (
+    <span style="color:#cc7832">SELECT</span> is_fraud,
+           <span style="color:#cc7832">CASE</span> <span style="color:#cc7832">WHEN</span> amount &gt; <span style="color:#6897bb">200000</span> <span style="color:#cc7832">THEN</span> <span style="color:#6a8759">'large tx'</span>
+                <span style="color:#cc7832">WHEN</span> amount &gt; <span style="color:#6897bb">100000</span> <span style="color:#cc7832">THEN</span> <span style="color:#6a8759">'medium tx'</span>
+                <span style="color:#cc7832">ELSE</span> <span style="color:#6a8759">'small tx'</span>
+           <span style="color:#cc7832">END</span> <span style="color:#cc7832">AS</span> amount_bucket
+    <span style="color:#cc7832">FROM</span> payments_transactions
 )
-GROUP BY amount_bucket;</pre></div>
+<span style="color:#cc7832">GROUP</span> <span style="color:#cc7832">BY</span> amount_bucket;</pre></div>
 <div class="img-wrap" onclick="openLb(5)"><img src="Financial Fraud Detection/theme3_buckets.png" alt="Result 6" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">Large transactions (>£200K) carry far more fraud (5,471 cases) than medium or small, confirming fraud skews toward big amounts.</div>
 <div class="theme-head">04 — When Does Fraud Happen?</div>
 <p class="pg-text">The <code>step</code> column counts hours since the start of the simulation. Using <code>MOD(step, 24)</code> maps each transaction to an hour of the day to reveal volume and fraud patterns across a 24-hour cycle.</p>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Transaction volume and fraud count by hour of day
-SELECT count(*) AS Transaction_volume,
-       TO_CHAR(MOD(step,24) || ':00') AS Time_of_day,
-       SUM(is_fraud) AS Fraudulent_transactions
-FROM payments_transactions
-GROUP BY MOD(step,24)
-ORDER BY 1 DESC;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Transaction volume and fraud count by hour of day</span>
+<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">AS</span> Transaction_volume,
+       <span style="color:#4eade5;font-style:italic">TO_CHAR</span>(<span style="color:#4eade5;font-style:italic">MOD</span>(step,<span style="color:#6897bb">24</span>) || <span style="color:#6a8759">':00'</span>) <span style="color:#cc7832">AS</span> Time_of_day,
+       <span style="color:#4eade5;font-style:italic">SUM</span>(is_fraud) <span style="color:#cc7832">AS</span> Fraudulent_transactions
+<span style="color:#cc7832">FROM</span> payments_transactions
+<span style="color:#cc7832">GROUP</span> <span style="color:#cc7832">BY</span> <span style="color:#4eade5;font-style:italic">MOD</span>(step,<span style="color:#6897bb">24</span>)
+<span style="color:#cc7832">ORDER</span> <span style="color:#cc7832">BY</span> <span style="color:#6897bb">1</span> <span style="color:#cc7832">DESC</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(6)"><img src="Financial Fraud Detection/theme4_time.png" alt="Result 7" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">Transaction volume peaks during daytime hours, but fraud stays remarkably constant (≈300–375 per hour) around the clock — fraud does not follow normal user activity.</div>
 <div class="theme-head">05 — Behavioural Patterns &amp; Detection Quality</div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Do frauds often drain the account to zero?
-SELECT
-  (SELECT count(*) FROM payments_transactions WHERE is_fraud = 1) AS Fraudulent_transactions,
-  (SELECT count(*) FROM payments_transactions
-   WHERE is_fraud = 1 AND newbalance_orig = 0) AS Drained_to_zero
-FROM dual;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Do frauds often drain the account to zero?</span>
+<span style="color:#cc7832">SELECT</span>
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">FROM</span> payments_transactions <span style="color:#cc7832">WHERE</span> is_fraud = <span style="color:#6897bb">1</span>) <span style="color:#cc7832">AS</span> Fraudulent_transactions,
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(*) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_fraud = <span style="color:#6897bb">1</span> <span style="color:#cc7832">AND</span> newbalance_orig = <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> Drained_to_zero
+<span style="color:#cc7832">FROM</span> <span style="color:#cc7832">dual</span>;</pre></div>
 <div class="img-wrap" onclick="openLb(7)"><img src="Financial Fraud Detection/theme5_drained.png" alt="Result 8" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">8,053 of 8,213 frauds (98%) emptied the account completely — a strong behavioural signal for detection.</div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- Balance inconsistencies: sender balance doesn't drop by the amount sent
-SELECT -amount AS "Transaction Amount",
-       newbalance_orig - oldbalance_org AS "Transaction Difference"
-FROM payments_transactions
-WHERE newbalance_orig - oldbalance_org &lt;&gt; -amount;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- Balance inconsistencies: sender balance doesn't drop by the amount sent</span>
+<span style="color:#cc7832">SELECT</span> -amount <span style="color:#cc7832">AS</span> "Transaction Amount",
+       newbalance_orig - oldbalance_org <span style="color:#cc7832">AS</span> "Transaction Difference"
+<span style="color:#cc7832">FROM</span> payments_transactions
+<span style="color:#cc7832">WHERE</span> newbalance_orig - oldbalance_org &lt;&gt; -amount;</pre></div>
 <div class="img-wrap" onclick="openLb(8)"><img src="Financial Fraud Detection/theme5_balance.png" alt="Result 9" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">Many transactions show a mismatch between the amount sent and the actual balance change — another red flag worth modelling.</div>
-<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>-- How effective is the existing fraud flag?
-SELECT
-  (SELECT count(is_fraud) FROM payments_transactions
-   WHERE is_fraud &lt;&gt; 0) AS "Fraudulent Transactions",
-  (SELECT count(is_flagged_fraud) FROM payments_transactions
-   WHERE is_flagged_fraud &lt;&gt; 0) AS "Flagged Fraudulent Transactions",
-  ROUND((SELECT count(is_flagged_fraud) FROM payments_transactions
-         WHERE is_flagged_fraud &lt;&gt; 0) /
-        (SELECT count(is_fraud) FROM payments_transactions
-         WHERE is_fraud &lt;&gt; 0), 5) AS "Flag Success Rate"
-FROM dual;</pre></div>
+<div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre><span style="color:#808080">-- How effective is the existing fraud flag?</span>
+<span style="color:#cc7832">SELECT</span>
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(is_fraud) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_fraud &lt;&gt; <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> "Fraudulent Transactions",
+  (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(is_flagged_fraud) <span style="color:#cc7832">FROM</span> payments_transactions
+   <span style="color:#cc7832">WHERE</span> is_flagged_fraud &lt;&gt; <span style="color:#6897bb">0</span>) <span style="color:#cc7832">AS</span> "Flagged Fraudulent Transactions",
+  <span style="color:#4eade5;font-style:italic">ROUND</span>((<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(is_flagged_fraud) <span style="color:#cc7832">FROM</span> payments_transactions
+         <span style="color:#cc7832">WHERE</span> is_flagged_fraud &lt;&gt; <span style="color:#6897bb">0</span>) /
+        (<span style="color:#cc7832">SELECT</span> <span style="color:#4eade5;font-style:italic">count</span>(is_fraud) <span style="color:#cc7832">FROM</span> payments_transactions
+         <span style="color:#cc7832">WHERE</span> is_fraud &lt;&gt; <span style="color:#6897bb">0</span>), <span style="color:#6897bb">5</span>) <span style="color:#cc7832">AS</span> "Flag Success Rate"
+<span style="color:#cc7832">FROM</span> <span style="color:#cc7832">dual</span>;</pre></div>
 <div class="result-note">The built-in flag catches only a tiny fraction of real frauds — showing why a data-driven detection approach (using the patterns above) would add real value.</div>
 </div>
 <div id="lb">
