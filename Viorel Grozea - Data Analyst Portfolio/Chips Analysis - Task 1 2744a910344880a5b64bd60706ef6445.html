@@ -72,30 +72,30 @@ df1 = pd.read_excel(r"C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx
 df2 = pd.read_excel(r"C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx",sheet_name='QVI_purchase_behaviour')
 
 df1['DATE'] = pd.to_datetime(df1['DATE'], unit='D',origin= '1899-12-30')</pre></div>
-<div class="img-wrap" onclick="openLb(0)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 23</span></div>
-<div class="img-wrap" onclick="openLb(1)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 23</span></div>
-<div class="img-wrap" onclick="openLb(2)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 23</span></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 23</span></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%201.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 23</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%202.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Numbers and last 'g' removed
 df1['PROD_NAME'] = df1['PROD_NAME'].str.replace(r'\d+g$', '', regex=True)
 #Special character removed
 df1['PROD_NAME'] = df1['PROD_NAME'].str.replace(r'[^A-Za-z0-9 ]+', '', regex=True)
 #removing the rows with the word 'SALSA'
 df1 = df1[~df1['PROD_NAME'].str.lower().str.contains('salsa')]</pre></div>
-<div class="img-wrap" onclick="openLb(3)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 23</span></div>
-<div class="img-wrap" onclick="openLb(4)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 23</span></div>
-<div class="img-wrap" onclick="openLb(5)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 5.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 23</span></div>
-<div class="img-wrap" onclick="openLb(6)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 6.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 23</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%203.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 23</span></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%204.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 23</span></div>
+<div class="img-wrap" onclick="openLb(5)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%205.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 23</span></div>
+<div class="img-wrap" onclick="openLb(6)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%206.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 23</span></div>
 <div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>#delete rows where Loyality card nr. = 226000(keep others)
 df1 = df1[df1['LYLTY_CARD_NBR'] != 226000]</pre></div>
-<div class="img-wrap" onclick="openLb(7)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 7.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 23</span></div>
+<div class="img-wrap" onclick="openLb(7)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%207.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 23</span></div>
 <div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre>#Data range converted to Dataframe
 date_range = pd.date_range(start='2018-07-01', end='2019-06-30', freq='D')
 data_df = pd.DataFrame({'DATE': date_range})
 
 # join the tables
 merged_df = pd.merge(data_df, df1, on='DATE', how='left')</pre></div>
-<div class="img-wrap" onclick="openLb(8)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 8.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 23</span></div>
-<div class="img-wrap" onclick="openLb(9)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 9.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 23</span></div>
+<div class="img-wrap" onclick="openLb(8)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%208.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 23</span></div>
+<div class="img-wrap" onclick="openLb(9)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%209.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>import plotly.express as px
 
 fig = px.line(transaction_summary, x='DATE', y='Transaction_Count')
@@ -110,7 +110,7 @@ fig.update_layout(
 )
 
 fig.show()</pre></div>
-<div class="img-wrap" onclick="openLb(10)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 10.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 23</span></div>
+<div class="img-wrap" onclick="openLb(10)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2010.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Filter only December (month = 12)
 december_df = transaction_summary[transaction_summary['DATE'].dt.month == 12]
 december_df</pre></div>
@@ -125,12 +125,12 @@ fig.update_layout(
 )
 
 fig.show()</pre></div>
-<div class="img-wrap" onclick="openLb(11)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 11.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 23</span></div>
+<div class="img-wrap" onclick="openLb(11)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2011.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Bringing back Prod. size
 new_df = pd.read_excel(r"C:\Users\viorel\OneDrive\Desktop\QVI_transaction_data.xlsx")
 #Creeate a new column with pack Size
 new_df['PACK_SIZE'] = new_df['PROD_NAME'].str.extract('(\d+)')</pre></div>
-<div class="img-wrap" onclick="openLb(12)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 12.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 23</span></div>
+<div class="img-wrap" onclick="openLb(12)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2012.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>new_df['PACK_SIZE'] = new_df['PACK_SIZE'].astype(int)
 new_df.dtypes
 
@@ -144,14 +144,14 @@ plt.xlabel('Pack Size (g)')
 plt.ylabel('Number of Transactions')
 plt.grid(True)
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(13)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 13.png" alt="Screenshot 14" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">14 / 23</span></div>
+<div class="img-wrap" onclick="openLb(13)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2013.png" alt="Screenshot 14" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">14 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#extracting brand name from product name
 new_df['BRAND'] = new_df['PROD_NAME'].str.extract(r'^([A-Za-z]+)')
 #change Brand name from RED to RRD
 new_df.loc[new_df['BRAND'] == 'RED','BRAND'] = 'RRD'</pre></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Merge transaction data to customer data
 df2 = pd.merge(df2,new_df,how='left',on='LYLTY_CARD_NBR')</pre></div>
-<div class="img-wrap" onclick="openLb(14)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 14.png" alt="Screenshot 15" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">15 / 23</span></div>
+<div class="img-wrap" onclick="openLb(14)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2014.png" alt="Screenshot 15" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">15 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>##Group by Lifestage and Premium Customer
 summary_sales = df2.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER'])['TOT_SALES'].sum().reset_index()
 #
@@ -171,7 +171,7 @@ plt.title('Total Sales by Lifestage and Premium Customer Segment')
 plt.ylabel('Total Sales ($)')
 plt.xlabel('Customer Lifestage')
 plt.tight_layout()</pre></div>
-<div class="img-wrap" onclick="openLb(15)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 15.png" alt="Screenshot 16" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">16 / 23</span></div>
+<div class="img-wrap" onclick="openLb(15)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2015.png" alt="Screenshot 16" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">16 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Count customers by Lifestage and Premuium Customer
 customer_count = df2.groupby(['LIFESTAGE','PREMIUM_CUSTOMER'])['LYLTY_CARD_NBR'].nunique().reset_index() 
 ##Rename new Column
@@ -187,7 +187,7 @@ plt.xticks(rotation=45)
 plt.ylabel('Number of Customers')
 plt.tight_layout()
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(16)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 16.png" alt="Screenshot 17" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">17 / 23</span></div>
+<div class="img-wrap" onclick="openLb(16)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2016.png" alt="Screenshot 17" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">17 / 23</span></div>
 <div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre># Group by LIFESTAGE and PREMIUM_CUSTOMER
 avg_units = df2.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER'])[['PROD_QTY', 'LYLTY_CARD_NBR']].agg({
     'PROD_QTY': 'sum',
@@ -198,7 +198,7 @@ avg_units = df2.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER'])[['PROD_QTY', 'LYLTY_C
 avg_units['AVG_UNITS_PER_CUSTOMER'] = avg_units['PROD_QTY'] / avg_units['LYLTY_CARD_NBR']
 
 print(avg_units[['LIFESTAGE', 'PREMIUM_CUSTOMER', 'AVG_UNITS_PER_CUSTOMER']])</pre></div>
-<div class="img-wrap" onclick="openLb(17)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 17.png" alt="Screenshot 18" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">18 / 23</span></div>
+<div class="img-wrap" onclick="openLb(17)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2017.png" alt="Screenshot 18" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">18 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Plot Average Units sold per Customer by Lifestage and Premium Customer
 plt.figure(figsize=(12, 6))
 sns.barplot(
@@ -213,7 +213,7 @@ plt.ylabel('Average Units Sold per Customer')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(18)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 18.png" alt="Screenshot 19" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">19 / 23</span></div>
+<div class="img-wrap" onclick="openLb(18)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2018.png" alt="Screenshot 19" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">19 / 23</span></div>
 <div class="code-block"><div class="code-lang">sql</div><button class="copy-btn">copy</button><pre># Group by LIFESTAGE and PREMIUM_CUSTOMER
 avg_price = df2.groupby(['LIFESTAGE', 'PREMIUM_CUSTOMER'])[['TOT_SALES', 'PROD_QTY']].sum().reset_index()
 #Average price per unit sold
@@ -232,7 +232,7 @@ plt.ylabel('Average Price per Unit (AUD)')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(19)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 19.png" alt="Screenshot 20" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">20 / 23</span></div>
+<div class="img-wrap" onclick="openLb(19)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2019.png" alt="Screenshot 20" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">20 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#T-Test between mainstream vs premium and budget midage
  !pip install scipy
  
@@ -263,7 +263,7 @@ mainstream_young = df2[
 
 #proportions (percentages) instead of count.
 brand_counts = mainstream_young['BRAND'].value_counts(normalize=True)</pre></div>
-<div class="img-wrap" onclick="openLb(20)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 20.png" alt="Screenshot 21" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">21 / 23</span></div>
+<div class="img-wrap" onclick="openLb(20)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2020.png" alt="Screenshot 21" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">21 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Rest of the population (everything except Mainstream Young Singles/couples(~) )
 rest_of_population = df2[
     ~((df2['LIFESTAGE'] == 'YOUNG SINGLES/COUPLES') &amp;
@@ -289,7 +289,7 @@ brand_pref = brand_pref.sort_values(by='Lift', ascending=False)
 #Lift - Mainsteam Young are more likely to buy those brands vs average.
 
 #Ex: Mainstream Young customers are 24% more likely to buy Tyrrells Brand</pre></div>
-<div class="img-wrap" onclick="openLb(21)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 21.png" alt="Screenshot 22" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">22 / 23</span></div>
+<div class="img-wrap" onclick="openLb(21)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2021.png" alt="Screenshot 22" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">22 / 23</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Proportions of pack size purchases for Mainstream Young
 mainstream_young = df2[(df2['LIFESTAGE'] == 'YOUNG SINGLES/COUPLES') &amp; (df2['PREMIUM_CUSTOMER'] == 'Mainstream')]
 mainstream_young_dist = (mainstream_young['PACK_SIZE'].value_counts(normalize=True)
@@ -315,7 +315,7 @@ pack_pref = pack_pref.sort_values(by='Lift', ascending=False)
 #Mainstream Young Customers tends to buy specific pack size.
 
  #Ex: Mainstream Young customers are 28% more likely to buy pack Size of 270g</pre></div>
-<div class="img-wrap" onclick="openLb(22)"><img src="Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 22.png" alt="Screenshot 23" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">23 / 23</span></div>
+<div class="img-wrap" onclick="openLb(22)"><img src="Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2022.png" alt="Screenshot 23" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">23 / 23</span></div>
 </div>
 <div id="lb">
   <span id="lb-close">✕</span>
@@ -324,7 +324,7 @@ pack_pref = pack_pref.sort_values(by='Lift', ascending=False)
   <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
 </div>
 <script>
-const images = ["Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 1.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 2.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 3.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 4.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 5.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 6.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 7.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 8.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 9.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 10.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 11.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 12.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 13.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 14.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 15.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 16.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 17.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 18.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 19.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 20.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 21.png","Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445/image 22.png"];
+const images = ["Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%201.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%202.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%203.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%204.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%205.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%206.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%207.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%208.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%209.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2010.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2011.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2012.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2013.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2014.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2015.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2016.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2017.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2018.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2019.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2020.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2021.png","Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445/image%2022.png"];
 let idx = 0;
 const lb = document.getElementById('lb');
 function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}

@@ -95,13 +95,13 @@ mean_of_est_fire_arena.reset_index()
 df = df.merge(mean_of_est_fire_arena, on = 'Year', how = 'left')
 # replace the name of the column to 'mean_of_est_fire_arena'
 df.rename(columns={'Estimated_fire_area_y':'mean_of_est_fire_arena'},inplace= True)</pre></div>
-<div class="img-wrap" onclick="openLb(0)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 13</span></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.figure(figsize=(12,6))
 plt.plot(mean_of_est_fire_arena['Year'],mean_of_est_fire_arena['Estimated_fire_area'],color = 'darkred')
 plt.xlabel('Years')
 plt.ylabel('Average estimated Fire Arena(km²)')
 plt.title('Estimated Fire arena over time',fontsize = 14)</pre></div>
-<div class="img-wrap" onclick="openLb(1)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 13</span></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%201.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#make the average of 'estimated fire area' and  group it by Year and month
 df_new = df.groupby(['Year','Month'])['Estimated_fire_area_x'].mean()
 
@@ -110,14 +110,14 @@ df_new.plot(x=df_new.index,y= df_new.values,color= 'darkblue')
 plt.xlabel('Year, Month')
 plt.ylabel('Average estimated fire Area (km²)')
 plt.title('Estimated Fire Arena over Time')</pre></div>
-<div class="img-wrap" onclick="openLb(2)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 13</span></div>
-<div class="img-wrap" onclick="openLb(3)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 13</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%202.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 13</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%203.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Plot the distribution of mean for Fire Brightness using Seaborn
 plt.figure(figsize=(10,6))
 
 sns.barplot(data= df, x = 'Region', y = 'Mean_estimated_fire_brightness',color='darkgreen')
 plt.title('Distribution of Mean Estimated Fire Brightness across Regions')</pre></div>
-<div class="img-wrap" onclick="openLb(4)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 13</span></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%204.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Portion of count of pixels for presumed vegetation fires vary across regions
 df_count = df.groupby('Region') ['Count'].sum()
 df_count
@@ -131,22 +131,22 @@ plt.figure(figsize=(10,6))
 plt.pie(df_count['Count'],labels=df_count['Region'],autopct=atopct_hide,startangle=35)
 plt.title('Percentage of Pixels for Presumed Vegetation Fires by Region')
 plt.axis('equal')</pre></div>
-<div class="img-wrap" onclick="openLb(5)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 5.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 13</span></div>
-<div class="img-wrap" onclick="openLb(6)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 6.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 13</span></div>
+<div class="img-wrap" onclick="openLb(5)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%205.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 13</span></div>
+<div class="img-wrap" onclick="openLb(6)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%206.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.Figure(figsize=(10,6))
 #Distribution of "mean estimated fire Brightness"
 plt.hist(x = df['Mean_estimated_fire_brightness'],bins=20,edgecolor = 'darkblue')
 plt.title("Histogram of Mean Estimated Fire Brightness")
 plt.xlabel('Mean Estimated Fire Brightness (Kelvin)')
 plt.ylabel('Count')</pre></div>
-<div class="img-wrap" onclick="openLb(7)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 7.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 13</span></div>
+<div class="img-wrap" onclick="openLb(7)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%207.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 13</span></div>
 <p class="pg-text">---</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># distribution of "estimated fire brightness" across Regions using Seaborn
 sns.histplot(data=df, x='Mean_estimated_fire_brightness', hue='Region',multiple='stack')
 plt.title ('Distribution of estimated fire brightness across regions')
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(8)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 8.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 13</span></div>
-<div class="img-wrap" onclick="openLb(9)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 9.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 13</span></div>
+<div class="img-wrap" onclick="openLb(8)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%208.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 13</span></div>
+<div class="img-wrap" onclick="openLb(9)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%209.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 13</span></div>
 <p class="pg-text">---</p>
 <p class="pg-text">****</p>
 <p class="pg-text">**Mark seven regions on the Map of Australia using Folium**</p>
@@ -156,7 +156,7 @@ sns.scatterplot(data=df, x='Mean_confidence',y='Mean_estimated_fire_radiative_po
 plt.title('Mean Estimated Fire Radiative Power vs. Mean Confidence')
 plt.xlabel('Mean Confidence')
 plt.ylabel('Mean Estimated Fire Radiative Power (MW)')</pre></div>
-<div class="img-wrap" onclick="openLb(10)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 10.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 13</span></div>
+<div class="img-wrap" onclick="openLb(10)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2010.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>##  Initializes an empty feature group aus_reg to hold all the map markers.
 aus_reg = folium.map.FeatureGroup()
 
@@ -180,8 +180,8 @@ for lat,lng, lab in zip(reg.Lat,reg.Lon,reg.region):  #loop and pull: lat,lng an
 aus_map.add_child(aus_reg)
 #show map
 aus_map</pre></div>
-<div class="img-wrap" onclick="openLb(11)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 11.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 13</span></div>
-<div class="img-wrap" onclick="openLb(12)"><img src="Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 12.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 13</span></div>
+<div class="img-wrap" onclick="openLb(11)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2011.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 13</span></div>
+<div class="img-wrap" onclick="openLb(12)"><img src="Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2012.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 13</span></div>
 </div>
 <div id="lb">
   <span id="lb-close">✕</span>
@@ -190,7 +190,7 @@ aus_map</pre></div>
   <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
 </div>
 <script>
-const images = ["Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 1.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 2.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 3.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 4.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 5.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 6.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 7.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 8.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 9.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 10.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 11.png","Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c/image 12.png"];
+const images = ["Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%201.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%202.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%203.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%204.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%205.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%206.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%207.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%208.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%209.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2010.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2011.png","Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c/image%2012.png"];
 let idx = 0;
 const lb = document.getElementById('lb');
 function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}

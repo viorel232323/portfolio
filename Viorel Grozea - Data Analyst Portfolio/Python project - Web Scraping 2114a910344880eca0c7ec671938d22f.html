@@ -89,7 +89,7 @@ tesla_data = TESLA.history("max")
 
 tesla_data.reset_index()
 tesla_data.head()</pre></div>
-<div class="img-wrap" onclick="openLb(0)"><img src="Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 5</span></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 5</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>url =  " https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0220EN-SkillsNetwork/labs/project/revenue.htm"
 html_data = requests.get(url).text
 html_parse = BeautifulSoup(html_data,"html.parser")
@@ -104,11 +104,11 @@ tesla_revenue.dropna(inplace=True)
 tesla_revenue = tesla_revenue[tesla_revenue['Revenue'] != ""]
 
 tesla_revenue.tail()</pre></div>
-<div class="img-wrap" onclick="openLb(1)"><img src="Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 5</span></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%201.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 5</span></div>
 <p class="pg-text">GME Analysis</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>GME = yf.Ticker("GME")
 gme_data = GME.history("max")</pre></div>
-<div class="img-wrap" onclick="openLb(2)"><img src="Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 5</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%202.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 5</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>html_data_2 = requests.get(url).text
 html_parse = BeautifulSoup(html_data_2,"html.parser")
 
@@ -116,7 +116,7 @@ gme_revenue_data = pd.read_html(" https://cf-courses-data.s3.us.cloud-object-sto
 gme_revenue = gme_revenue_data[0]
 gme_revenue.columns = ['Date', 'Revenue']
 gme_revenue["Revenue"] = gme_revenue['Revenue'].str.replace(',|\$',"",regex=True)</pre></div>
-<div class="img-wrap" onclick="openLb(3)"><img src="Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 5</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%203.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 5</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>print(gme_revenue.dtypes)
 
 gme_revenue['Date'] = pd.to_datetime(gme_revenue['Date'])
@@ -130,7 +130,7 @@ gme_data['Date'] = pd.to_datetime(gme_data['Date'])
 
 #make_graph: IBM Course, function(not made by me)
 make_graph(tesla_data,tesla_revenue,'Tesla')</pre></div>
-<div class="img-wrap" onclick="openLb(4)"><img src="Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 5</span></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%204.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 5</span></div>
 </div>
 <div id="lb">
   <span id="lb-close">✕</span>
@@ -139,7 +139,7 @@ make_graph(tesla_data,tesla_revenue,'Tesla')</pre></div>
   <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
 </div>
 <script>
-const images = ["Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image.png","Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 1.png","Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 2.png","Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 3.png","Python project - Web Scraping 2114a910344880eca0c7ec671938d22f/image 4.png"];
+const images = ["Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image.png","Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%201.png","Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%202.png","Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%203.png","Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f/image%204.png"];
 let idx = 0;
 const lb = document.getElementById('lb');
 function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}

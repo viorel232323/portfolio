@@ -80,23 +80,23 @@ import seaborn as sns
 import folium</pre></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>URL = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
 df = pd.read_csv(URL)</pre></div>
-<div class="img-wrap" onclick="openLb(0)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 13</span></div>
+<div class="img-wrap" onclick="openLb(0)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">1 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>Sales_over_year = df.groupby('Year') ['Automobile_Sales'].mean()
 Sales_over_year = Sales_over_year.reset_index()
 Sales_over_year.head()</pre></div>
-<div class="img-wrap" onclick="openLb(1)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 1.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 13</span></div>
-<div class="img-wrap" onclick="openLb(2)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 2.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 13</span></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%201.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">2 / 13</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%202.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">3 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>plt.text(2007,2009, 'house market crash')
 plt.text(2020,2020, 'covid-19 crash')
 years = range(1980,2023)
 plt.xticks(years,rotation = 55)</pre></div>
-<div class="img-wrap" onclick="openLb(3)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 3.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 13</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%203.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">4 / 13</span></div>
 <p class="pg-text">---</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>#Keep only recesion data
 df_rec = df[df['Recession'] == 1]</pre></div>
-<div class="img-wrap" onclick="openLb(4)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 4.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 13</span></div>
+<div class="img-wrap" onclick="openLb(4)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%204.png" alt="Screenshot 5" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">5 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>df_Mline = df_rec.groupby(['Year','Vehicle_Type'],as_index = False ) ['Automobile_Sales'].mean()</pre></div>
-<div class="img-wrap" onclick="openLb(5)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 5.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 13</span></div>
+<div class="img-wrap" onclick="openLb(5)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%205.png" alt="Screenshot 6" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">6 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>df_Mline['Normalized Sales']  = df_Mline.groupby('Vehicle_Type')['Automobile_Sales'].transform(lambda x: x / x.mean())
 df_Mline.set_index('Year', inplace=True)</pre></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Highlight recession years
@@ -109,7 +109,7 @@ plt.legend(title="Vehicle Type", bbox_to_anchor=(1.05, 1), loc='upper left')
 plt.ylabel("Normalized Sales")
 plt.xlabel("Year")
 plt.title("Normalized Automobile Sales by Vehicle Type During Recession")</pre></div>
-<div class="img-wrap" onclick="openLb(6)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 6.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 13</span></div>
+<div class="img-wrap" onclick="openLb(6)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%206.png" alt="Screenshot 7" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">7 / 13</span></div>
 <p class="pg-text">Average number of vehicles sold during recession and non-recession periods</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>new_df = df.groupby('Recession') ['Automobile_Sales'].mean().reset_index()
 
@@ -119,8 +119,8 @@ plt.xlabel('0 = No Recession - 1 = Recession')
 plt.ylabel('Automobile Sales')
 plt.title('Average Automobile Sales during Recession and Non-Recession')   
 plt.xticks(ticks=[0, 1], labels=['Non-Recession', 'Recession'])</pre></div>
-<div class="img-wrap" onclick="openLb(7)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 7.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 13</span></div>
-<div class="img-wrap" onclick="openLb(8)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 8.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 13</span></div>
+<div class="img-wrap" onclick="openLb(7)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%207.png" alt="Screenshot 8" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">8 / 13</span></div>
+<div class="img-wrap" onclick="openLb(8)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%208.png" alt="Screenshot 9" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">9 / 13</span></div>
 <p class="pg-text">**Variations of  GDP during recession and non-recession period**</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>###Create dataframes for recession and non-recession period
 
@@ -145,7 +145,7 @@ ax1.set_xlabel('Year')
 ax1.set_ylabel('GDP')
 ax1.set_title('GDP Variation during Non-Recession Period')
 plt.tight_layout()</pre></div>
-<div class="img-wrap" onclick="openLb(9)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 9.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 13</span></div>
+<div class="img-wrap" onclick="openLb(9)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%209.png" alt="Screenshot 10" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">10 / 13</span></div>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>non_rec_data = df[df['Recession'] == 0]
 
 size=non_rec_data['Seasonality_Weight'] #for bubble effect
@@ -157,7 +157,7 @@ plt.ylabel('Automobile Sales')
 plt.title('Seasonality impact on Automobile Sales')
 
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(10)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 10.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 13</span></div>
+<div class="img-wrap" onclick="openLb(10)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2010.png" alt="Screenshot 11" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">11 / 13</span></div>
 <p class="pg-text">Advertising Expenditure during Recession and Non-Recession Periods</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre># Filter the data 
 Rdata = df[df['Recession'] == 1]
@@ -175,7 +175,7 @@ sizes = [RAtotal, NRtotal]
 plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
 
 plt.title('Advertising Expenditure during Recession and Non-Recession Periods')</pre></div>
-<div class="img-wrap" onclick="openLb(11)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 11.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 13</span></div>
+<div class="img-wrap" onclick="openLb(11)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2011.png" alt="Screenshot 12" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">12 / 13</span></div>
 <p class="pg-text">Share of Each Vehicle Type in Total Expenditure during Recessions</p>
 <div class="code-block"><div class="code-lang">python</div><button class="copy-btn">copy</button><pre>Rdata = df[df['Recession'] == 1]
 
@@ -192,7 +192,7 @@ plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
 plt.title('Share of Each Vehicle Type in Total Expenditure during Recessions')
 
 plt.show()</pre></div>
-<div class="img-wrap" onclick="openLb(12)"><img src="Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 12.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 13</span></div>
+<div class="img-wrap" onclick="openLb(12)"><img src="Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2012.png" alt="Screenshot 13" loading="lazy"><span class="expand-btn">⤢ expand</span><span class="img-num">13 / 13</span></div>
 </div>
 <div id="lb">
   <span id="lb-close">✕</span>
@@ -201,7 +201,7 @@ plt.show()</pre></div>
   <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
 </div>
 <script>
-const images = ["Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 1.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 2.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 3.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 4.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 5.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 6.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 7.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 8.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 9.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 10.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 11.png","Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f/image 12.png"];
+const images = ["Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%201.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%202.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%203.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%204.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%205.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%206.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%207.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%208.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%209.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2010.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2011.png","Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f/image%2012.png"];
 let idx = 0;
 const lb = document.getElementById('lb');
 function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}
