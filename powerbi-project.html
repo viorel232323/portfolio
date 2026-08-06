@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- ===================================================================
+     BUILD PAGE — NOT FOR PUBLIC RELEASE YET
+
+     noindex/nofollow keeps this out of Google while it is being built.
+     Remove the robots meta tag below when this becomes the real project
+     page in Phase 7. Until then, leaving it in is what stops a
+     half-finished page becoming the first thing a recruiter finds.
+     =================================================================== -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>UK Road Safety Analytics — Power BI (build)</title>
+
+<style>
+:root{
+  --bg:#15181c; --surface:#1d2126; --line:#2f3740;
+  --ink:#c9d1d9; --ink-bright:#eef2f6; --muted:#7d8794;
+  --accent:#e8a33d; --link:#4a7fb5;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1100px; margin:0 auto; padding:40px 24px 96px}
+
+.flag{
+  background:#2a1f10; border:1px solid #4a3a1c; border-left:4px solid var(--accent);
+  padding:12px 16px; margin-bottom:36px; font-size:14px; color:var(--accent);
+}
+.flag b{letter-spacing:.08em; text-transform:uppercase; font-size:11.5px}
+
+h1{font-size:clamp(26px,4vw,40px); line-height:1.1; margin:0 0 12px; color:var(--ink-bright); letter-spacing:-.015em}
+.sub{color:var(--muted); margin:0 0 32px; max-width:62ch}
+
+.brief{border-left:3px solid var(--accent); background:var(--surface); padding:18px 22px; margin:0 0 36px; max-width:66ch}
+.brief span{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:700}
+.brief p{margin:6px 0 0; font-size:18px; color:var(--ink-bright)}
+
+h2{font-size:20px; color:var(--ink-bright); margin:44px 0 12px; letter-spacing:-.01em}
+
+/* --- responsive embed: 16:9 box that scales with its container -------
+   Power BI's own embed snippet hard-codes width/height in pixels and
+   overflows on mobile. This keeps the aspect ratio at any width. ----- */
+.embed{position:relative; padding-top:56.25%; background:var(--surface); border:1px solid var(--line)}
+.embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+.embed-note{font-size:13px; color:var(--muted); margin-top:10px}
+
+.placeholder{
+  position:absolute; inset:0; display:grid; place-items:center;
+  text-align:center; color:var(--muted); font-size:14px; padding:24px;
+}
+
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 36px}
+.chip{font-size:12.5px; padding:5px 11px; border:1px solid var(--line); border-radius:3px; color:var(--muted)}
+
+table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+th{text-align:left; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);
+   border-bottom:1px solid var(--line); padding:8px 12px 8px 0}
+td{border-bottom:1px solid var(--line); padding:10px 12px 10px 0; vertical-align:top}
+td:first-child{color:var(--ink-bright); width:30%}
+
+a{color:var(--link)}
+code{font-family:ui-monospace,"Cascadia Code",Menlo,monospace; font-size:.88em;
+     background:#242A31; padding:1.5px 5px; border-radius:3px; color:#e3c07b}
+.done{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="flag">
+    <b>Build page</b> — work in progress, not linked from the site and not indexed.
+    Delete this banner and the <code>robots</code> meta tag when it goes live.
+  </div>
+
+  <h1>Where should the money go?</h1>
+  <p class="sub">
+    A county road-safety team has budget to treat 20 sites next year. This dashboard
+    decides which 20 — and shows the reasoning, so the ranking can be argued with
+    rather than just accepted.
+  </p>
+
+  <div class="brief">
+    <span>The question</span>
+    <p>Which 20 sites, and why those?</p>
+  </div>
+
+  <div class="chips">
+    <span class="chip">DfT STATS19 · 2019–2023</span>
+    <span class="chip">~2.1m rows</span>
+    <span class="chip">Oracle AI Database Free 26ai</span>
+    <span class="chip">Star schema · 2 facts, 7 dimensions</span>
+    <span class="chip">Power BI · Import</span>
+  </div>
+
+  <h2>The dashboard</h2>
+
+  <!-- ================================================================
+       PASTE THE EMBED URL BELOW
+
+       Power BI service > File > Embed report > Publish to web (public)
+       > Create embed code. Take ONLY the src="..." URL out of the
+       snippet Microsoft gives you and put it in the iframe below, then
+       delete the <div class="placeholder"> block.
+       ================================================================ -->
+  <div class="embed">
+    <!--
+    <iframe title="UK road safety priorities dashboard"
+            src="PASTE_EMBED_URL_HERE"
+            allowfullscreen></iframe>
+    -->
+    <div class="placeholder">
+      Embed goes here — Power BI &rsaquo; File &rsaquo; Embed report &rsaquo; Publish to web
+    </div>
+  </div>
+  <p class="embed-note">
+    Best viewed full screen. Published reports are cached, so edits can take up to
+    an hour to appear here.
+  </p>
+
+  <h2>Build status</h2>
+  <table>
+    <tr><th>Phase</th><th>State</th></tr>
+    <tr><td>0 · Prove the whole chain</td><td class="done">Done — Oracle → Power BI → public page verified end to end</td></tr>
+    <tr><td>1 · Raw ingest</td><td>Next — 15 STATS19 files, 2019–2023</td></tr>
+    <tr><td>2 · Staging: decode and clean</td><td>Not started</td></tr>
+    <tr><td>3 · Star schema + data quality</td><td>Not started</td></tr>
+    <tr><td>4 · Power BI model and DAX</td><td>Not started</td></tr>
+    <tr><td>5 · Build the report</td><td>Not started</td></tr>
+    <tr><td>6 · Interactivity polish</td><td>Not started</td></tr>
+    <tr><td>7 · Publish and document</td><td>Not started</td></tr>
+  </table>
+
+  <h2>How it is built</h2>
+  <p>
+    Source CSVs land in a raw layer that never rejects a row, are decoded and typed in
+    staging, and are modelled into a star schema in a mart. Each layer is a separate
+    Oracle user, so the boundary between them is enforced by the database rather than
+    by naming convention — the account Power BI connects with holds a read role and no
+    quota, and physically cannot write to the mart.
+  </p>
+  <p>
+    Full write-up, ERD and data quality findings: <a href="#">the SQL side of this project</a>
+    <span style="color:var(--muted)">(Phase 7)</span>.
+  </p>
+
+  <p style="margin-top:44px; font-size:13px; color:var(--muted)">
+    Contains public sector information licensed under the Open Government Licence v3.0.
+    Figures are <em>reported</em> road casualties — collisions attended by police and
+    recorded on a STATS19 form.
+  </p>
+
+</div>
+</body>
+</html>
