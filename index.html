@@ -166,7 +166,8 @@
     overflow: hidden;
     transition: border-color .2s, transform .2s;
   }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,229,160,0.07); }
+  .skill-card { transition: none; }
+  .skill-card:hover { border-color: var(--border); transform: none; box-shadow: none; }
   .skill-card-logo {
     width: 100%;
     height: 110px;
@@ -574,47 +575,54 @@
     <div class="certs-grid">
       <div class="cert-card" onclick="openCertLb(0)">
         <div class="cert-img-wrap cert-img-wide">
+          <img src="pcad_badge.png" alt="PCAD Certified Associate Data Analyst with Python Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
+          <span class="cert-expand-hint">Show Cert</span>
+        </div>
+        <div class="cert-label">PCAD — Certified Associate Data Analyst with Python</div>
+      </div>
+      <div class="cert-card" onclick="openCertLb(1)">
+        <div class="cert-img-wrap cert-img-wide">
           <img src="Oracle_Badge.png" alt="Oracle Certified Associate Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
           <span class="cert-expand-hint">Show Cert</span>
         </div>
         <div class="cert-label">Oracle Database SQL Certified Associate</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(1)">
+      <div class="cert-card" onclick="openCertLb(2)">
         <div class="cert-img-wrap cert-img-wide">
           <img src="PowerBiBadge.png" alt="PL-300 Power BI Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
           <span class="cert-expand-hint">Show Cert</span>
         </div>
         <div class="cert-label">PL-300 Power BI Data Analyst Certified Associate</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(2)">
+      <div class="cert-card" onclick="openCertLb(3)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Microsoft Power BI Data Analyst</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(3)">
+      <div class="cert-card" onclick="openCertLb(4)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">IBM Data Analyst — Coursera</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(4)">
+      <div class="cert-card" onclick="openCertLb(5)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Advanced SQL Server Masterclass</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(5)">
+      <div class="cert-card" onclick="openCertLb(6)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
         </div>
         <div class="cert-label">Business Analyst Bootcamp</div>
       </div>
-      <div class="cert-card" onclick="openCertLb(6)">
+      <div class="cert-card" onclick="openCertLb(7)">
         <div class="cert-img-wrap">
           <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
           <span class="cert-expand-hint">expand ↗</span>
@@ -654,6 +662,7 @@
 
 <script>
   const certData = [
+    { src: "PCAD_Certificate.png", label: "PCAD — Certified Associate Data Analyst with Python" },
     { src: "OracleCertification.png", label: "Oracle Database SQL Certified Associate" },
     { src: "Viorel Grozea - Data Analyst Portfolio/pl300.png", label: "PL-300 Power BI Data Analyst" },
     { src: "Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg", label: "Microsoft Power BI Data Analyst" },
