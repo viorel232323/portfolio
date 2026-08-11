@@ -71,14 +71,22 @@ nav a.li:hover{color:var(--accent);}
 <div class="proj-meta"><span>POWER BI</span><span>DAX</span><span>DATA MODELLING</span><span>ETL</span></div>
 <p class="pg-intro">This project builds an end-to-end <strong>Power BI dashboard</strong> from a public e-commerce sales dataset. Starting from a raw CSV, the workflow covers data import and quality checks, designing a star-schema data model, creating a calculated date table in DAX to enable time-based interactivity, and finally building a two-page interactive dashboard for revenue, product, region, and customer analysis.</p>
 <div class="findings-box"><div class="findings-title">Highlights</div><ul><li>Modelled the data into a clean <strong>star schema</strong> — one FactSales table linked to four dimensions (Customer, Product, Region, Date).</li><li>Built a <strong>calculated Date table in DAX</strong> to unlock time intelligence and month-level slicing across every visual.</li><li><strong>Electronics</strong> was the leading product category by revenue; <strong>Card</strong> payments made up 45% of all orders.</li><li>Delivered a <strong>two-page interactive dashboard</strong> with slicers for region, category, and date, plus drill-down on revenue, ratings, and delivery performance.</li></ul></div>
-<div class="theme-head">01 — Data Import &amp; Quality</div>
-<p class="pg-text">The analysis starts from a public e-commerce dataset in CSV format. It was imported into Power BI through Power Query, where each column's data type was validated and the data was checked for blanks, duplicates, and inconsistent categories before modelling.</p>
+<div class="theme-head">01 — Dashboard: Sales Overview</div>
+<p class="pg-text">The headline of the project is a two-page interactive dashboard. The first page gives a high-level view of business performance: KPI cards for total revenue, orders, average customer rating, and average delivery days, followed by revenue broken down by month, product category, region, and payment method — all filterable by region, category, and date.</p>
+<div class="img-wrap" onclick="openLb(0)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page1.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">Electronics leads revenue by product category, and Card payments account for roughly 45% of orders — the two clearest commercial signals on the page.</div>
+<div class="theme-head">02 — Dashboard: Customer &amp; Delivery Insights</div>
+<p class="pg-text">The second page digs into relationships: monthly revenue against average discount, monthly revenue against average customer rating, and how customer rating varies with delivery days — helping connect operational metrics to customer satisfaction.</p>
+<div class="img-wrap" onclick="openLb(1)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page2.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">Pairing revenue with discount and rating on the same timeline makes it easy to spot months where heavier discounting did — or did not — move satisfaction and sales.</div>
+<div class="theme-head">03 — Data Import &amp; Quality</div>
+<p class="pg-text">Behind the dashboard, the workflow starts from a public e-commerce dataset in CSV format. It was imported into Power BI through Power Query, where each column's data type was validated and the data was checked for blanks, duplicates, and inconsistent categories before modelling.</p>
 <div class="result-note">Clean, correctly-typed columns at this stage are what make the downstream model and DAX measures reliable.</div>
-<div class="theme-head">02 — Data Model (Star Schema)</div>
+<div class="theme-head">04 — Data Model (Star Schema)</div>
 <p class="pg-text">The data was structured into a <code>star schema</code>: a central <code>FactSales</code> table holding the measures (revenue, quantity, discount, ratings, delivery days) surrounded by four dimension tables — <code>DimCustomer</code>, <code>DimProduct</code>, <code>DimRegion</code>, and <code>DimDate</code> — each joined on a one-to-many relationship.</p>
-<div class="img-wrap" onclick="openLb(0)"><img src="Ecommerce%20Sales%20Dashboard/schema_model.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="img-wrap" onclick="openLb(2)"><img src="Ecommerce%20Sales%20Dashboard/schema_model.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">A star schema keeps relationships simple and filters flowing in one direction, which makes measures faster and the model easier to extend.</div>
-<div class="theme-head">03 — Calculated Date Table (DAX)</div>
+<div class="theme-head">05 — Calculated Date Table (DAX)</div>
 <p class="pg-text">To enable time-based analysis and consistent month/year slicing, a dedicated <code>DimDate</code> table was generated with DAX. <code>CALENDAR</code> builds a continuous date range from the earliest to latest order date, and <code>ADDCOLUMNS</code> derives Year, Month, Month Number, and a sortable Year-Month key.</p>
 <div class="code-block"><div class="code-lang">dax</div><button class="copy-btn">copy</button><pre>DimDate =
 <span style="color:#4eade5;font-style:italic">ADDCOLUMNS</span>(
@@ -91,16 +99,8 @@ nav a.li:hover{color:var(--accent);}
     <span style="color:#6a8759">"Month"</span>, <span style="color:#4eade5;font-style:italic">FORMAT</span>([<span style="color:#4eade5;font-style:italic">Date</span>], <span style="color:#6a8759">"MMMM"</span>),
     <span style="color:#6a8759">"Year Month"</span>, <span style="color:#4eade5;font-style:italic">FORMAT</span>([<span style="color:#4eade5;font-style:italic">Date</span>], <span style="color:#6a8759">"YYYY-MM"</span>)
 )</pre></div>
-<div class="img-wrap" onclick="openLb(1)"><img src="Ecommerce%20Sales%20Dashboard/dax_date_table.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="img-wrap" onclick="openLb(3)"><img src="Ecommerce%20Sales%20Dashboard/dax_date_table.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
 <div class="result-note">This calculated table is what powers every time-based visual and the month slicers — without it, sorting months chronologically and comparing periods would not work cleanly.</div>
-<div class="theme-head">04 — Dashboard: Sales Overview</div>
-<p class="pg-text">The first page gives a high-level view of business performance: KPI cards for total revenue, orders, average customer rating, and average delivery days, followed by revenue broken down by month, product category, region, and payment method.</p>
-<div class="img-wrap" onclick="openLb(2)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page1.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
-<div class="result-note">Electronics leads revenue by product category, and Card payments account for roughly 45% of orders — the two clearest commercial signals on the page.</div>
-<div class="theme-head">05 — Dashboard: Customer &amp; Delivery Insights</div>
-<p class="pg-text">The second page digs into relationships: monthly revenue against average discount, monthly revenue against average customer rating, and how customer rating varies with delivery days — helping connect operational metrics to customer satisfaction.</p>
-<div class="img-wrap" onclick="openLb(3)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page2.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
-<div class="result-note">Pairing revenue with discount and rating on the same timeline makes it easy to spot months where heavier discounting did — or did not — move satisfaction and sales.</div>
 </div>
 <div id="lb">
   <span id="lb-close">✕</span>
@@ -109,7 +109,7 @@ nav a.li:hover{color:var(--accent);}
   <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
 </div>
 <script>
-const images = ["Ecommerce%20Sales%20Dashboard/schema_model.png","Ecommerce%20Sales%20Dashboard/dax_date_table.png","Ecommerce%20Sales%20Dashboard/dashboard_page1.png","Ecommerce%20Sales%20Dashboard/dashboard_page2.png"];
+const images = ["Ecommerce%20Sales%20Dashboard/dashboard_page1.png","Ecommerce%20Sales%20Dashboard/dashboard_page2.png","Ecommerce%20Sales%20Dashboard/schema_model.png","Ecommerce%20Sales%20Dashboard/dax_date_table.png"];
 let idx=0;const lb=document.getElementById('lb');
 function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}
 function closeLb(){lb.classList.remove('open');}
