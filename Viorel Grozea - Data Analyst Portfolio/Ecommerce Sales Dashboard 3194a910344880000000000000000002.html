@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBiMzdkIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBlNWEwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Vkc8L3RleHQ+PC9zdmc+">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-commerce Sales Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0a;--bg3:#1a1a1a;--accent:#00e5a0;--accent2:#00b37d;--text:#f0f0f0;--muted:#888;--border:#222;--card:#131313;--code-bg:#0d1117;--code-border:#30363d;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;}
+a{color:var(--accent);text-decoration:none}
+nav{position:sticky;top:0;background:rgba(10,10,10,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;padding:12px 24px;display:flex;align-items:center;gap:16px;}
+.nav-logo{display:flex;align-items:center;gap:10px;margin-right:auto;text-decoration:none;}
+.nav-logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#000;box-shadow:0 0 12px rgba(0,229,160,0.3);}
+.nav-logo-text{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);}
+.back{font-family:'Space Mono',monospace;font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:6px 14px;transition:border-color .2s,color .2s;}
+.back:hover{border-color:var(--accent);color:var(--accent);}
+nav a.li{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+nav a.li:hover{color:var(--accent);}
+.wrap{max-width:900px;margin:0 auto;padding:48px 24px 80px;animation:fadeUp .5s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.proj-title{font-size:clamp(28px,5vw,46px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:8px;}
+.proj-title span{color:var(--accent);}
+.proj-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:32px;display:flex;gap:10px;flex-wrap:wrap;}
+.proj-meta span{border:1px solid var(--border);border-radius:3px;padding:3px 10px;}
+.pg-intro{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:24px;}
+.findings-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:20px 24px;margin-bottom:48px;}
+.findings-title{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+.findings-box ul{list-style:none;}
+.findings-box li{font-size:14px;color:var(--muted);line-height:1.7;padding-left:20px;position:relative;margin-bottom:8px;}
+.findings-box li::before{content:'▸';position:absolute;left:0;color:var(--accent);}
+.findings-box strong{color:var(--text);}
+.theme-head{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:var(--text);margin:48px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.pg-text{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.pg-text code{background:var(--bg3);padding:2px 6px;border-radius:3px;font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);}
+.code-block{background:var(--code-bg);border:1px solid var(--code-border);border-radius:8px;margin-bottom:14px;position:relative;overflow:hidden;}
+.code-lang{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);padding:10px 16px 0;letter-spacing:.1em;text-transform:uppercase;}
+.code-block pre{margin:0;padding:12px 16px 16px;font-family:'Space Mono',monospace;font-size:12.5px;line-height:1.6;color:#e6edf3;overflow-x:auto;white-space:pre;}
+.copy-btn{position:absolute;top:8px;right:10px;font-family:'Space Mono',monospace;font-size:10px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);border-radius:4px;padding:3px 10px;cursor:pointer;transition:color .2s,border-color .2s;}
+.copy-btn:hover{color:var(--accent);border-color:var(--accent);}
+.img-wrap{position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--card);cursor:zoom-in;transition:border-color .25s,transform .2s;margin-bottom:16px;}
+.img-wrap:hover{border-color:var(--accent);transform:translateY(-2px);}
+.img-wrap img{width:100%;height:auto;display:block;image-rendering:-webkit-optimize-contrast;}
+.expand-btn{position:absolute;top:10px;right:10px;background:rgba(0,0,0,0.7);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);opacity:0.5;transition:opacity .2s,color .2s,border-color .2s;pointer-events:none;}
+.img-wrap:hover .expand-btn{opacity:1;color:var(--accent);border-color:var(--accent);}
+.result-note{font-size:13px;color:var(--muted);line-height:1.7;background:rgba(0,229,160,0.04);border-left:2px solid var(--accent2);padding:10px 16px;border-radius:0 6px 6px 0;margin-bottom:28px;font-style:italic;}
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:20px;}
+#lb.open{display:flex;}
+#lb-img-wrap{max-width:95vw;max-height:82vh;overflow:auto;border-radius:8px;border:1px solid var(--border);}
+#lb-img-wrap img{display:block;max-width:100%;height:auto;}
+#lb-counter{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+#lb-close{position:fixed;top:16px;right:20px;font-family:'Space Mono',monospace;font-size:22px;color:var(--muted);cursor:pointer;z-index:10000;}
+#lb-close:hover{color:var(--accent);}
+#lb-nav{display:flex;gap:12px;}
+#lb-nav button{font-family:'Space Mono',monospace;font-size:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 22px;border-radius:4px;cursor:pointer;}
+#lb-nav button:hover{border-color:var(--accent);color:var(--accent);}
+@media(max-width:600px){.wrap{padding:32px 16px 60px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-logo"><div class="nav-logo-mark">VG</div><span class="nav-logo-text">Portfolio</span></a>
+  <a href="../index.html" class="back">← Back</a>
+  <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="li">LinkedIn</a>
+</nav>
+<div class="wrap">
+<div class="proj-title"><span>E-commerce Sales</span><br>Dashboard</div>
+<div class="proj-meta"><span>POWER BI</span><span>DAX</span><span>DATA MODELLING</span><span>ETL</span></div>
+<p class="pg-intro">This project builds an end-to-end <strong>Power BI dashboard</strong> from a public e-commerce sales dataset. Starting from a raw CSV, the workflow covers data import and quality checks, designing a star-schema data model, creating a calculated date table in DAX to enable time-based interactivity, and finally building a two-page interactive dashboard for revenue, product, region, and customer analysis.</p>
+<div class="findings-box"><div class="findings-title">Highlights</div><ul><li>Modelled the data into a clean <strong>star schema</strong> — one FactSales table linked to four dimensions (Customer, Product, Region, Date).</li><li>Built a <strong>calculated Date table in DAX</strong> to unlock time intelligence and month-level slicing across every visual.</li><li><strong>Electronics</strong> was the leading product category by revenue; <strong>Card</strong> payments made up 45% of all orders.</li><li>Delivered a <strong>two-page interactive dashboard</strong> with slicers for region, category, and date, plus drill-down on revenue, ratings, and delivery performance.</li></ul></div>
+<div class="theme-head">01 — Data Import &amp; Quality</div>
+<p class="pg-text">The analysis starts from a public e-commerce dataset in CSV format. It was imported into Power BI through Power Query, where each column's data type was validated and the data was checked for blanks, duplicates, and inconsistent categories before modelling.</p>
+<div class="result-note">Clean, correctly-typed columns at this stage are what make the downstream model and DAX measures reliable.</div>
+<div class="theme-head">02 — Data Model (Star Schema)</div>
+<p class="pg-text">The data was structured into a <code>star schema</code>: a central <code>FactSales</code> table holding the measures (revenue, quantity, discount, ratings, delivery days) surrounded by four dimension tables — <code>DimCustomer</code>, <code>DimProduct</code>, <code>DimRegion</code>, and <code>DimDate</code> — each joined on a one-to-many relationship.</p>
+<div class="img-wrap" onclick="openLb(0)"><img src="Ecommerce%20Sales%20Dashboard/schema_model.png" alt="Screenshot 1" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">A star schema keeps relationships simple and filters flowing in one direction, which makes measures faster and the model easier to extend.</div>
+<div class="theme-head">03 — Calculated Date Table (DAX)</div>
+<p class="pg-text">To enable time-based analysis and consistent month/year slicing, a dedicated <code>DimDate</code> table was generated with DAX. <code>CALENDAR</code> builds a continuous date range from the earliest to latest order date, and <code>ADDCOLUMNS</code> derives Year, Month, Month Number, and a sortable Year-Month key.</p>
+<div class="code-block"><div class="code-lang">dax</div><button class="copy-btn">copy</button><pre>DimDate =
+<span style="color:#4eade5;font-style:italic">ADDCOLUMNS</span>(
+    <span style="color:#4eade5;font-style:italic">CALENDAR</span>(
+        <span style="color:#4eade5;font-style:italic">MIN</span>(FactSales[order_date]),
+        <span style="color:#4eade5;font-style:italic">MAX</span>(FactSales[order_date])
+    ),
+    <span style="color:#6a8759">"Year"</span>, <span style="color:#4eade5;font-style:italic">YEAR</span>([<span style="color:#4eade5;font-style:italic">Date</span>]),
+    <span style="color:#6a8759">"Month Number"</span>, <span style="color:#4eade5;font-style:italic">MONTH</span>([<span style="color:#4eade5;font-style:italic">Date</span>]),
+    <span style="color:#6a8759">"Month"</span>, <span style="color:#4eade5;font-style:italic">FORMAT</span>([<span style="color:#4eade5;font-style:italic">Date</span>], <span style="color:#6a8759">"MMMM"</span>),
+    <span style="color:#6a8759">"Year Month"</span>, <span style="color:#4eade5;font-style:italic">FORMAT</span>([<span style="color:#4eade5;font-style:italic">Date</span>], <span style="color:#6a8759">"YYYY-MM"</span>)
+)</pre></div>
+<div class="img-wrap" onclick="openLb(1)"><img src="Ecommerce%20Sales%20Dashboard/dax_date_table.png" alt="Screenshot 2" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">This calculated table is what powers every time-based visual and the month slicers — without it, sorting months chronologically and comparing periods would not work cleanly.</div>
+<div class="theme-head">04 — Dashboard: Sales Overview</div>
+<p class="pg-text">The first page gives a high-level view of business performance: KPI cards for total revenue, orders, average customer rating, and average delivery days, followed by revenue broken down by month, product category, region, and payment method.</p>
+<div class="img-wrap" onclick="openLb(2)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page1.png" alt="Screenshot 3" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">Electronics leads revenue by product category, and Card payments account for roughly 45% of orders — the two clearest commercial signals on the page.</div>
+<div class="theme-head">05 — Dashboard: Customer &amp; Delivery Insights</div>
+<p class="pg-text">The second page digs into relationships: monthly revenue against average discount, monthly revenue against average customer rating, and how customer rating varies with delivery days — helping connect operational metrics to customer satisfaction.</p>
+<div class="img-wrap" onclick="openLb(3)"><img src="Ecommerce%20Sales%20Dashboard/dashboard_page2.png" alt="Screenshot 4" loading="lazy"><span class="expand-btn">⤢ expand</span></div>
+<div class="result-note">Pairing revenue with discount and rating on the same timeline makes it easy to spot months where heavier discounting did — or did not — move satisfaction and sales.</div>
+</div>
+<div id="lb">
+  <span id="lb-close">✕</span>
+  <div id="lb-img-wrap"><img id="lb-img" src="" alt=""></div>
+  <div id="lb-counter"></div>
+  <div id="lb-nav"><button id="lb-prev">← prev</button><button id="lb-next">next →</button></div>
+</div>
+<script>
+const images = ["Ecommerce%20Sales%20Dashboard/schema_model.png","Ecommerce%20Sales%20Dashboard/dax_date_table.png","Ecommerce%20Sales%20Dashboard/dashboard_page1.png","Ecommerce%20Sales%20Dashboard/dashboard_page2.png"];
+let idx=0;const lb=document.getElementById('lb');
+function openLb(i){idx=i;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;lb.classList.add('open');}
+function closeLb(){lb.classList.remove('open');}
+document.getElementById('lb-close').addEventListener('click',closeLb);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.getElementById('lb-prev').addEventListener('click',()=>{idx=(idx-1+images.length)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.getElementById('lb-next').addEventListener('click',()=>{idx=(idx+1)%images.length;document.getElementById('lb-img').src=images[idx];document.getElementById('lb-counter').textContent=(idx+1)+' / '+images.length;});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click();});
+document.querySelectorAll('.copy-btn').forEach(btn=>{btn.addEventListener('click',()=>{const pre=btn.parentElement.querySelector('pre');navigator.clipboard.writeText(pre.textContent).then(()=>{btn.textContent='copied!';setTimeout(()=>btn.textContent='copy',1500);});});});
+</script>
+</body>
+</html>
