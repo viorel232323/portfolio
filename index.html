@@ -2,707 +2,404 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBiMzdkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6IzAwZTVhMCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPgogIDx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgCiAgICAgICAgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9Ii0wLjUiPlZHPC90ZXh0Pgo8L3N2Zz4=">
-
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBiMzdkIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBlNWEwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Vkc8L3RleHQ+PC9zdmc+">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Viorel Grozea — Data Analyst Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0a;
-    --bg2: #111111;
-    --bg3: #1a1a1a;
-    --accent: #00e5a0;
-    --accent2: #00b37d;
-    --text: #f0f0f0;
-    --muted: #888;
-    --border: #222;
-    --card: #131313;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-  a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-  a:hover { color: #fff; }
+:root{
+  --bg:#080a09;--bg2:#0e1110;--bg3:#161a18;--accent:#00e5a0;--accent2:#00b37d;
+  --text:#f0f2f1;--muted:#8a938f;--border:#1e2320;--card:#111413;--glow:rgba(0,229,160,0.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
+a{color:var(--accent);text-decoration:none}
 
-  /* NOISE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
+/* animated gradient backdrop */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(600px circle at 15% 10%, rgba(0,229,160,0.06), transparent 45%),
+    radial-gradient(700px circle at 85% 60%, rgba(0,179,125,0.05), transparent 50%);
+}
+/* subtle grid */
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.4;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 20%,transparent 70%);
+}
+.container{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
 
-  /* LAYOUT */
-  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(8,10,9,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:32px;}
+.nav-logo{display:flex;align-items:center;gap:10px;margin-right:auto;}
+.nav-logo-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#000;box-shadow:0 0 16px var(--glow);}
+.nav-logo-text{font-family:'Space Mono',monospace;font-size:14px;color:var(--accent);letter-spacing:-0.02em;}
+.nav-links{display:flex;gap:26px;}
+.nav-links a{font-family:'Space Mono',monospace;font-size:12.5px;color:var(--muted);letter-spacing:0.02em;transition:color .2s;}
+.nav-links a:hover{color:var(--accent);}
+@media(max-width:760px){.nav-links{display:none;}}
 
-  /* HERO */
-  .hero {
-    padding: 80px 0 60px;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-  .hero-tag {
-    display: inline-block;
-    font-family: 'Space Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    border: 1px solid var(--accent2);
-    padding: 4px 12px;
-    border-radius: 2px;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 6vw, 64px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-  }
-  .hero h1 span { color: var(--accent); }
-  .hero-desc {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 32px;
-    line-height: 1.8;
-  }
-  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: 'Space Mono', monospace;
-    font-size: 13px;
-    color: var(--text);
-    background: var(--bg3);
-    transition: all 0.2s;
-  }
-  .btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg); }
-  .btn-primary { border-color: var(--accent); color: var(--accent); }
-  .btn-primary:hover { background: var(--accent); color: #000; }
+/* HERO */
+.hero{padding:120px 0 90px;text-align:center;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);border:1px solid var(--accent2);border-radius:100px;padding:7px 16px;margin-bottom:32px;background:rgba(0,229,160,0.04);}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:clamp(48px,9vw,104px);font-weight:900;line-height:0.95;letter-spacing:-0.04em;margin-bottom:28px;}
+.hero h1 .g{background:linear-gradient(135deg,#00e5a0,#00b37d);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:clamp(16px,2.2vw,21px);color:var(--muted);max-width:680px;margin:0 auto 40px;line-height:1.6;}
+.hero-sub strong{color:var(--text);font-weight:600;}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:10px;font-family:'Space Mono',monospace;font-size:13.5px;font-weight:700;transition:all .25s;border:1px solid var(--border);}
+.btn-primary{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#000;border:none;box-shadow:0 4px 20px var(--glow);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--glow);}
+.btn-ghost{background:var(--bg3);color:var(--text);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-    padding: 14px 0;
-  }
-  .nav-inner { display: flex; gap: 28px; align-items: center; max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .nav-inner a { font-size: 13px; color: var(--muted); font-family: 'Space Mono', monospace; text-decoration: none; }
-  .nav-inner a:hover { color: var(--accent); }
-  .nav-logo { display: flex !important; align-items: center; gap: 10px; margin-right: auto; text-decoration: none !important; color: inherit !important; }
-  .nav-logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: #000 !important; letter-spacing: -0.03em; flex-shrink: 0; box-shadow: 0 0 12px rgba(0,229,160,0.3); }
-  .nav-logo-text { font-family: 'Space Mono', monospace; font-size: 13px; color: var(--accent) !important; }
-  .nav-logo:hover .nav-logo-mark { box-shadow: 0 0 20px rgba(0,229,160,0.5); }
+/* hero stats strip */
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:64px;flex-wrap:wrap;}
+.hstat{text-align:center;}
+.hstat-num{font-size:38px;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#00e5a0,#00b37d);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hstat-lbl{font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:4px;}
 
-  /* SECTIONS */
-  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  h2 { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+/* SECTION */
+section{padding:90px 0;position:relative;}
+.sec-label{display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+.sec-label::before{content:'';width:32px;height:1px;background:var(--accent);}
+.sec-title{font-size:clamp(30px,4.5vw,44px);font-weight:800;letter-spacing:-0.03em;margin-bottom:48px;}
 
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .about-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-  }
-  .about-card h3 { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 12px; font-family: 'Space Mono', monospace; }
-  .about-card p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s;}
+.about-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),transparent);opacity:0;transition:opacity .3s;}
+.about-card:hover{border-color:var(--accent2);}
+.about-card:hover::before{opacity:1;}
+.about-card h3{font-family:'Space Mono',monospace;font-size:14px;color:var(--accent);margin-bottom:16px;}
+.about-card p{color:var(--muted);font-size:15px;line-height:1.75;}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
 
-  /* SKILLS */
-  .skills-layout { display: block; } .skills-detail.full-width { display: flex; flex-direction: column; gap: 0; }
-  /* confidence chart */
-  .skills-chart { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
-  .skills-chart h3 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 20px; text-align: center; letter-spacing: 0.03em; }
-  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-  .bar-row:last-child { margin-bottom: 0; }
-  .bar-name { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); width: 58px; text-align: right; flex-shrink: 0; }
-  .bar-track { flex: 1; height: 14px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
-  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 3px; width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-  .bar-pct { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); width: 32px; flex-shrink: 0; }
-  /* skill cards */
-  .skills-cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 16px;
-  }
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: border-color .2s, transform .2s;
-  }
-  .skill-card { transition: none; }
-  .skill-card:hover { border-color: var(--border); transform: none; box-shadow: none; }
-  .skill-card-logo {
-    width: 100%;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border-bottom: 1px solid var(--border);
-    padding: 16px;
-    box-sizing: border-box;
-  }
-  .skill-card-logo img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    display: block;
-    flex-shrink: 0;
-  }
-  .skill-card-body { padding: 12px 14px; }
-  .skill-card-name { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 5px; display: block; }
-  .skill-card-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
-  .skill-card-sub { font-size: 10px; color: #555; margin-top: 4px; font-family: 'Space Mono', monospace; }
-  @media (max-width: 700px) { .skills-cards { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 450px) { .skills-cards { grid-template-columns: repeat(2, 1fr); } }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.skill-logo{height:110px;display:flex;align-items:center;justify-content:center;background:transparent;border-bottom:1px solid var(--border);padding:16px;}
+.skill-logo img{width:60px;height:60px;object-fit:contain;}
+.skill-logo .emoji{font-size:50px;}
+.skill-body{padding:16px;}
+.skill-name{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:6px;}
+.skill-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.skill-sub{font-size:11px;color:#5a625e;margin-top:5px;font-family:'Space Mono',monospace;}
+@media(max-width:900px){.skills-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:520px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
 
-  /* PROJECTS */
-  .projects-grid { display: grid; gap: 16px; }
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px 28px;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    transition: border-color 0.2s, transform 0.2s;
-    text-decoration: none;
-    color: inherit;
-  }
-  .project-card:hover { border-color: var(--accent); transform: translateX(4px); color: inherit; }
-  .project-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .project-body { flex: 1; }
-  .project-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: #ffffff; }
-  .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
-  .tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 3px;
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
-  .project-arrow { color: var(--muted); font-size: 20px; align-self: center; transition: color 0.2s; }
-  .project-card:hover .project-arrow { color: var(--accent); }
+/* PROJECTS — category panels with square cards */
+.cat-panel{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:28px;margin-bottom:24px;transition:border-color .3s;}
+.cat-panel:hover{border-color:#26302b;}
+.cat-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.cat-name{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:var(--accent);letter-spacing:0.02em;}
+.cat-count{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+.pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.pcard{aspect-ratio:1/1;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;transition:all .28s cubic-bezier(.2,.7,.3,1);position:relative;overflow:hidden;}
+.pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(0,229,160,0.08),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
+.pcard:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,0.4),0 0 0 1px var(--accent2);}
+.pcard:hover::after{opacity:1;}
+.pcard-icon{font-size:34px;margin-bottom:auto;}
+.pcard-title{font-size:16px;font-weight:700;line-height:1.3;margin-bottom:12px;color:var(--text);}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.ptag{font-family:'Space Mono',monospace;font-size:9.5px;padding:3px 8px;border-radius:5px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);letter-spacing:0.03em;}
+.pcard-go{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);opacity:0;transform:translateX(-6px);transition:all .28s;}
+.pcard:hover .pcard-go{opacity:1;transform:translateX(0);}
+@media(max-width:520px){.pcard-grid{grid-template-columns:1fr 1fr;}.pcard{padding:16px;}.pcard-icon{font-size:26px;}.pcard-title{font-size:13px;}}
 
-  /* CERTS */
-  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .cert-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .cert-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,229,160,0.08); }
-  .cert-card .cert-img-wrap {
-    position: relative; width: 100%;
-    display: flex; align-items: center; justify-content: center;
-    background: #f5f5f5; padding: 16px; min-height: 160px;
-  }
-  .cert-img-wide { background: var(--card) !important; }
-  .cert-card img {
-    max-width: 100%; width: auto;
-    height: auto; max-height: 200px;
-    object-fit: contain;
-    display: block; margin: 0 auto;
-    border-radius: 3px;
-    transition: transform 0.3s;
-  }
-  .cert-card:hover img { transform: scale(1.03); }
-  .cert-expand-hint {
-    position: absolute; bottom: 8px; right: 8px;
-    background: rgba(0,0,0,0.65); border: 1px solid rgba(0,229,160,0.4);
-    border-radius: 4px; padding: 3px 8px;
-    font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent);
-    opacity: 0; transition: opacity 0.2s;
-  }
-  .cert-card:hover .cert-expand-hint { opacity: 1; }
-  .cert-label {
-    padding: 12px 14px; font-size: 12px;
-    font-family: 'Space Mono', monospace; color: var(--muted);
-    text-align: center; width: 100%;
-    border-top: 1px solid var(--border);
-    line-height: 1.5;
-  }
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all .28s;display:flex;flex-direction:column;align-items:center;}
+.cert-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.35);}
+.cert-imgwrap{width:100%;min-height:150px;display:flex;align-items:center;justify-content:center;padding:18px;position:relative;background:transparent;}
+.cert-imgwrap.light{background:#f5f5f5;}
+.cert-imgwrap img{max-width:100%;max-height:130px;width:auto;height:auto;object-fit:contain;display:block;margin:0 auto;}
+.cert-imgwrap.badge img{max-width:88%;max-height:120px;}
+.cert-hint{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);border:1px solid rgba(0,229,160,0.4);border-radius:5px;padding:3px 9px;font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);opacity:0;transition:opacity .2s;}
+.cert-card:hover .cert-hint{opacity:1;}
+.cert-lbl{padding:14px;font-family:'Space Mono',monospace;font-size:11.5px;color:var(--muted);text-align:center;border-top:1px solid var(--border);width:100%;line-height:1.5;}
+@media(max-width:900px){.certs-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.certs-grid{grid-template-columns:1fr;}}
 
-  /* CERT LIGHTBOX */
-  #cert-lightbox {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.93); z-index: 9999;
-    align-items: center; justify-content: center; padding: 24px;
-    flex-direction: column; gap: 16px;
-  }
-  #cert-lightbox.open { display: flex; }
-  #cert-lightbox img {
-    max-width: 90vw; max-height: 80vh;
-    border-radius: 8px; border: 1px solid var(--border);
-    object-fit: contain;
-  }
-  #cert-lightbox-label {
-    font-family: 'Space Mono', monospace; font-size: 13px; color: var(--muted);
-  }
-  #cert-lightbox-close {
-    position: fixed; top: 20px; right: 24px;
-    font-family: 'Space Mono', monospace; font-size: 22px;
-    color: var(--muted); cursor: pointer; z-index: 10000; transition: color 0.2s;
-  }
-  #cert-lightbox-close:hover { color: var(--accent); }
-  #cert-lb-nav { display: flex; gap: 12px; }
-  #cert-lb-nav button {
-    font-family: 'Space Mono', monospace; font-size: 13px;
-    background: var(--bg3); border: 1px solid var(--border);
-    color: var(--text); padding: 8px 20px; border-radius: 4px;
-    cursor: pointer; transition: border-color 0.2s, color 0.2s;
-  }
-  #cert-lb-nav button:hover { border-color: var(--accent); color: var(--accent); }
+/* cert lightbox */
+#clb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:24px;}
+#clb.open{display:flex;}
+#clb img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px;border:1px solid var(--border);}
+#clb-lbl{font-family:'Space Mono',monospace;font-size:13px;color:var(--muted);}
+#clb-x{position:fixed;top:20px;right:26px;font-family:'Space Mono',monospace;font-size:24px;color:var(--muted);cursor:pointer;}
+#clb-x:hover{color:var(--accent);}
+.clb-nav{display:flex;gap:12px;}
+.clb-nav button{font-family:'Space Mono',monospace;font-size:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:9px 22px;border-radius:8px;cursor:pointer;transition:all .2s;}
+.clb-nav button:hover{border-color:var(--accent);color:var(--accent);}
 
-  /* CONTACT */
-  .contact-row { display: flex; gap: 16px; flex-wrap: wrap; }
+/* CONTACT */
+.contact-box{background:linear-gradient(135deg,var(--bg2),var(--card));border:1px solid var(--border);border-radius:24px;padding:56px 40px;text-align:center;position:relative;overflow:hidden;}
+.contact-box::before{content:'';position:absolute;top:-50%;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse,var(--glow),transparent 70%);pointer-events:none;}
+.contact-box h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin-bottom:16px;position:relative;}
+.contact-box p{color:var(--muted);font-size:16px;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;position:relative;}
+.contact-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
 
-  /* FOOTER */
-  footer { padding: 40px 0; text-align: center; }
-  footer p { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); }
+/* FOOTER */
+footer{padding:40px 0;text-align:center;border-top:1px solid var(--border);}
+footer p{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
 
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .hero { animation: fadeUp 0.6s ease both; }
-
-  @media (max-width: 600px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .hero-links { flex-direction: column; }
-    .project-card { flex-direction: column; }
-    .nav-inner a:not(.nav-logo) { display: none; }
-  }
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+.reveal.in{opacity:1;transform:none;}
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">VG</div>
-      <span class="nav-logo-text">Portfolio</span>
-    </a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#certs">Certs</a>
-    <a href="#contact">Contact</a>
+    <a href="#" class="nav-logo"><div class="nav-logo-mark">VG</div><span class="nav-logo-text">Viorel Grozea</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#contact">Contact</a>
+    </div>
+    <a href="Grozea_Viorel_CV.pdf" target="_blank" class="btn btn-primary" style="padding:9px 18px;font-size:12px;">Resume</a>
   </div>
 </nav>
 
 <div class="container">
 
-  <div class="hero">
-    <div class="hero-tag">Available for opportunities</div>
-    <h1><span>Viorel</span><br><span>Grozea</span></h1>
-    <p class="hero-desc">Data Analyst with expertise in Excel, Power BI, SQL & Python. Certified PL-300 Power BI Data Analyst & Oracle SQL Associate. Turning complex data into clear, actionable insights.</p>
-    <div class="hero-links">
-      <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn btn-primary" target="_blank">↗ LinkedIn</a>
-      <a href="Grozea_Viorel_CV.pdf" class="btn" target="_blank">📄 Resume / CV</a>
-      <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn">✉ Email Me</a>
+  <header class="hero">
+    <div class="hero-badge"><span class="dot"></span>Available for opportunities</div>
+    <h1>Viorel <span class="g">Grozea</span></h1>
+    <p class="hero-sub">Data Analyst turning complex data into clear, decision-ready insight with <strong>SQL</strong>, <strong>Power BI</strong>, <strong>Python</strong> &amp; <strong>Excel</strong>. Microsoft, Oracle &amp; Python Institute certified.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View my work</a>
+      <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="btn btn-ghost">↗ LinkedIn</a>
+      <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn btn-ghost">✉ Email me</a>
     </div>
-  </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num" data-count="15">15</div><div class="hstat-lbl">Projects</div></div>
+      <div class="hstat"><div class="hstat-num" data-count="3">3</div><div class="hstat-lbl">Pro Certifications</div></div>
+      <div class="hstat"><div class="hstat-num">6.3M</div><div class="hstat-lbl">Records Analysed</div></div>
+      <div class="hstat"><div class="hstat-num" data-count="4">4</div><div class="hstat-lbl">Core Tools</div></div>
+    </div>
+  </header>
 
-  <section id="about">
-    <div class="section-label">About</div>
+  <section id="about" class="reveal">
+    <div class="sec-label">About</div>
+    <h2 class="sec-title">What I bring to the table</h2>
     <div class="about-grid">
       <div class="about-card">
-        <h3>Value I bring</h3>
+        <h3>// value_i_bring</h3>
         <p>I don't just analyse data — I question assumptions and identify hidden opportunities. I adapt quickly to tools and challenges, bringing a solution-driven mindset that goes beyond requirements to deliver deeper, more meaningful insights.</p>
       </div>
       <div class="about-card">
-        <h3>My objective</h3>
-        <p>Building a strong foundation in data analytics, with the goal of contributing to a data-driven team where I can turn raw data into clear, actionable insights that support better decision-making. Currently expanding my skills across business intelligence tools and advanced analytics, with a focus on delivering high-impact solutions through continuous learning, hands-on projects, and real-world application.</p>
+        <h3>// my_objective</h3>
+        <p>Building a strong foundation in data analytics, with the goal of contributing to a data-driven team where I can turn raw data into clear, actionable insights. Currently expanding across business intelligence tools and advanced analytics through continuous learning, hands-on projects, and real-world application.</p>
       </div>
     </div>
   </section>
 
-  <section id="skills">
-    <div class="section-label">Core Skills &amp; Tools</div>
-    <div class="skills-cards">
-
-      <div class="skill-card">
-        <div class="skill-card-logo">
-          <img src="excel.png" alt="Excel">
-        </div>
-        <div class="skill-card-body">
-          <span class="skill-card-name">Excel</span>
-          <p class="skill-card-desc">Formulas, Conditional Formatting, Dashboards, PivotTables.</p>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-card-logo">
-          <img src="PowerBi.png" alt="Power BI">
-        </div>
-        <div class="skill-card-body">
-          <span class="skill-card-name">Power BI</span>
-          <p class="skill-card-desc">DAX fundamentals, KPIs, Semantic model modelling, row level security, interactive dashboards.</p>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-card-logo">
-          <img src="sql.png" alt="SQL">
-        </div>
-        <div class="skill-card-body">
-          <span class="skill-card-name">SQL</span>
-          <p class="skill-card-desc">Joins, Sub-Queries, Window Functions, CTEs, Views, Wildcards, Indexes, Constraints, Sequences, multi-insert.</p>
-          <p class="skill-card-sub">(MS SQL Server, IBM DB2, DataGrip)</p>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-card-logo">
-          <img src="python.png" alt="Python">
-        </div>
-        <div class="skill-card-body">
-          <span class="skill-card-name">Python</span>
-          <p class="skill-card-desc">Pandas, NumPy, Matplotlib.</p>
-          <p class="skill-card-sub">(Jupyter)</p>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <div class="skill-card-logo" style="background:#1a1a1a;">
-          <span style="font-size:52px;line-height:1;">📐</span>
-        </div>
-        <div class="skill-card-body">
-          <span class="skill-card-name">Statistics</span>
-          <p class="skill-card-desc">Mean, Median, Mode, Min, Max, Count, CountIFs, Small, Large, Normal Distribution.</p>
-        </div>
-      </div>
-
+  <section id="skills" class="reveal">
+    <div class="sec-label">Toolkit</div>
+    <h2 class="sec-title">Core skills &amp; tools</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-logo"><img src="excel.png" alt="Excel"></div><div class="skill-body"><div class="skill-name">Excel</div><div class="skill-desc">Formulas, Conditional Formatting, Dashboards, PivotTables.</div></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="PowerBi.png" alt="Power BI"></div><div class="skill-body"><div class="skill-name">Power BI</div><div class="skill-desc">DAX, KPIs, semantic modelling, row-level security, interactive dashboards.</div></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="sql.png" alt="SQL"></div><div class="skill-body"><div class="skill-name">SQL</div><div class="skill-desc">Joins, sub-queries, window functions, CTEs, views, indexes.</div><div class="skill-sub">MS SQL · IBM DB2 · DataGrip</div></div></div>
+      <div class="skill-card"><div class="skill-logo"><img src="python.png" alt="Python"></div><div class="skill-body"><div class="skill-name">Python</div><div class="skill-desc">Pandas, NumPy, Matplotlib.</div><div class="skill-sub">Jupyter</div></div></div>
+      <div class="skill-card"><div class="skill-logo"><span class="emoji">📐</span></div><div class="skill-body"><div class="skill-name">Statistics</div><div class="skill-desc">Mean, median, mode, distributions, aggregate analysis.</div></div></div>
     </div>
   </section>
 
-  <section id="projects">
-    <div class="section-label" style="color:#ffffff;">Projects</div>
-
-    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;">SQL</p>
-    <div class="projects-grid" style="margin-bottom:32px;">
-      <a href="Viorel Grozea - Data Analyst Portfolio/Financial Fraud Detection 3094a910344880000000000000000001.html" class="project-card">
-        <div class="project-icon">🔐</div>
-        <div class="project-body">
-          <div class="project-title">Payments Fraud Detection</div>
-          <div class="project-tags"><span class="tag">SQL</span><span class="tag">ORACLE</span><span class="tag">6.3M ROWS</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Regional Online Store Sales Analysis 30d4a910344880989781f47362710ad7.html" class="project-card">
-        <div class="project-icon">🗄️</div>
-        <div class="project-body">
-          <div class="project-title">Regional Online Store Sales Analysis</div>
-          <div class="project-tags"><span class="tag">SQL</span><span class="tag">SALES</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Sales Performance & Customer Insights Report 2c64a9103448803d9424fea943fb338c.html" class="project-card">
-        <div class="project-icon">📋</div>
-        <div class="project-body">
-          <div class="project-title">Sales Performance & Customer Insights Report</div>
-          <div class="project-tags"><span class="tag">SQL</span><span class="tag">CRM</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
+  <section id="projects" class="reveal">
+    <div class="sec-label">Portfolio</div>
+    <h2 class="sec-title">Projects by discipline</h2>
+    
+    <div class="cat-panel" data-cat="SQL">
+      <div class="cat-head"><span class="cat-name">SQL</span><span class="cat-count">3 projects</span></div>
+      <div class="pcard-grid">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Financial%20Fraud%20Detection%203094a910344880000000000000000001.html" class="pcard">
+          <div class="pcard-icon">🔐</div>
+          <div class="pcard-title">Payments Fraud Detection</div>
+          <div class="pcard-tags"><span class="ptag">SQL</span><span class="ptag">ORACLE</span><span class="ptag">6.3M ROWS</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Regional%20Online%20Store%20Sales%20Analysis%2030d4a910344880989781f47362710ad7.html" class="pcard">
+          <div class="pcard-icon">🗄️</div>
+          <div class="pcard-title">Regional Online Store Sales Analysis</div>
+          <div class="pcard-tags"><span class="ptag">SQL</span><span class="ptag">SALES</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Sales%20Performance%20&%20Customer%20Insights%20Report%202c64a9103448803d9424fea943fb338c.html" class="pcard">
+          <div class="pcard-icon">📋</div>
+          <div class="pcard-title">Sales Performance & Customer Insights</div>
+          <div class="pcard-tags"><span class="ptag">SQL</span><span class="ptag">CRM</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+      </div>
     </div>
-
-    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;">EXCEL</p>
-    <div class="projects-grid" style="margin-bottom:32px;">
-      <a href="Viorel Grozea - Data Analyst Portfolio/Car Insurance policy optimisation 2984a910344880c089d7f1dea6dd1ba6.html" class="project-card">
-        <div class="project-icon">📊</div>
-        <div class="project-body">
-          <div class="project-title">Car Insurance Policy Optimisation</div>
-          <div class="project-tags"><span class="tag">EXCEL</span><span class="tag">ANALYSIS</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Excel project Cleaning data for visualization 20a4a910344880ebbe8ee15e524ef8d3.html" class="project-card">
-        <div class="project-icon">🧹</div>
-        <div class="project-body">
-          <div class="project-title">Cleaning Data for Visualisation</div>
-          <div class="project-tags"><span class="tag">EXCEL</span><span class="tag">DATA CLEANING</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
+    <div class="cat-panel" data-cat="POWER BI">
+      <div class="cat-head"><span class="cat-name">POWER BI</span><span class="cat-count">2 projects</span></div>
+      <div class="pcard-grid">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Ecommerce%20Sales%20Dashboard%203194a910344880000000000000000002.html" class="pcard">
+          <div class="pcard-icon">📈</div>
+          <div class="pcard-title">E-commerce Sales Dashboard</div>
+          <div class="pcard-tags"><span class="ptag">POWER BI</span><span class="ptag">DAX</span><span class="ptag">MODELLING</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi%20Dashboard%202244a910344880748aabe3bb1fe16eb2.html" class="pcard">
+          <div class="pcard-icon">📏</div>
+          <div class="pcard-title">Power BI Dashboard</div>
+          <div class="pcard-tags"><span class="ptag">POWER BI</span><span class="ptag">DAX</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+      </div>
     </div>
-
-    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;">POWER BI</p>
-    <div class="projects-grid" style="margin-bottom:32px;">
-      <a href="Viorel Grozea - Data Analyst Portfolio/Ecommerce Sales Dashboard 3194a910344880000000000000000002.html" class="project-card">
-        <div class="project-icon">📈</div>
-        <div class="project-body">
-          <div class="project-title">E-commerce Sales Dashboard</div>
-          <div class="project-tags"><span class="tag">POWER BI</span><span class="tag">DAX</span><span class="tag">DATA MODELLING</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/PowerBi Dashboard 2244a910344880748aabe3bb1fe16eb2.html" class="project-card">
-        <div class="project-icon">📏</div>
-        <div class="project-body">
-          <div class="project-title">Power BI Dashboard</div>
-          <div class="project-tags"><span class="tag">POWER BI</span><span class="tag">DAX</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
+    <div class="cat-panel" data-cat="EXCEL">
+      <div class="cat-head"><span class="cat-name">EXCEL</span><span class="cat-count">2 projects</span></div>
+      <div class="pcard-grid">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Car%20Insurance%20policy%20optimisation%202984a910344880c089d7f1dea6dd1ba6.html" class="pcard">
+          <div class="pcard-icon">📊</div>
+          <div class="pcard-title">Car Insurance Policy Optimisation</div>
+          <div class="pcard-tags"><span class="ptag">EXCEL</span><span class="ptag">ANALYSIS</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Excel%20project%20Cleaning%20data%20for%20visualization%2020a4a910344880ebbe8ee15e524ef8d3.html" class="pcard">
+          <div class="pcard-icon">🧹</div>
+          <div class="pcard-title">Cleaning Data for Visualisation</div>
+          <div class="pcard-tags"><span class="ptag">EXCEL</span><span class="ptag">CLEANING</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+      </div>
     </div>
-
-    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;">PYTHON</p>
-    <div class="projects-grid" style="margin-bottom:32px;">
-      <a href="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 1 2744a910344880a5b64bd60706ef6445.html" class="project-card">
-        <div class="project-icon">⚙️</div>
-        <div class="project-body">
-          <div class="project-title">Chips Analysis — Task 1</div>
-          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">PANDAS</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Chips Analysis - Task 2 27d4a910344880c88c71c3350461e861.html" class="project-card">
-        <div class="project-icon">⚙️</div>
-        <div class="project-body">
-          <div class="project-title">Chips Analysis — Task 2</div>
-          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">MATPLOTLIB</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Automobile Sales during Recession 2194a91034488059a99cfabc18de3d0f.html" class="project-card">
-        <div class="project-icon">🚗</div>
-        <div class="project-body">
-          <div class="project-title">Automobile Sales during Recession</div>
-          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">EDA</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Python project - Web Scraping 2114a910344880eca0c7ec671938d22f.html" class="project-card">
-        <div class="project-icon">🌐</div>
-        <div class="project-body">
-          <div class="project-title">Python — Web Scraping</div>
-          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">WEB SCRAPING</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/Wildfire activities in Australia 2184a9103448808cb0ecd9644176f15c.html" class="project-card">
-        <div class="project-icon">🔥</div>
-        <div class="project-body">
-          <div class="project-title">Wildfire Activities in Australia</div>
-          <div class="project-tags"><span class="tag">PYTHON</span><span class="tag">VISUALISATION</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
+    <div class="cat-panel" data-cat="PYTHON">
+      <div class="cat-head"><span class="cat-name">PYTHON</span><span class="cat-count">5 projects</span></div>
+      <div class="pcard-grid">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Chips%20Analysis%20-%20Task%201%202744a910344880a5b64bd60706ef6445.html" class="pcard">
+          <div class="pcard-icon">⚙️</div>
+          <div class="pcard-title">Chips Analysis — Task 1</div>
+          <div class="pcard-tags"><span class="ptag">PYTHON</span><span class="ptag">PANDAS</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Chips%20Analysis%20-%20Task%202%2027d4a910344880c88c71c3350461e861.html" class="pcard">
+          <div class="pcard-icon">⚙️</div>
+          <div class="pcard-title">Chips Analysis — Task 2</div>
+          <div class="pcard-tags"><span class="ptag">PYTHON</span><span class="ptag">MATPLOTLIB</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Automobile%20Sales%20during%20Recession%202194a91034488059a99cfabc18de3d0f.html" class="pcard">
+          <div class="pcard-icon">🚗</div>
+          <div class="pcard-title">Automobile Sales during Recession</div>
+          <div class="pcard-tags"><span class="ptag">PYTHON</span><span class="ptag">EDA</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Python%20project%20-%20Web%20Scraping%202114a910344880eca0c7ec671938d22f.html" class="pcard">
+          <div class="pcard-icon">🌐</div>
+          <div class="pcard-title">Python — Web Scraping</div>
+          <div class="pcard-tags"><span class="ptag">PYTHON</span><span class="ptag">SCRAPING</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Wildfire%20activities%20in%20Australia%202184a9103448808cb0ecd9644176f15c.html" class="pcard">
+          <div class="pcard-icon">🔥</div>
+          <div class="pcard-title">Wildfire Activities in Australia</div>
+          <div class="pcard-tags"><span class="ptag">PYTHON</span><span class="ptag">VIZ</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+      </div>
     </div>
-
-    <p style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:20px;letter-spacing:0.05em;">OTHER</p>
-    <div class="projects-grid">
-      <a href="Viorel Grozea - Data Analyst Portfolio/Tableau - Football Players Valuation & Performance 2b84a9103448803e8be2f5b07d376796.html" class="project-card">
-        <div class="project-icon">🖼️</div>
-        <div class="project-body">
-          <div class="project-title">Tableau — Football Players Valuation & Performance</div>
-          <div class="project-tags"><span class="tag">TABLEAU</span><span class="tag">SPORTS</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/IBM-Cognos analytics Project 20d4a9103448806ea187c3ebb1a26067.html" class="project-card">
-        <div class="project-icon">📊</div>
-        <div class="project-body">
-          <div class="project-title">IBM Cognos Analytics Project</div>
-          <div class="project-tags"><span class="tag">IBM COGNOS</span><span class="tag">BI</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
-      <a href="Viorel Grozea - Data Analyst Portfolio/IBM-Cognos - Survey analysis Project 21e4a91034488045b0f4e53d4ef1116d.html" class="project-card">
-        <div class="project-icon">📋</div>
-        <div class="project-body">
-          <div class="project-title">IBM Cognos — Survey Analysis</div>
-          <div class="project-tags"><span class="tag">IBM COGNOS</span><span class="tag">SURVEY</span></div>
-        </div>
-        <div class="project-arrow">→</div>
-      </a>
+    <div class="cat-panel" data-cat="OTHER">
+      <div class="cat-head"><span class="cat-name">OTHER</span><span class="cat-count">3 projects</span></div>
+      <div class="pcard-grid">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Tableau%20-%20Football%20Players%20Valuation%20&%20Performance%202b84a9103448803e8be2f5b07d376796.html" class="pcard">
+          <div class="pcard-icon">🖼️</div>
+          <div class="pcard-title">Tableau — Football Players Valuation</div>
+          <div class="pcard-tags"><span class="ptag">TABLEAU</span><span class="ptag">SPORTS</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/IBM-Cognos%20analytics%20Project%2020d4a9103448806ea187c3ebb1a26067.html" class="pcard">
+          <div class="pcard-icon">📊</div>
+          <div class="pcard-title">IBM Cognos Analytics Project</div>
+          <div class="pcard-tags"><span class="ptag">COGNOS</span><span class="ptag">BI</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/IBM-Cognos%20-%20Survey%20analysis%20Project%2021e4a91034488045b0f4e53d4ef1116d.html" class="pcard">
+          <div class="pcard-icon">📋</div>
+          <div class="pcard-title">IBM Cognos — Survey Analysis</div>
+          <div class="pcard-tags"><span class="ptag">COGNOS</span><span class="ptag">SURVEY</span></div>
+          <div class="pcard-go">View project →</div>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section id="certs">
-    <div class="section-label">Certifications</div>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:24px;font-family:'Space Mono',monospace;text-align:center;">Click any certificate to expand</p>
+  <section id="certs" class="reveal">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications</h2>
     <div class="certs-grid">
-      <div class="cert-card" onclick="openCertLb(0)">
-        <div class="cert-img-wrap cert-img-wide">
-          <img src="pcad_badge.png" alt="PCAD Certified Associate Data Analyst with Python Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
-          <span class="cert-expand-hint">Show Cert</span>
-        </div>
-        <div class="cert-label">PCAD — Certified Associate Data Analyst with Python</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(1)">
-        <div class="cert-img-wrap cert-img-wide">
-          <img src="Oracle_Badge.png" alt="Oracle Certified Associate Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
-          <span class="cert-expand-hint">Show Cert</span>
-        </div>
-        <div class="cert-label">Oracle Database SQL Certified Associate</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(2)">
-        <div class="cert-img-wrap cert-img-wide">
-          <img src="PowerBiBadge.png" alt="PL-300 Power BI Badge" loading="lazy" style="max-width:90%;max-height:120px;width:auto;height:auto;">
-          <span class="cert-expand-hint">Show Cert</span>
-        </div>
-        <div class="cert-label">PL-300 Power BI Data Analyst Certified Associate</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(3)">
-        <div class="cert-img-wrap">
-          <img src="Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg" alt="Power BI Certificate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">Microsoft Power BI Data Analyst</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(4)">
-        <div class="cert-img-wrap">
-          <img src="Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM Data Analyst Certificate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">IBM Data Analyst — Coursera</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(5)">
-        <div class="cert-img-wrap">
-          <img src="Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg" alt="SQL Certificate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">Advanced SQL Server Masterclass</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(6)">
-        <div class="cert-img-wrap">
-          <img src="Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg" alt="Excel Stats SQL Tableau Certificate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">Business Analyst Bootcamp</div>
-      </div>
-      <div class="cert-card" onclick="openCertLb(7)">
-        <div class="cert-img-wrap">
-          <img src="Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis Certificate" loading="lazy">
-          <span class="cert-expand-hint">expand ↗</span>
-        </div>
-        <div class="cert-label">Data Analysis — SQL, Tableau, Power BI & Excel</div>
+      <div class="cert-card" onclick="cOpen(0)"><div class="cert-imgwrap badge"><img src="pcad_badge.png" alt="PCAD"><span class="cert-hint">Show cert</span></div><div class="cert-lbl">PCAD — Certified Associate Data Analyst with Python</div></div>
+      <div class="cert-card" onclick="cOpen(1)"><div class="cert-imgwrap badge"><img src="Oracle_Badge.png" alt="Oracle"><span class="cert-hint">Show cert</span></div><div class="cert-lbl">Oracle Database SQL Certified Associate</div></div>
+      <div class="cert-card" onclick="cOpen(2)"><div class="cert-imgwrap badge"><img src="PowerBiBadge.png" alt="PL-300"><span class="cert-hint">Show cert</span></div><div class="cert-lbl">PL-300 Power BI Data Analyst Certified Associate</div></div>
+      <div class="cert-card" onclick="cOpen(3)"><div class="cert-imgwrap light"><img src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi_Certificate.jpeg" alt="Power BI"><span class="cert-hint">Expand</span></div><div class="cert-lbl">Microsoft Power BI Data Analyst</div></div>
+      <div class="cert-card" onclick="cOpen(4)"><div class="cert-imgwrap light"><img src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg" alt="IBM"><span class="cert-hint">Expand</span></div><div class="cert-lbl">IBM Data Analyst — Coursera</div></div>
+      <div class="cert-card" onclick="cOpen(5)"><div class="cert-imgwrap light"><img src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/SQL_-_Certificate.jpg" alt="SQL"><span class="cert-hint">Expand</span></div><div class="cert-lbl">Advanced SQL Server Masterclass</div></div>
+      <div class="cert-card" onclick="cOpen(6)"><div class="cert-imgwrap light"><img src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/ExcelstatsSQL_Tableau.jpg" alt="BA Bootcamp"><span class="cert-hint">Expand</span></div><div class="cert-lbl">Business Analyst Bootcamp</div></div>
+      <div class="cert-card" onclick="cOpen(7)"><div class="cert-imgwrap light"><img src="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg" alt="Data Analysis"><span class="cert-hint">Expand</span></div><div class="cert-lbl">Data Analysis — SQL, Tableau, Power BI &amp; Excel</div></div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <div class="contact-box">
+      <h2>Let's build something with data</h2>
+      <p>Open to entry-level data analyst roles and internship opportunities in the UK.</p>
+      <div class="contact-cta">
+        <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn btn-primary">✉ grozea_viorel_ionut@yahoo.com</a>
+        <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="btn btn-ghost">↗ LinkedIn</a>
       </div>
     </div>
   </section>
 
-  <!-- CERT LIGHTBOX -->
-  <div id="cert-lightbox">
-    <span id="cert-lightbox-close" onclick="closeCertLb()">✕</span>
-    <img id="cert-lb-img" src="" alt="">
-    <div id="cert-lightbox-label"></div>
-    <div id="cert-lb-nav">
-      <button onclick="moveCert(-1)">← prev</button>
-      <button onclick="moveCert(1)">next →</button>
-    </div>
-  </div>
+  <footer><p>© 2025 Viorel Grozea · viorel-portfolio.uk</p></footer>
+</div>
 
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <h2>Let's connect</h2>
-    <p style="color:var(--muted);margin-bottom:32px;max-width:480px;">Open to entry-level data analyst roles and internship opportunities in the UK.</p>
-    <div class="contact-row">
-      <a href="mailto:grozea_viorel_ionut@yahoo.com" class="btn btn-primary">✉ grozea_viorel_ionut@yahoo.com</a>
-      <a href="https://www.linkedin.com/in/viorelgrozea/" class="btn" target="_blank">↗ LinkedIn</a>
-      <a href="tel:07501318269" class="btn">📞 075 0131 8269</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Viorel Grozea · viorel-portfolio.uk</p>
-  </footer>
-
+<div id="clb">
+  <span id="clb-x" onclick="cClose()">✕</span>
+  <img id="clb-img" src="" alt="">
+  <div id="clb-lbl"></div>
+  <div class="clb-nav"><button onclick="cMove(-1)">← prev</button><button onclick="cMove(1)">next →</button></div>
 </div>
 
 <script>
-  const certData = [
-    { src: "PCAD_Certificate.png", label: "PCAD — Certified Associate Data Analyst with Python" },
-    { src: "OracleCertification.png", label: "Oracle Database SQL Certified Associate" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/pl300.png", label: "PL-300 Power BI Data Analyst" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/PowerBi_Certificate.jpeg", label: "Microsoft Power BI Data Analyst" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg", label: "IBM Data Analyst — Coursera" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/SQL_-_Certificate.jpg", label: "Advanced SQL Server Masterclass" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/ExcelstatsSQL_Tableau.jpg", label: "Business Analyst Bootcamp" },
-    { src: "Viorel Grozea - Data Analyst Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg", label: "Data Analysis — SQL, Tableau, Power BI & Excel" }
-  ];
-  let certIdx = 0;
-  const lb = document.getElementById('cert-lightbox');
-  const lbImg = document.getElementById('cert-lb-img');
-  const lbLabel = document.getElementById('cert-lightbox-label');
+// cert lightbox — badges map to their real certificate images
+const certs=[
+  {src:"PCAD_Certificate.png",lbl:"PCAD — Certified Associate Data Analyst with Python"},
+  {src:"OracleCertification.png",lbl:"Oracle Database SQL Certified Associate"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/pl300.png",lbl:"PL-300 Power BI Data Analyst"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/PowerBi_Certificate.jpeg",lbl:"Microsoft Power BI Data Analyst"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Coursera_M43MUMDIEA8W(Data_Analyst).jpg",lbl:"IBM Data Analyst — Coursera"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/SQL_-_Certificate.jpg",lbl:"Advanced SQL Server Masterclass"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/ExcelstatsSQL_Tableau.jpg",lbl:"Business Analyst Bootcamp"},
+  {src:"Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/data_analysis_-_SQL_Tableau_Power_BI__Excel_-_Copy.jpg",lbl:"Data Analysis — SQL, Tableau, Power BI & Excel"}
+];
+let ci=0;const clb=document.getElementById('clb');
+function cOpen(i){ci=i;document.getElementById('clb-img').src=certs[ci].src;document.getElementById('clb-lbl').textContent=certs[ci].lbl;clb.classList.add('open');}
+function cClose(){clb.classList.remove('open');}
+function cMove(d){ci=(ci+d+certs.length)%certs.length;document.getElementById('clb-img').src=certs[ci].src;document.getElementById('clb-lbl').textContent=certs[ci].lbl;}
+clb.addEventListener('click',e=>{if(e.target===clb)cClose();});
+document.addEventListener('keydown',e=>{if(!clb.classList.contains('open'))return;if(e.key==='Escape')cClose();if(e.key==='ArrowLeft')cMove(-1);if(e.key==='ArrowRight')cMove(1);});
 
-  function openCertLb(idx) {
-    certIdx = idx;
-    lbImg.src = certData[certIdx].src;
-    lbLabel.textContent = certData[certIdx].label;
-    lb.classList.add('open');
-  }
-  function closeCertLb() { lb.classList.remove('open'); }
-  function moveCert(dir) {
-    certIdx = (certIdx + dir + certData.length) % certData.length;
-    lbImg.src = certData[certIdx].src;
-    lbLabel.textContent = certData[certIdx].label;
-  }
-  lb.addEventListener('click', e => { if (e.target === lb) closeCertLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeCertLb();
-    if (e.key === 'ArrowLeft') moveCert(-1);
-    if (e.key === 'ArrowRight') moveCert(1);
-  });
+// scroll reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// pointer glow on project cards
+document.querySelectorAll('.pcard').forEach(c=>{
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+});
+
+// count-up stats
+function countUp(el){const t=+el.dataset.count;let n=0;const step=Math.max(1,Math.ceil(t/40));const iv=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(iv);}el.textContent=n;},28);}
+const so=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){countUp(e.target);so.unobserve(e.target);}});},{threshold:0.5});
+document.querySelectorAll('.hstat-num[data-count]').forEach(el=>so.observe(el));
 </script>
 </body>
 </html>
