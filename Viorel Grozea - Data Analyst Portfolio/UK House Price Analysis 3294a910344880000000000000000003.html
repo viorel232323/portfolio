@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBiMzdkIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDBlNWEwIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNyIgZmlsbD0idXJsKCNnKSIvPjx0ZXh0IHg9IjE2IiB5PSIyMiIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC13ZWlnaHQ9IjcwMCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Vkc8L3RleHQ+PC9zdmc+">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK House Price Analysis — SQL &amp; Power BI</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080a09;--bg2:#0e1110;--bg3:#161a18;--accent:#00e5a0;--accent2:#00b37d;--text:#f0f2f1;--muted:#8a938f;--border:#1e2320;--card:#111413;--glow:rgba(0,229,160,0.15);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
+a{color:var(--accent);text-decoration:none}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(600px circle at 15% 8%,rgba(0,229,160,0.06),transparent 45%),radial-gradient(700px circle at 85% 55%,rgba(0,179,125,0.05),transparent 50%);}
+.container{max-width:1400px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(8,10,9,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1400px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;gap:18px;}
+.nav-logo{display:flex;align-items:center;gap:10px;margin-right:auto;}
+.nav-logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--accent2),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#000;box-shadow:0 0 14px var(--glow);}
+.nav-logo-text{font-family:'Space Mono',monospace;font-size:13px;color:var(--accent);}
+.back{font-family:'Space Mono',monospace;font-size:12px;color:var(--text);border:1px solid var(--border);border-radius:7px;padding:7px 15px;transition:all .2s;}
+.back:hover{border-color:var(--accent);color:var(--accent);}
+.nav-li{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+.nav-li:hover{color:var(--accent);}
+
+.phead{padding:64px 0 36px;}
+.ptitle{font-size:clamp(34px,6vw,64px);font-weight:900;letter-spacing:-0.035em;line-height:1.02;margin-bottom:16px;}
+.ptitle .g{background:linear-gradient(135deg,#00e5a0,#00b37d);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.pmeta{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px;}
+.pmeta span{font-family:'Space Mono',monospace;font-size:11px;border:1px solid var(--border);border-radius:5px;padding:4px 11px;color:var(--muted);letter-spacing:0.05em;}
+.pmeta span.hot{border-color:var(--accent2);color:var(--accent);background:rgba(0,229,160,0.06);}
+.pintro{font-size:17px;color:var(--text);line-height:1.75;max-width:900px;margin-bottom:28px;}
+.findings{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:14px;padding:24px 28px;margin-bottom:56px;max-width:1000px;}
+.findings-t{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;}
+.findings ul{list-style:none;}
+.findings li{font-size:14.5px;color:var(--muted);line-height:1.7;padding-left:22px;position:relative;margin-bottom:9px;}
+.findings li::before{content:'▸';position:absolute;left:0;color:var(--accent);}
+.findings strong{color:var(--text);}
+
+/* SLIDESHOW */
+.sec-label{display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+.sec-label::before{content:'';width:32px;height:1px;background:var(--accent);}
+.sec-title{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-0.03em;margin-bottom:28px;}
+.slideshow{position:relative;background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:20px;}
+.slides{position:relative;border-radius:12px;overflow:hidden;background:#fff;}
+.slide{display:none;}
+.slide.on{display:block;animation:fade .4s ease;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.slide img{width:100%;height:auto;display:block;cursor:zoom-in;}
+.sarrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:rgba(8,10,9,0.85);border:1px solid var(--border);color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5;backdrop-filter:blur(8px);}
+.sarrow:hover{border-color:var(--accent);color:var(--accent);background:rgba(8,10,9,0.95);}
+.sprev{left:32px;}.snext{right:32px;}
+.sdots{display:flex;justify-content:center;gap:9px;margin-top:16px;}
+.sdot{width:9px;height:9px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .25s;border:none;padding:0;}
+.sdot.on{background:var(--accent);width:26px;border-radius:5px;}
+.scap{text-align:center;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);margin-top:12px;}
+
+/* STEPS — two column */
+.steps{margin-top:64px;}
+.step{display:grid;grid-template-columns:1fr 1.15fr;gap:36px;align-items:start;padding:36px 0;border-bottom:1px solid var(--border);}
+.step:last-child{border-bottom:none;}
+.step-left{position:sticky;top:90px;}
+.step-num{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent);letter-spacing:.15em;margin-bottom:10px;}
+.step-title{font-size:22px;font-weight:800;letter-spacing:-0.02em;margin-bottom:14px;line-height:1.25;}
+.step-body p{font-size:14.5px;color:var(--muted);line-height:1.8;margin-bottom:13px;}
+.step-body p:last-child{margin-bottom:0;}
+.sqlshot{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--card);cursor:zoom-in;transition:all .25s;}
+.sqlshot:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.35);}
+.sqlshot img{width:100%;height:auto;display:block;image-rendering:-webkit-optimize-contrast;}
+.sqlshot-hint{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.72);border:1px solid var(--border);border-radius:5px;padding:4px 10px;font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);opacity:.5;transition:all .2s;pointer-events:none;}
+.sqlshot:hover .sqlshot-hint{opacity:1;color:var(--accent);border-color:var(--accent);}
+@media(max-width:900px){.step{grid-template-columns:1fr;gap:20px;}.step-left{position:static;}.sprev{left:12px}.snext{right:12px}}
+
+/* LIGHTBOX */
+#lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;padding:24px;}
+#lb.open{display:flex;}
+#lb img{max-width:95vw;max-height:90vh;object-fit:contain;border-radius:10px;border:1px solid var(--border);}
+#lbx{position:fixed;top:20px;right:26px;font-family:'Space Mono',monospace;font-size:24px;color:var(--muted);cursor:pointer;z-index:10000;}
+#lbx:hover{color:var(--accent);}
+footer{padding:48px 0;text-align:center;border-top:1px solid var(--border);margin-top:64px;}
+footer p{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><div class="nav-logo-mark">VG</div><span class="nav-logo-text">Viorel Grozea</span></a>
+    <a href="../index.html" class="back">← Back to portfolio</a>
+    <a href="https://www.linkedin.com/in/viorelgrozea/" target="_blank" class="nav-li">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="phead">
+    <h1 class="ptitle">UK House Price <span class="g">Analysis</span></h1>
+    <div class="pmeta">
+      <span class="hot">SQL · ORACLE</span><span class="hot">POWER BI</span>
+      <span>SQL*LOADER</span><span>3 YEARS DATA</span><span>ENGLAND &amp; WALES</span>
+    </div>
+    <p class="pintro">An end-to-end analysis of England and Wales residential property transactions from 2024 to 2026, measuring how price growth diverged across property types and regions — and identifying where that divergence began. Raw CSVs were loaded into Oracle with SQL*Loader, cleaned and modelled in SQL, then connected live to Power BI for a three-page interactive dashboard.</p>
+    <div class="findings">
+      <div class="findings-t">Key Findings</div>
+      <ul><li>Analysed <strong>three years</strong> of England &amp; Wales residential transactions (2024–2026) in a single unified dataset.</li><li><strong>March is the peak month</strong> for transactions at 225K — roughly 55% above the quietest months.</li><li>The market is <strong>93% established properties</strong> and <strong>78% freehold</strong>.</li><li>Detached homes command the widest price spread, with an upper quartile near <strong>£580K</strong> against a median of <strong>£415K</strong>.</li><li>Built an end-to-end pipeline: <strong>SQL*Loader → Oracle → live Power BI connection → 3-page dashboard</strong>.</li></ul>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-label">The Dashboard</div>
+    <h2 class="sec-title">Three-page interactive report</h2>
+    <div class="slideshow">
+      <div class="slides">
+        <div class="slide on"><img src="UK%20House%20Price%20Analysis/dashboard_page1.png" alt="Dashboard page 1" onclick="openLb(this.src)"></div>
+        <div class="slide"><img src="UK%20House%20Price%20Analysis/dashboard_page2.png" alt="Dashboard page 2" onclick="openLb(this.src)"></div>
+        <div class="slide"><img src="UK%20House%20Price%20Analysis/dashboard_page3.png" alt="Dashboard page 3" onclick="openLb(this.src)"></div>
+      </div>
+      <button class="sarrow sprev" onclick="move(-1)">‹</button>
+      <button class="sarrow snext" onclick="move(1)">›</button>
+      <div class="sdots">
+        <button class="sdot on" onclick="go(0)"></button>
+        <button class="sdot" onclick="go(1)"></button>
+        <button class="sdot" onclick="go(2)"></button>
+      </div>
+      <div class="scap" id="scap">Page 1 of 3 — Market overview: average price by city, house types over time, interactive filters</div>
+    </div>
+  </section>
+
+  <section class="steps">
+    <div class="sec-label">How I built it</div>
+    <h2 class="sec-title">From raw CSVs to a live dashboard</h2>
+    
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">01</div>
+          <h3 class="step-title">Importing three years of raw data</h3>
+          <div class="step-body"><p>The project starts with three separate CSV files — one each for 2024, 2025 and 2026 — covering residential property transactions across England and Wales.</p><p>The raw files arrived without consistent headers, so I first added the correct column headers and split the data into its proper columns in Excel. I then created a fresh Oracle database and set up a dedicated user account rather than working under SYSTEM, which is better practice for keeping project work isolated.</p><p>Next I wrote the DDL to define every column, ready for loading.</p></div>
+        </div>
+        <div class="step-right step-right-empty"></div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">02</div>
+          <h3 class="step-title">Debugging the load and fixing the schema</h3>
+          <div class="step-body"><p>Running SQL*Loader on the first file, only 500 rows made it in. Reading the log file showed why: I'd defined the string columns too short, so anything longer was being rejected.</p><p>I widened the affected columns, truncated the table, and re-ran the import. This time every row loaded cleanly with exactly one rejection — checking the .bad file confirmed it was just the header row, which is expected.</p><p>I repeated the process for the other two years into their own tables, then created a view that UNIONs all three years into a single dataset.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql1.png')">
+            <img src="UK%20House%20Price%20Analysis/sql1.png" alt="SQL for step 02" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">03</div>
+          <h3 class="step-title">Cleaning the data and building a working table</h3>
+          <div class="step-body"><p>With everything in one place, I rewrote the view to give the columns clear, intuitive names and cast each one to the correct data type — prices as numbers, transfer dates as real dates rather than text.</p><p>I then materialised the view into a physical table. Views recalculate every time they're queried, so for a dataset of this size a table makes the downstream analysis much faster to work with.</p></div>
+        </div>
+        <div class="step-right step-right-empty"></div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">04</div>
+          <h3 class="step-title">Transactions and average price per year</h3>
+          <div class="step-body"><p>The first analysis question: how do transaction volume and average price move over time?</p><p>This query groups every transaction by year, counts them, and calculates the rounded average price. The result becomes the foundation for the year-on-year trend chart in Power BI.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql2.png')">
+            <img src="UK%20House%20Price%20Analysis/sql2.png" alt="SQL for step 04" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">05</div>
+          <h3 class="step-title">Median price by property type over time</h3>
+          <div class="step-body"><p>To compare how different property types behaved, I pivoted the data by month using CASE statements — one column each for Detached, Semi-Detached, Terraced, Flats/Maisonettes and Other.</p><p>This shape is exactly what Power BI needs to plot all five property types as separate lines on one chart, making divergence between them immediately visible.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql3.png')">
+            <img src="UK%20House%20Price%20Analysis/sql3.png" alt="SQL for step 05" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">06</div>
+          <h3 class="step-title">Average selling price by city and property type</h3>
+          <div class="step-body"><p>This query breaks the market down geographically, aggregating average price by town/city, property type and month.</p><p>It powers the bar chart and the searchable city filter on the dashboard, so a user can drill into any specific location.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql5.png')">
+            <img src="UK%20House%20Price%20Analysis/sql5.png" alt="SQL for step 06" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">07</div>
+          <h3 class="step-title">New vs established, freehold vs leasehold</h3>
+          <div class="step-body"><p>Two market-composition questions answered with the same technique: count each category, then use a window function — SUM(COUNT(...)) OVER() — to work out what percentage of the total each one represents.</p><p>The results feed the two pie charts showing that the market is overwhelmingly established properties (93%) and predominantly freehold (78%).</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql6.png')">
+            <img src="UK%20House%20Price%20Analysis/sql6.png" alt="SQL for step 07" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">08</div>
+          <h3 class="step-title">Price quartiles by property type and year</h3>
+          <div class="step-body"><p>Averages alone hide the spread of a market. Using PERCENTILE_CONT I calculated the lower quartile (25%), median (50%) and upper quartile (75%) for each property type in each year.</p><p>Filtering to standard-category sales keeps the figures representative by excluding unusual transaction types. This produces the detailed quartile table on the dashboard's third page.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql7.png')">
+            <img src="UK%20House%20Price%20Analysis/sql7.png" alt="SQL for step 08" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">09</div>
+          <h3 class="step-title">Seasonality analysis</h3>
+          <div class="step-body"><p>The final question: does the housing market have a seasonal rhythm?</p><p>I grouped transactions by calendar month to get an overall picture, then built a second version broken down by property type using UNION ALL to stack each type's results together.</p><p>March stands out sharply at 225K transactions — well above every other month.</p></div>
+        </div>
+        <div class="step-right">
+          <div class="sqlshot" onclick="openLb('UK%20House%20Price%20Analysis/sql8.png')">
+            <img src="UK%20House%20Price%20Analysis/sql8.png" alt="SQL for step 09" loading="lazy">
+            <span class="sqlshot-hint">⤢ expand</span>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">10</div>
+          <h3 class="step-title">Connecting to Power BI and building the dashboard</h3>
+          <div class="step-body"><p>With the analysis tables built, I connected Power BI directly to Oracle via a live SQL connection rather than exporting static files — so the dashboard reflects the source data.</p><p>I then built a three-page report: market overview with city and property-type filters, seasonality analysis, and a detailed quartile breakdown with market-composition pies.</p></div>
+        </div>
+        <div class="step-right step-right-empty"></div>
+      </div>
+  </section>
+
+  <footer><p>© 2025 Viorel Grozea · viorel-portfolio.uk</p></footer>
+</div>
+
+<div id="lb"><span id="lbx" onclick="closeLb()">✕</span><img id="lbimg" src="" alt=""></div>
+
+<script>
+const caps=[
+ "Page 1 of 3 — Market overview: average price by city, house types over time, interactive filters",
+ "Page 2 of 3 — Seasonality: monthly transactions overall and split by property type",
+ "Page 3 of 3 — Price quartiles by type and year, plus market composition breakdowns"
+];
+let si=0;
+const slides=document.querySelectorAll('.slide'),dots=document.querySelectorAll('.sdot');
+function show(){slides.forEach((s,i)=>s.classList.toggle('on',i===si));dots.forEach((d,i)=>d.classList.toggle('on',i===si));document.getElementById('scap').textContent=caps[si];}
+function move(d){si=(si+d+slides.length)%slides.length;show();}
+function go(i){si=i;show();}
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('lb').classList.contains('open')){if(e.key==='Escape')closeLb();return;}
+  if(e.key==='ArrowLeft')move(-1);if(e.key==='ArrowRight')move(1);
+});
+const lb=document.getElementById('lb');
+function openLb(src){document.getElementById('lbimg').src=src;lb.classList.add('open');}
+function closeLb(){lb.classList.remove('open');}
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+</script>
+</body>
+</html>
