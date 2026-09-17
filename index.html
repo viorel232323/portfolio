@@ -103,8 +103,11 @@ section{padding:90px 0;position:relative;}
 .pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
 .pcard{aspect-ratio:1/1;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;display:flex;flex-direction:column;transition:all .28s cubic-bezier(.2,.7,.3,1);position:relative;overflow:hidden;}
 .pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(300px circle at var(--mx,50%) var(--my,0%),rgba(0,229,160,0.08),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;}
-.pcard.has-bg::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(8,10,9,.42) 0%,rgba(8,10,9,.78) 55%,rgba(8,10,9,.93) 100%),url('price-predictions.jpg') center/cover no-repeat;transition:filter .35s,transform .35s;}
+.pcard.has-bg::before{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(8,10,9,.42) 0%,rgba(8,10,9,.78) 55%,rgba(8,10,9,.93) 100%),var(--cardbg) center/cover no-repeat;transition:filter .35s,transform .35s;}
 .pcard.has-bg:hover::before{filter:brightness(1.22) saturate(1.1);transform:scale(1.04);}
+.pcard.has-bg.bg-flat50::before{background:linear-gradient(rgba(8,10,9,.5),rgba(8,10,9,.5)),var(--cardbg) center/cover no-repeat;}
+.pcard.has-bg.bg-flat50 .pcard-title,.pcard.has-bg.bg-flat50 .pcard-icon{text-shadow:0 2px 12px rgba(0,0,0,.9),0 0 26px rgba(0,0,0,.7);}
+.pcard.has-bg.bg-flat50 .ptag{background:rgba(8,10,9,.72);}
 .pcard.has-bg>*{position:relative;z-index:2;}
 .pcard.has-bg .pcard-title{text-shadow:0 2px 10px rgba(0,0,0,.65);}
 .pcard:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,0.4),0 0 0 1px var(--accent2);}
@@ -222,13 +225,13 @@ footer p{font-family:'Space Mono',monospace;font-size:12px;color:var(--muted);}
     <div class="cat-panel" data-cat="MULTI-TOOL">
       <div class="cat-head"><span class="cat-name">SQL + POWER BI</span><span class="cat-count">2 projects</span></div>
       <div class="pcard-grid">
-        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/UK%20House%20Price%20Analysis%203294a910344880000000000000000003.html" class="pcard">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/UK%20House%20Price%20Analysis%203294a910344880000000000000000003.html" class="pcard has-bg" style="--cardbg:url('price-predictions.jpg')">
           <div class="pcard-icon">🏠</div>
           <div class="pcard-title">UK House Price Analysis</div>
           <div class="pcard-tags"><span class="ptag hot">SQL</span><span class="ptag hot">POWER BI</span><span class="ptag">3 YRS DATA</span></div>
           <div class="pcard-go">View project →</div>
         </a>
-        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Financial%20Fraud%20Detection%203094a910344880000000000000000001.html" class="pcard has-bg">
+        <a href="Viorel%20Grozea%20-%20Data%20Analyst%20Portfolio/Financial%20Fraud%20Detection%203094a910344880000000000000000001.html" class="pcard has-bg bg-flat50" style="--cardbg:url('fraud-bg.jpg')">
           <div class="pcard-icon">🔐</div>
           <div class="pcard-title">Payments Fraud Detection</div>
           <div class="pcard-tags"><span class="ptag hot">SQL</span><span class="ptag">ORACLE</span><span class="ptag">6.3M ROWS</span></div>
